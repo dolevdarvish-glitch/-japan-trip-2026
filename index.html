@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>יפן 2026 - אפליקציית טיול מלאה</title>
+<style>
+:root {
+  --red:#b00008; --red2:#d23b31; --cream:#f6eee3; --ink:#211815; --muted:#867b72;
+  --card:#fff; --line:#e5b7ae; --gold:#bf8b00; --green:#2f8f68; --shadow:0 12px 36px rgba(77,45,20,.13);
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; background:var(--cream); color:var(--ink); }
+.app { max-width:980px; margin:0 auto; min-height:100vh; background:linear-gradient(#fff8ef 0,#f6eee3 280px); box-shadow:0 0 60px rgba(0,0,0,.10); }
+header { background:var(--red); color:#fff; padding:28px 26px 18px; position:sticky; top:0; z-index:20; }
+.header-row { display:flex; justify-content:space-between; gap:20px; align-items:flex-start; }
+h1 { margin:0; font-size:34px; letter-spacing:-1px; }
+.sub { opacity:.9; margin-top:6px; }
+.dates { direction:ltr; font-weight:900; white-space:nowrap; margin-top:5px; }
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:18px; }
+.stat { background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.18); border-radius:15px; padding:10px; }
+.stat b { display:block; font-size:18px; }
+nav { position:sticky; top:130px; z-index:18; display:flex; overflow-x:auto; background:#fff; border-bottom:1px solid #ead9c9; }
+nav button { border:0; background:#fff; color:#84776d; padding:16px 18px; font-weight:900; cursor:pointer; white-space:nowrap; border-bottom:4px solid transparent; }
+nav button.active { color:var(--red2); border-bottom-color:var(--red2); }
+main { padding:22px 18px 90px; }
+.controls { display:grid; grid-template-columns:1fr 180px 150px; gap:10px; margin-bottom:18px; }
+input, select, textarea { border:1px solid #ded3c7; background:#fff; border-radius:14px; padding:13px 14px; font-size:15px; outline:none; }
+.page { display:none; } .page.active { display:block; }
+.day-layout { display:grid; grid-template-columns:280px 1fr; gap:18px; align-items:start; }
+.day-list { position:sticky; top:188px; max-height:calc(100vh - 210px); overflow:auto; padding-left:4px; }
+.day-pill { width:100%; text-align:right; border:0; background:#fff; border-radius:16px; padding:13px; margin-bottom:9px; cursor:pointer; box-shadow:0 6px 18px rgba(77,45,20,.08); }
+.day-pill.active { outline:3px solid #d23b3140; }
+.day-pill b { display:block; } .day-pill span { color:var(--muted); font-size:13px; }
+.day-card { background:#fff; border-radius:26px; padding:22px; box-shadow:var(--shadow); }
+.day-top { display:flex; justify-content:space-between; gap:16px; align-items:start; border-bottom:1px solid #eee1d5; padding-bottom:14px; margin-bottom:18px; }
+.badge { background:var(--red2); color:#fff; border-radius:999px; min-width:62px; height:62px; display:grid; place-items:center; font-weight:900; box-shadow:var(--shadow); }
+.day-card h2 { margin:0 0 5px; font-size:28px; } .hotel { color:var(--muted); font-weight:800; }
+.items { display:grid; gap:13px; }
+.item { display:grid; grid-template-columns:90px 1fr 100px; gap:14px; align-items:center; background:#fffaf5; border:1px solid #eddfd1; border-radius:18px; padding:14px; }
+.tag { color:#fff; background:#333; border-radius:999px; padding:7px 10px; text-align:center; font-weight:900; font-size:13px; }
+.tag.חובה { background:var(--red2); } .tag.אוכל { background:#d48a00; } .tag.שופינג,.tag.פוקימון { background:#6a4bc7; } .tag.מומלץ { background:var(--green); }
+.item h3 { margin:0 0 6px; font-size:18px; }
+.item h3 a { color:inherit; text-decoration:none; border-bottom:2px solid rgba(210,59,49,.25); }
+.item h3 a:hover { color:var(--red2); border-bottom-color:var(--red2); }
+.hotel a { color:inherit; text-decoration:none; border-bottom:1px solid rgba(134,123,114,.35); }
+.hotel a:hover { color:var(--red2); border-bottom-color:var(--red2); }
+.item p { margin:0; color:#645b53; line-height:1.45; }
+.item.done { opacity:.52; } .item.done h3 { text-decoration:line-through; }
+.actions { display:flex; gap:8px; margin-top:18px; flex-wrap:wrap; }
+.btn { border:0; border-radius:14px; background:var(--red2); color:#fff; font-weight:900; padding:12px 16px; cursor:pointer; box-shadow:var(--shadow); }
+.btn.secondary { background:#fff; color:var(--red2); border:1px solid #e5c8c2; }
+.add-box { margin-top:18px; background:#fff7ef; border:1px dashed #d9afa5; border-radius:18px; padding:14px; display:grid; gap:10px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+.info { background:#fff; border-radius:20px; padding:18px; box-shadow:var(--shadow); border:1px solid #eee1d5; }
+.info b { display:block; color:var(--red2); font-size:18px; margin-bottom:8px; }
+.note { color:#6c6259; line-height:1.6; }
+.checklist label { display:block; background:#fff; margin:9px 0; padding:13px; border-radius:14px; border:1px solid #eadfd4; }
+.footer { position:fixed; bottom:14px; left:50%; transform:translateX(-50%); width:min(940px,calc(100% - 24px)); display:flex; justify-content:center; gap:10px; pointer-events:none; }
+.footer .btn { pointer-events:auto; }
+@media(max-width:760px) {
+  header { padding:22px 16px 14px; } h1 { font-size:28px; } .stats { grid-template-columns:repeat(2,1fr); } nav { top:148px; }
+  .controls { grid-template-columns:1fr; } .day-layout { grid-template-columns:1fr; } .day-list { position:static; max-height:240px; }
+  .item { grid-template-columns:1fr; } .tag { width:max-content; } .day-top { flex-direction:column; } 
+}
+@media print { header,nav,.controls,.day-list,.footer,.add-box,.actions { display:none!important; } .app { box-shadow:none; } .page { display:block; } body { background:#fff; } }
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="header-row">
+    <div><h1>יפן 2026 🗾</h1><div class="sub">אפליקציית טיול מלאה — משופרת עם טיפים, מפות, אוכל, שופינג ופוקימון</div></div>
+    <div class="dates">22.08.2026 – 23.09.2026 ✈️</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>33 ימים</b><span>מסלול מלא</span></div>
+    <div class="stat"><b>8 בסיסים</b><span>מלונות סגורים</span></div>
+    <div class="stat"><b>₪11,333</b><span>טיסות</span></div>
+    <div class="stat"><b>25.07</b><span>פתיחת רכבות</span></div>
+  </div>
+</header>
+<nav>
+  <button class="tab active" data-page="planner">כל יום כעמוד 📅</button>
+  <button class="tab" data-page="cities">יעדים וקניונים 📍</button>
+  <button class="tab" data-page="food">מסעדות ואוכל 🍜</button>
+  <button class="tab" data-page="parks">לונה פארקים 🎢</button>
+  <button class="tab" data-page="pokemon">פוקימון וקלפים 🎴</button>
+  <button class="tab" data-page="money">תקציב ורכבות 💴</button>
+  <button class="tab" data-page="tips">טיפים מהחבר 📌</button>
+</nav>
+<main>
+<section id="planner" class="page active">
+  <div class="controls">
+    <input id="search" placeholder="חיפוש: פוקימון, קניון, ראמן, מקדש..." />
+    <select id="cityFilter"><option value="">כל היעדים</option></select>
+    <select id="tagFilter"><option value="">כל הסוגים</option></select>
+  </div>
+  <div class="day-layout">
+    <aside class="day-list" id="dayList"></aside>
+    <article class="day-card" id="dayCard"></article>
+  </div>
+</section>
+
+<section id="cities" class="page">
+  <div class="grid" id="cityGrid"></div>
+</section>
+
+<section id="food" class="page">
+  <div class="grid">
+    <div class="info"><b>טוקיו</b><p class="note">Tsukiji Outer Market, Uobei Sushi, Gyukatsu Motomura, Mutekiya Ramen, Ichiran, Pontocho/Ginza למסעדה איכותית.</p></div>
+    <div class="info"><b>טאקיאמה</b><p class="note">Hida beef בכל צורה: שיפודים, סושי הידה, יאקיניקו, קרוקט. לשלב עם שוק הבוקר.</p></div>
+    <div class="info"><b>קאנאזאווה</b><p class="note">Omicho Market, Mori Mori Sushi, קערות פירות ים, קינוחים עם עלי זהב.</p></div>
+    <div class="info"><b>קיוטו</b><p class="note">Nishiki Market, Yudofu, Matcha באוג׳י, Kaiseki אם רוצים ערב חגיגי, ראמן באזור Kyoto Station.</p></div>
+    <div class="info"><b>אוסקה</b><p class="note">Takoyaki, Okonomiyaki, Kushikatsu, Dotonbori, Kuromon Market, Namba.</p></div>
+    <div class="info"><b>הירושימה</b><p class="note">Hiroshima-style okonomiyaki, oysters במיאג׳ימה, Momiji manju.</p></div>
+  </div>
+</section>
+
+<section id="parks" class="page">
+  <div class="grid">
+    <div class="info"><b>Tokyo DisneySea</b><p class="note">בחירה מעולה למבוגרים: עיצוב, אווירה, מתקנים ייחודיים. לשמור יום מלא בטוקיו הסופית.</p></div>
+    <div class="info"><b>Tokyo Disneyland</b><p class="note">דיסני קלאסי, מצעדים, Castle, מתאים אם רוצים חוויה נוסטלגית.</p></div>
+    <div class="info"><b>Universal Studios Japan</b><p class="note">יום מלא באוסקה. לתכנן Express Pass אם Super Nintendo World חשוב לכם.</p></div>
+    <div class="info"><b>Tokyo Dome City</b><p class="note">פארק עירוני קטן ונגיש בטוקיו, טוב לערב קליל אם רוצים מתקנים בלי יום פארק מלא.</p></div>
+    <div class="info"><b>Joypolis / DiverCity Odaiba</b><p class="note">אופציה ליום גשם: ארקיידים, VR, Gundam, קניונים.</p></div>
+  </div>
+</section>
+
+<section id="pokemon" class="page">
+  <div class="grid">
+    <div class="info"><b>Pokémon Center SKYTREE TOWN</b><p class="note">לשלב ביום אסקוסה/Skytree. נוח ויעיל.</p></div>
+    <div class="info"><b>Pokémon Center Shibuya</b><p class="note">בתוך Shibuya PARCO יחד עם Nintendo Tokyo וחנויות פופ נוספות.</p></div>
+    <div class="info"><b>Pokémon Center MEGA TOKYO</b><p class="note">בסאנשיין סיטי איקבוקורו, מהסניפים הגדולים והחזקים.</p></div>
+    <div class="info"><b>Pokémon Center TOKYO DX + Café</b><p class="note">ניהונבאשי. לקפה צריך הזמנה מראש, לרוב נפתח חלון הזמנות מוגבל.</p></div>
+    <div class="info"><b>קלפים באקיהברה / נאקנו</b><p class="note">להשוות מחירים. לבדוק מצב קלף, לא לקנות בלחץ, להיזהר מחנויות יקרות מדי.</p></div>
+    <div class="info"><b>Osaka Pokémon Center</b><p class="note">אפשר לשלב ביום שופינג באוסקה אם נשאר זמן.</p></div>
+  </div>
+</section>
+
+<section id="money" class="page">
+  <div class="grid">
+    <div class="info"><b>טיסות</b><p class="note">₪11,333 לפי הנתונים שלך.</p></div>
+    <div class="info"><b>לינות</b><p class="note">יעד משוער: ₪13,000–₪14,000. כדאי לעקוב לפי מלון ותאריך ביטול חינם.</p></div>
+    <div class="info"><b>רכבות</b><p class="note">רוב ההזמנות נפתחות סביב 30 יום מראש. להתחיל סביב 25.07.2026 לנסיעות הראשונות.</p></div>
+    <div class="info"><b>נזילות</b><p class="note">יעד נזילות עד ספטמבר 2026 מתאים לסיום הטיול, אבל הוצאות בפועל מתחילות לפני.</p></div>
+  </div>
+  <h2>צ׳ק ליסט הכנות</h2>
+  <div class="checklist" id="checks"></div>
+</section>
+
+<section id="tips" class="page">
+  <div class="grid">
+    <div class="info"><b>התנהלות ציבורית</b><p class="note">לשמור על שקט ברכבות ובמקומות ציבוריים, לא לחצות באדום, לא לזרוק אשפה ברחוב, ולכבד שילוט “אסור לצלם”. בגיון לא לצלם גיישות ללא רשות.</p></div>
+    <div class="info"><b>רכבות ושינקנסן</b><p class="note">לבדוק מסלול ב-Google Maps לפני כל נסיעה, להגיע לשינקנסן לפחות חצי שעה מראש, ובנסיעות ארוכות להזמין מקומות שמורים. ברכבות עירוניות לא צריך כרטיס מראש — להשתמש ב-Suica/IC.</p></div>
+    <div class="info"><b>מזוודות</b><p class="note">בימי מעבר עדיף לשלוח מזוודות בין מלונות ולהסתובב עם תיק קטן. לא לשלוח מוקדם מדי: בדרך כלל עדיף יום-יומיים לפני ההגעה ולא יותר.</p></div>
+    <div class="info"><b>כסף</b><p class="note">ברוב המקומות מקבלים אשראי, אבל בשווקים, אזורים כפריים ורכבות מסוימות עדיין שימושי להחזיק מזומן. ניתן למשוך ב-7-Eleven, Lawson ו-FamilyMart.</p></div>
+    <div class="info"><b>ריוקן ואונסן</b><p class="note">ב-Tsutaya Tokinoyado Kazari לשמור על שקט, להגיע בזמן לארוחת Kaiseki, לחלוץ נעליים, ובאונסן להתרחץ לפני הכניסה ולשמור על כללי המקום.</p></div>
+    <div class="info"><b>מסעדות</b><p class="note">לחיפוש עומק השתמשו ב-Tabelog: דירוג 3 ומעלה נחשב טוב. למסעדות יוקרה או מיוחדות בטוקיו/קיוטו כדאי לבדוק Michelin ולהזמין שבועות מראש.</p></div>
+    <div class="info"><b>אטרקציות עם שעה קבועה</b><p class="note">ל-USJ, Disney, teamLab, Pokémon Café או Sagano Scenic Railway להגיע בזמן. איחור עלול לגרום לאובדן הזמנה או כניסה.</p></div>
+    <div class="info"><b>טיפ שימוש</b><p class="note">כל כותרת של מקום באפליקציה היא קישור חיפוש ל-Google Maps. לחצו על הכותרת עצמה ולא על הטקסט שמתחת.</p></div>
+  </div>
+</section>
+
+</main>
+</div>
+<div class="footer">
+  <button class="btn" onclick="window.print()">הדפסה / שמירה PDF</button>
+  <button class="btn secondary" onclick="exportPlan()">ייצוא JSON</button>
+</div>
+<script>
+const DATA = {"days": [["22.08.2026", "ישראל → טוקיו", "טיסת אל על ויום מעבר", "Richmond Hotel Premier Asakusa", [["טיסה", "טיסת אל על לטוקיו", "להכין מראש: דרכונים, ביטוח, eSIM, כרטיסי IC/Welcome Suica אם זמינים, כתובות המלונות ביפנית.", "חובה"], ["משימה", "להוריד אפליקציות", "Google Maps, Google Translate, Japan Travel/NAVITIME, Tokyo Disney Resort, USJ, SmartEX אם תשתמשו בשינקנסן.", "פרקטי"], ["כסף", "חלוקת מזומן/אשראי", "להכין ין לימים הראשונים, במיוחד לאוטובוסים/שווקים/מכונות.", "פרקטי"]]], ["23.08.2026", "טוקיו - אסקוסה", "נחיתה, התאקלמות ואסקוסה רגוע", "Richmond Hotel Premier Asakusa", [["מעבר", "נחיתה והגעה לאסקוסה", "Narita/Haneda → Asakusa. לא להעמיס ביום הנחיתה.", "חובה"], ["מלון", "Richmond Hotel Premier Asakusa", "צ׳ק־אין, מקלחת, מנוחה קצרה.", "חובה"], ["מקדש", "Senso-ji בערב", "אחד המקומות הכי יפים להתחיל בהם. בערב פחות צפוף ומאוד פוטוגני.", "חובה"], ["רחוב", "Nakamise-dori", "חטיפים, מזכרות, דוכנים. טוב גם לקנייה קטנה ראשונה.", "קל"], ["אוכל", "Asakusa Unatetsu / Daikokuya Tempura", "אופציות קלאסיות באזור. לבדוק שעות פתיחה ביום עצמו.", "אוכל"], ["שער", "Kaminarimon Gate", "שער הרעם בכניסה לאסקוסה; נקודת פתיחה טובה לפני Nakamise ו-Senso-ji.", "מומלץ"], ["רחוב", "Kannon Street Asakusa", "מדרחובים מקורים ליד המקדש עם קניות, אוכל רחוב וסמטאות מסורתיות.", "שופינג"], ["רחוב", "Orange Street Asakusa", "רחוב סטייליסטי ליד אסקוסה עם מסעדות וסמטאות יפניות אותנטיות.", "אוכל"]]], ["24.08.2026", "טוקיו - אסקוסה / סקיי טרי", "שכונות מסורתיות + תצפית", "Richmond Hotel Premier Asakusa", [["בוקר", "Asakusa Culture Tourist Information Center", "תצפית חינמית טובה על Senso-ji והרחובות.", "מומלץ"], ["שוק", "Kappabashi Kitchen Town", "רחוב ציוד מטבח, סכינים, כלי אוכל, פלסטיק פוד יפני.", "שופינג"], ["תצפית", "Tokyo Skytree + Solamachi", "תצפית, קניון ענק, אוכל, מזכרות. מתאים ליום חם/גשום.", "חובה"], ["פוקימון", "Pokémon Center SKYTREE TOWN", "אחד הסניפים הנוחים לשלב עם Skytree.", "פוקימון"], ["אוכל", "Rokurinsha / Solamachi food court", "ראמן/אוכל יפני קל בתוך המתחם.", "אוכל"], ["אטרקציה", "Sumida Aquarium", "אקווריום בתוך Tokyo Solamachi, מתאים להפסקה ממוזגת ביום Skytree.", "מומלץ"], ["אטרקציה", "Konica Minolta Planetarium Tenku", "פלנטריום ליד Skytree, אופציה טובה אם חם או גשום.", "מומלץ"]]], ["25.08.2026", "טוקיו → טאקיאמה", "נסיעה לאלפים היפניים", "Wat Hotel & Spa Hida Takayama", [["רכבת", "Tokyo → Nagoya → Takayama", "יום מעבר ארוך יחסית. להזמין מקומות מראש כשנפתח.", "חובה"], ["מלון", "Wat Hotel & Spa Hida Takayama", "צ׳ק־אין ומנוחה. לבדוק אונסן/ספא במלון.", "חובה"], ["ערב", "Sanmachi Suji", "העיר העתיקה של טאקיאמה, בתים מסורתיים וחנויות קטנות.", "חובה"], ["אוכל", "Hida beef dinner", "חובה לנסות בשר הידה: גריל, סושי הידה, קרוקט.", "אוכל"], ["טיפ מעבר", "שליחת מזוודות לפני האלפים", "בימי מעבר עם רכבות/אוטובוסים עדיף לשקול שליחת מזוודות ולהסתובב עם תיק קטן.", "פרקטי"]]], ["26.08.2026", "טאקיאמה", "עיר עתיקה, שווקים ואוכל", "Wat Hotel & Spa Hida Takayama", [["שוק", "Miyagawa Morning Market", "להגיע בבוקר. פירות, חטיפים, קפה, מזכרות.", "חובה"], ["תרבות", "Takayama Jinya", "מבנה ממשל היסטורי שמסביר את העיר והתקופה.", "מומלץ"], ["רחוב", "Sanmachi Suji ביום", "סאקה, חנויות עץ, גלידה, צילום.", "חובה"], ["אוכל", "Hida beef skewers / Hida Kotte Ushi", "נשנוש חובה באזור העיר העתיקה.", "אוכל"], ["רגוע", "אונסן/ספא במלון", "יום טוב להאט קצת את הקצב.", "מנוחה"], ["סאקה", "Kawashiri Sake Brewery", "מבשלת סאקה פחות תיירותית באזור העיר העתיקה; להגיע לפני שהאזור נסגר.", "אוכל"]]], ["27.08.2026", "טאקיאמה / שיראקאווה-גו", "כפר גשו-זוקורי או טבע", "Wat Hotel & Spa Hida Takayama", [["יום טיול", "Shirakawa-go", "כפר בתי הקש המפורסם. אפשר בדרך לקאנאזאווה או כיום טיול.", "חובה"], ["תצפית", "Shiroyama Viewpoint", "התמונה הקלאסית של הכפר מלמעלה.", "מומלץ"], ["חלופה", "Hida Folk Village", "אם לא רוצים נסיעה ארוכה, מוזיאון פתוח קרוב לטאקיאמה.", "קל"], ["אוכל", "Soba / Gohei mochi", "אוכל הרים מקומי, טוב לארוחת צהריים.", "אוכל"], ["בית היסטורי", "Kanda House Shirakawa-go", "בית מסורתי בכפר שממחיש את חיי המקום בתקופת הסמוראים.", "מומלץ"], ["מוזיאון", "Myozenji Museum Shirakawa-go", "אחד המבנים המעניינים בכפר, טוב אם רוצים להבין את ההיסטוריה המקומית.", "מומלץ"]]], ["28.08.2026", "טאקיאמה → קאנאזאווה", "מעבר דרך האלפים", "Hotel Intergate Kanazawa", [["מעבר", "אוטובוס Takayama → Kanazawa", "זה הקטע שכדאי להזמין מראש, במיוחד אם עוצרים בשיראקאווה-גו.", "חובה"], ["מלון", "Hotel Intergate Kanazawa", "צ׳ק־אין במרכז העיר.", "חובה"], ["ערב", "Higashi Chaya District", "רובע בתי תה מסורתי, יפה במיוחד לקראת שקיעה.", "חובה"], ["אוכל", "Omicho Market ערב/צהריים", "סושי, קערות דגים, פירות ים. לבדוק שעות, חלק נסגר מוקדם.", "אוכל"]]], ["29.08.2026", "קאנאזאווה", "גנים, סמוראים ומוזיאונים", "Hotel Intergate Kanazawa", [["גן", "Kenrokuen Garden", "מהגנים המפורסמים ביפן. להגיע בבוקר מוקדם.", "חובה"], ["טירה", "Kanazawa Castle Park", "צמוד לגן, קל לשלב.", "מומלץ"], ["רובע", "Nagamachi Samurai District", "בתי סמוראים, סמטאות ותעלות מים.", "חובה"], ["מוזיאון", "21st Century Museum of Contemporary Art", "מוזיאון עכשווי, לבדוק תערוכות וכרטיסים.", "מומלץ"], ["אוכל", "Mori Mori Sushi / Omicho Market", "קאנאזאווה חזקה מאוד בסושי ופירות ים.", "אוכל"]]], ["30.08.2026", "קאנאזאווה", "שופינג, זהב ומלאכות", "Hotel Intergate Kanazawa", [["חוויה", "Gold leaf workshop", "קאנאזאווה מפורסמת בעלי זהב. אפשר סדנה קצרה.", "חוויה"], ["שוק", "Omicho Market", "לחזור בבוקר אם לא הספקתם. קערות קאיסנדון.", "אוכל"], ["שופינג", "Korinbo / Kanazawa Forus", "קניונים, בגדים, קוסמטיקה, אוכל.", "שופינג"], ["רגוע", "Gyokusen-inmaru Garden", "גן קטן ויפה ליד הטירה.", "קל"], ["ערב", "Katamachi Kanazawa", "אזור בילוי ומסעדות מרכזי בקאנאזאווה, טוב לארוחת ערב.", "אוכל"], ["ערב", "Kiguramachi Kanazawa", "רשת רחובות וסמטאות עם מסעדות ובילוי ליד Katamachi.", "אוכל"]]], ["31.08.2026", "קאנאזאווה → מאטסומוטו", "מעבר לעיר הטירה", "Iroha Grand Hotel Matsumoto Eki-Mae", [["מעבר", "Kanazawa → Nagano/Toyama → Matsumoto", "לבדוק מסלול רכבת הכי יעיל חודש לפני.", "חובה"], ["מלון", "Iroha Grand Hotel Matsumoto Eki-Mae", "קרוב לתחנה ונוח ליציאות.", "חובה"], ["ערב", "Nawate Street", "רחוב קטן עם חנויות, דוכנים ואווירת ערב.", "קל"], ["אוכל", "Soba מקומי", "נאגנו/מאטסומוטו חזקים בסובה.", "אוכל"]]], ["01.09.2026", "מאטסומוטו", "הטירה השחורה ונוף אלפיני", "Iroha Grand Hotel Matsumoto Eki-Mae", [["טירה", "Matsumoto Castle", "אחת הטירות היפות ביפן. להגיע מוקדם כדי להימנע מתור.", "חובה"], ["רחוב", "Nakamachi Street", "מחסנים לבנים, בתי קפה, חנויות מלאכה.", "מומלץ"], ["מוזיאון", "Matsumoto City Museum of Art", "מפורסם בזכות Yayoi Kusama.", "מומלץ"], ["חלופה", "Daio Wasabi Farm", "יום חצי טבע/צילום אם בא לכם לצאת מהעיר.", "טבע"], ["ערב", "Matsumoto Castle night view", "הטירה מוארת יפה בערב; סיבוב קצר סביב התעלות שווה גם אחרי יום עמוס.", "מומלץ"]]], ["02.09.2026", "מאטסומוטו → עמק קיסו", "ריוקן וחוויה מסורתית", "Tsutaya Tokinoyado Kazari", [["מעבר", "Matsumoto → Kiso Valley", "להגיע מוקדם כדי ליהנות מהריוקן ולא רק לישון.", "חובה"], ["חוויה", "ריוקן + אונסן + ארוחת Kaiseki", "זה יום להאט. להגיע בזמן לארוחת ערב.", "חובה"], ["טבע", "הליכה קצרה בכפר", "צילום, גשרונים, נהר, נוף הרים.", "קל"], ["הכנה", "לשלוח מזוודות קדימה לקיוטו", "שקלו טאקוהייבין כדי לטייל קל בעמק קיסו.", "פרקטי"]]], ["03.09.2026", "עמק קיסו → קיוטו", "Nakasendo ואז קיוטו", "Hotel Forza Kyoto Shijo", [["הליכה", "Magome → Tsumago / חלק מ-Nakasendo", "אחד הקטעים היפים והאותנטיים. לבדוק מזג אוויר.", "חובה"], ["מעבר", "Kiso Valley → Kyoto", "נסיעה לקיוטו אחרי ההליכה.", "חובה"], ["מלון", "Hotel Forza Kyoto Shijo", "מיקום נוח לשיג׳ו/מרכז.", "חובה"], ["ערב", "Kamo River / Pontocho", "טיול ערב נעים, מסעדות ואווירה.", "מומלץ"], ["עיירה", "Magome-juku", "עיירת דואר משומרת על שביל Nakasendo; התחלה קלאסית להליכה.", "חובה"], ["עיירה", "Tsumago-juku", "סיום יפה להליכה עם בתי עץ, בתי קפה ואווירה של יפן עתיקה.", "חובה"], ["עצירה בדרך", "Ichikokutochi Tateba Chaya", "תחנת התרעננות בדרך Magome-Tsumago; מקום טוב לקפה/עצירה קצרה.", "מומלץ"], ["עיירה", "Narai-juku", "אם נשאר זמן וכוח: עיירת דואר גדולה ומרשימה בעמק קיסו.", "אופציונלי"]]], ["04.09.2026", "קיוטו", "פושימי אינארי וגיון", "Hotel Forza Kyoto Shijo", [["בוקר מוקדם", "Fushimi Inari Taisha", "אלפי שערי טוריאי. הכי טוב מוקדם מאוד.", "חובה"], ["שוק", "Nishiki Market", "טעימות, סכינים, תה, קינוחים.", "חובה"], ["רחובות", "Gion + Hanamikoji", "אזור מסורתי, לשמור על כללי צילום וכבוד.", "חובה"], ["ערב", "Yasaka Shrine / Maruyama Park", "נעים בערב, קל לשלב עם גיון.", "מומלץ"], ["אוכל", "Gion / Pontocho dinner", "להזמין מראש למסעדות מבוקשות.", "אוכל"], ["רחוב", "Kawaramachi-dori Kyoto", "דאונטאון קיוטו: קניות, מסעדות וסמטאות קטנות מאחורי הרחובות הראשיים.", "שופינג"], ["ערב", "Kiyamachi-dori Kyoto", "רחוב ערב יפה עם תעלה, מסעדות, איזקאיות וברים קטנים.", "אוכל"], ["מקדש", "Kodai-ji Temple", "מקדש וגנים יפים ליד גיון; טוב לשילוב בדרך ל-Kiyomizu.", "מומלץ"], ["רחוב", "Hanamikoji Street Gion", "הרחוב המרכזי בגיון; לשמור על כללי צילום ולא לצלם גיישות ללא רשות.", "מומלץ"]]], ["05.09.2026", "קיוטו", "אראשיאמה וטבע", "Hotel Forza Kyoto Shijo", [["בוקר", "Arashiyama Bamboo Grove", "להגיע מוקדם מאוד כדי ליהנות בלי עומס.", "חובה"], ["מקדש", "Tenryu-ji", "גן יפה ליד הבמבוק.", "מומלץ"], ["גשר", "Togetsukyo Bridge", "נוף נהר והרים.", "קל"], ["חוויה", "Monkey Park Iwatayama", "עלייה לא קלה אבל תצפית מעולה.", "טבע"], ["אוכל", "% Arabica / Yudofu", "קפה מפורסם או טופו קיוטו מסורתי.", "אוכל"], ["רכבת נופית", "Sagano Scenic Railway", "רכבת נופית מאראשיאמה לאורך הנהר; אם מזמינים, להגיע לפחות 15 דקות לפני.", "מומלץ"], ["תחנה", "Saga Torokko Station", "נקודת יציאה לרכבת הנופית Sagano Scenic Railway.", "פרקטי"], ["שייט", "Hozugawa River Boat Ride", "חזרה חווייתית מאזור Kameoka לאראשיאמה, אם יש זמן וכרטיסים.", "חוויה"]]], ["06.09.2026", "קיוטו", "מקדשי מזרח העיר", "Hotel Forza Kyoto Shijo", [["מקדש", "Kiyomizu-dera", "אחד הסמלים של קיוטו. להגיע מוקדם.", "חובה"], ["רחובות", "Sannenzaka + Ninenzaka", "רחובות היסטוריים, חנויות, קינוחים.", "חובה"], ["מקדש", "Kodai-ji", "יפה ופחות עמוס יחסית.", "מומלץ"], ["שופינג", "Kyoto Handicraft Center / Teramachi", "מזכרות איכותיות, כלים, הדפסים.", "שופינג"]]], ["07.09.2026", "קיוטו / נארה", "יום טיול לנארה", "Hotel Forza Kyoto Shijo", [["יום טיול", "Nara Park", "איילים, פארק גדול, אווירה מיוחדת.", "חובה"], ["מקדש", "Todai-ji", "בודהה ענק ואחד המבנים המרשימים.", "חובה"], ["מקדש", "Kasuga Taisha", "פנסים, יער, שבילים יפים.", "מומלץ"], ["אוכל", "Nakatanidou mochi / Kakinoha sushi", "נשנושים מפורסמים בנארה.", "אוכל"], ["טיפ", "Nara deer crackers", "האיילים יודעים לקוד קידה, אבל להאכיל רק בקרקרים הייעודיים ולא באוכל אחר.", "פרקטי"], ["רכבת", "Kintetsu Nara Station", "תחנה נוחה מאוד ליום טיול מנארה, קרובה יחסית לפארק.", "פרקטי"]]], ["08.09.2026", "קיוטו", "יום בחירה: זהב, מנגה או אוג׳י", "Hotel Forza Kyoto Shijo", [["מקדש", "Kinkaku-ji", "מקדש הזהב. יפה אבל עמוס — לשלב חכם.", "מומלץ"], ["תרבות", "Kyoto International Manga Museum", "מעולה לחובבי מנגה/תרבות פופ.", "תרבות"], ["יום טיול", "Uji", "מאצ׳ה, Byodo-in, רחובות תה. חצי יום נהדר.", "אוכל"], ["שופינג", "Aeon Mall Kyoto / Kyoto Station", "קניון נוח, אוכל, יוניקלו/מוצרים.", "שופינג"]]], ["09.09.2026", "קיוטו → אוסקה", "מעבר לבירת האוכל", "HOTEL THE FLAG Shinsaibashi", [["מעבר", "Kyoto → Osaka", "נסיעה קצרה. להשאיר זמן לשופינג ואוכל.", "חובה"], ["מלון", "HOTEL THE FLAG Shinsaibashi", "מיקום מצוין ליד שופינג ודוטונבורי.", "חובה"], ["ערב", "Dotonbori", "שלט גליקו, תעלות, אורות, אוכל רחוב.", "חובה"], ["אוכל", "Takoyaki + Okonomiyaki", "אוסקה היא המקום לטעום את שניהם.", "אוכל"], ["צילום", "Glico Running Man Dotonbori", "נקודת הצילום הקלאסית של דוטונבורי וחיי הלילה של אוסקה.", "חובה"]]], ["10.09.2026", "אוסקה", "Universal Studios Japan", "HOTEL THE FLAG Shinsaibashi", [["פארק", "Universal Studios Japan", "לתכנן יום מלא. לבדוק Express Pass וכניסה ל-Super Nintendo World.", "חובה"], ["אזור", "Super Nintendo World", "להגיע מוקדם/להבטיח כניסה דרך אפליקציה/כרטיס מתאים.", "חובה"], ["טיפ", "להגיע לפני פתיחה", "USJ יכול להיות עמוס מאוד. לתכנן אוכל והפסקות.", "פרקטי"], ["ערב", "חזרה רגועה לשינסאיבאשי", "לא לתכנן עוד אטרקציה כבדה אחרי הפארק.", "מנוחה"], ["תחנה", "Universal City Station", "תחנת הרכבת ל-USJ; להגיע מוקדם ביום פארק.", "פרקטי"]]], ["11.09.2026", "אוסקה", "שופינג, טירה ואקוואריום", "HOTEL THE FLAG Shinsaibashi", [["טירה", "Osaka Castle Park", "יפה מבחוץ ובפארק. מוזיאון אם מעניין אתכם.", "מומלץ"], ["אקווריום", "Osaka Aquarium Kaiyukan", "אחד האקווריומים החזקים ביפן.", "חובה"], ["קניון", "Shinsaibashi-suji / Namba Parks", "שופינג גדול, מותגים, אוכל.", "שופינג"], ["תצפית", "Umeda Sky Building", "תצפית ערב מעולה.", "מומלץ"], ["אוכל", "Ichiran / Mizuno / Kushikatsu Daruma", "קלאסיקות קלות לשילוב.", "אוכל"]]], ["12.09.2026", "אוסקה → הירושימה", "מעבר ואתרי שלום", "Hotel Vista Hiroshima", [["רכבת", "Shinkansen Osaka → Hiroshima", "להזמין מושבים מראש.", "חובה"], ["מלון", "Hotel Vista Hiroshima", "צ׳ק־אין והתמקמות.", "חובה"], ["אתר", "Peace Memorial Park", "טיול משמעותי וחשוב.", "חובה"], ["מוזיאון", "Hiroshima Peace Memorial Museum", "להקדיש זמן ושקט. אפשר להזמין מראש אם זמין.", "חובה"], ["אוכל", "Hiroshima-style Okonomiyaki", "לנסות ב-Okonomimura או מסעדה מומלצת.", "אוכל"]]], ["13.09.2026", "הירושימה / מיאג׳ימה", "אי המקדשים", "Hotel Vista Hiroshima", [["יום טיול", "Miyajima Island", "מעבורת, רחובות, איילים ונוף.", "חובה"], ["מקדש", "Itsukushima Shrine", "שער טוריאי במים — לבדוק גאות/שפל.", "חובה"], ["הר", "Mount Misen", "רכבל + הליכה לתצפית אם מזג האוויר טוב.", "טבע"], ["אוכל", "Momiji manju + oysters", "ממתק מקומי וצדפות למי שאוהב.", "אוכל"]]], ["14.09.2026", "הירושימה", "היסטוריה, קניות ויום גמיש", "Hotel Vista Hiroshima", [["טירה", "Hiroshima Castle", "קל לשלב עם פארק שלום/מרכז העיר.", "מומלץ"], ["גן", "Shukkeien Garden", "גן יפה ושקט ליד המרכז.", "מומלץ"], ["שופינג", "Hondori Shopping Street", "קניות, בתי קפה, ארקיידים.", "שופינג"], ["חלופה", "Rabbit Island / Onomichi", "יום טיול ארוך יותר אם בא לכם משהו מיוחד.", "אופציונלי"]]], ["15.09.2026", "הירושימה → טוקיו אקיהברה", "חזרה לטוקיו המודרנית", "THE TOURIST HOTEL & cafe AKIHABARA", [["רכבת", "Hiroshima → Tokyo", "נסיעה ארוכה בשינקנסן. להכין אוכל/שתייה.", "חובה"], ["מלון", "THE TOURIST HOTEL & cafe AKIHABARA", "צ׳ק־אין באזור גיימינג/אלקטרוניקה.", "חובה"], ["ערב", "Akihabara Electric Town", "חנויות אלקטרוניקה, אנימה, גיימינג, קלפים.", "חובה"], ["אוכל", "Curry / ramen באזור אקיהברה", "ערב קל אחרי נסיעה ארוכה.", "אוכל"]]], ["16.09.2026", "טוקיו - אקיהברה / אואנו", "קלפים, גיימינג ושוק", "THE TOURIST HOTEL & cafe AKIHABARA", [["שוק", "Ameyoko Ueno", "שוק אוכל, נעליים, קוסמטיקה, ממתקים.", "שופינג"], ["פארק", "Ueno Park + מוזיאונים", "טבע עירוני, מוזיאון לאומי/מדע לפי עניין.", "מומלץ"], ["פוקימון", "Card shops באקיהברה", "חנויות כמו Hareruya2, Yellow Submarine, Mandarake — לבדוק מלאי ומחירים.", "פוקימון"], ["גיימינג", "GiGO / Taito Station", "ארקיידים, מכונות פרסים, רטרו.", "כיף"], ["אגם", "Shinobazu Pond Ueno", "אגם יפה בפארק Ueno, כולל אזור Benten-do במרכז.", "מומלץ"], ["מוזיאון", "Tokyo National Museum", "מוזיאון מצוין לחובבי היסטוריה ותרבות יפנית.", "מומלץ"], ["מוזיאון", "National Museum of Nature and Science Tokyo", "מוזיאון טבע ומדע גדול בפארק Ueno; מתאים ליום חם/גשום.", "מומלץ"], ["קניות", "Yodobashi Camera Multimedia Akiba", "אלקטרוניקה, גאדג׳טים, צעצועים ומסעדות ליד תחנת אקיהברה.", "שופינג"]]], ["17.09.2026", "טוקיו - שיבויה / הרג׳וקו", "אופנה, פופ וצעירים", "THE TOURIST HOTEL & cafe AKIHABARA", [["שיבויה", "Shibuya Scramble Crossing + Hachiko", "הקלאסיקה של טוקיו.", "חובה"], ["קניון", "Shibuya PARCO", "Nintendo Tokyo, Pokémon Center Shibuya, Capcom Store.", "חובה"], ["רחוב", "Takeshita Street Harajuku", "אופנה, קרפים, חנויות פופ.", "מומלץ"], ["מקדש", "Meiji Jingu", "איזון רגוע ליד הרג׳וקו.", "מומלץ"], ["אוכל", "Gyukatsu Motomura / Uobei Sushi", "אפשרויות פופולריות בשיבויה.", "אוכל"]]], ["18.09.2026", "טוקיו - איקבוקורו", "פוקימון, אנימה וקניון ענק", "THE TOURIST HOTEL & cafe AKIHABARA", [["פוקימון", "Pokémon Center MEGA TOKYO", "סניף גדול מאוד בתוך Sunshine City.", "חובה"], ["קניון", "Sunshine City", "חנויות, מסעדות, אקווריום, תצפית.", "שופינג"], ["אנימה", "Animate Ikebukuro", "חנות ענק לחובבי אנימה/מנגה.", "חובה"], ["אוכל", "Mutekiya Ramen", "ראמן מפורסם באיקבוקורו, לעיתים תור.", "אוכל"]]], ["19.09.2026", "טוקיו - דיסני", "Tokyo DisneySea או Disneyland", "THE TOURIST HOTEL & cafe AKIHABARA", [["פארק", "Tokyo DisneySea", "למבוגרים וחובבי חוויה/עיצוב — לרוב הבחירה המיוחדת יותר.", "חובה"], ["חלופה", "Tokyo Disneyland", "אם מעדיפים דיסני קלאסי, מצעדים ומתקנים משפחתיים.", "חלופה"], ["טיפ", "להשתמש באפליקציית Tokyo Disney Resort", "כרטיסים, זמני המתנה, Premier Access, מפה.", "פרקטי"], ["ערב", "Ikspiari", "קניון ליד דיסני לאוכל אחרי הפארק.", "אוכל"]]], ["20.09.2026", "טוקיו - גינזה / ניהונבאשי", "שופינג איכותי ופוקימון קפה", "THE TOURIST HOTEL & cafe AKIHABARA", [["שוק", "Tsukiji Outer Market", "בוקר של סושי, אוניגירי, טמאגו, קפה.", "אוכל"], ["שופינג", "Ginza", "יוניקלו ענק, Muji, חנויות יוקרה, Itoya.", "שופינג"], ["פוקימון", "Pokémon Center TOKYO DX + Pokémon Café", "בניהונבאשי. לקפה חייבים הזמנה מראש.", "פוקימון"], ["מוזיאון", "teamLab Borderless / Planets", "לבדוק מה פעיל ורלוונטי לתאריך.", "חוויה"], ["קניון", "GINZA SIX", "קניון גדול ומפואר בגינזה עם חנויות, גלריות וגן גג.", "שופינג"], ["קניון", "Tokyu Plaza Ginza", "קניון בגינזה עם מסעדות, חנויות וקומות Tax Free לתיירים.", "שופינג"], ["חנות", "UNIQLO Ginza", "חנות הדגל של יוניקלו בגינזה, 12 קומות של בגדים וקניות.", "שופינג"], ["חוויה", "Art Aquarium Museum Ginza", "גלריית אקווריומים אומנותיים, טובה להפסקה קצרה מהשופינג.", "חוויה"], ["ערב", "Yurakucho Gado-shita", "מסעדות יפניות ואיזקאיות מתחת לפסי הרכבת; מתעורר סביב 17:00-18:00.", "אוכל"]]], ["21.09.2026", "טוקיו - שינג׳וקו / נאקנו", "תצפיות, רטרו וברים", "THE TOURIST HOTEL & cafe AKIHABARA", [["תצפית", "Tokyo Metropolitan Government Building", "תצפית חינמית פופולרית בשינג׳וקו.", "מומלץ"], ["פארק", "Shinjuku Gyoen", "פארק יפה אם מזג האוויר מאפשר.", "קל"], ["שופינג", "Nakano Broadway", "גן עדן לרטרו, מנגה, קלפים, אספנות.", "חובה"], ["ערב", "Omoide Yokocho / Golden Gai", "אווירת טוקיו לילה. לבחור מקומות ידידותיים לתיירים.", "ערב"], ["ערב", "Golden Gai Shinjuku", "סמטאות ברים קטנים בשינג׳וקו; לבחור מקומות ידידותיים לתיירים.", "ערב"]]], ["22.09.2026", "טוקיו - יום אחרון", "קניות, אריזות וסגירת פינות", "THE TOURIST HOTEL & cafe AKIHABARA", [["קניות", "Don Quijote / Yodobashi Akiba", "מתנות, קוסמטיקה, אלקטרוניקה, ממתקים.", "חובה"], ["מס", "Tax-free organization", "לשמור קבלות ולוודא שהכול ארוז לפי הכללים.", "פרקטי"], ["פוקימון", "סבב אחרון לקלפים", "להשוות מחירים, לא לקנות בלחץ אם המחיר גבוה מדי.", "פוקימון"], ["אוכל", "ארוחת סיום", "להזמין מקום למסעדה טובה: סושי/יאקיניקו/ראמן מיוחד.", "אוכל"], ["טיפ", "Tax Free packing", "לשמור קבלות ולוודא שלא פותחים שקיות Tax Free סגורות לפני היציאה מיפן.", "פרקטי"]]], ["23.09.2026", "טוקיו → ישראל", "טיסה חזרה", "טיסה", [["אריזה", "בדיקת מזוודות ומשקל", "להגיע לשדה מוקדם, במיוחד עם Tax Free וקניות.", "חובה"], ["מעבר", "רכבת/מונית לשדה", "לחשב זמן ביטחון. טוקיו יכולה להפתיע בעומסים.", "חובה"], ["טיסה", "טיסה חזרה לישראל", "סיום הטיול.", "חובה"]]]], "cityGuides": {"טוקיו": ["Asakusa: Kaminarimon, Nakamise, Senso-ji, Kannon Street, Orange Street", "Ueno: Ueno Park, Shinobazu Pond, Tokyo National Museum, Ameyoko", "Akihabara: Yodobashi Akiba, GiGO/Taito, card shops, anime cafés", "Ginza: GINZA SIX, Tokyu Plaza, UNIQLO Ginza, Art Aquarium, Yurakucho Gado-shita", "Shibuya/Harajuku: Shibuya PARCO, Pokémon Center, Nintendo Tokyo, Meiji Jingu", "Ikebukuro: Sunshine City, Pokémon Center MEGA TOKYO, Animate", "Disney Resort: DisneySea / Disneyland + Ikspiari"], "טאקיאמה": ["Miyagawa Morning Market", "Sanmachi Suji", "Kawashiri Sake Brewery", "Hida beef", "Shirakawa-go: Kanda House, Myozenji, Shiroyama Viewpoint"], "קאנאזאווה": ["Kenrokuen Garden", "Kanazawa Castle Park", "Higashi Chaya District", "Nagamachi Samurai District", "Omicho Market", "Katamachi / Kiguramachi בערב"], "מאטסומוטו": ["Matsumoto Castle", "Nakamachi", "Yayoi Kusama Museum", "Soba", "Wasabi Farm"], "קיוטו": ["Kawaramachi-dori: מרכז קניות, מסעדות וסמטאות", "Nishiki Market: אוכל, דוכנים, Wagyu, טמפורה וקינוחים", "Gion/Hanamikoji: רובע גיישות, בלי צילום אסור", "Kodai-ji + Kiyomizu-dera: מסלול מזרח העיר דרך Ninenzaka/Sannenzaka", "Arashiyama: Togetsukyo, Monkey Park, Sagano Scenic Railway, Bamboo Forest", "Nara/Uji: יום טיול לאיילים או מאצ׳ה"], "אוסקה": ["Dotonbori", "USJ", "Kaiyukan", "Shinsaibashi", "Umeda", "Osaka Castle"], "הירושימה": ["Peace Memorial", "Miyajima", "Okonomiyaki", "Shukkeien", "Hondori"], "עמק קיסו": ["Magome-juku", "Tsumago-juku", "Nakasendo Trail", "Ichikokutochi Tateba Chaya", "Narai-juku אם נשאר זמן"]}};
+let selected = 0;
+let done = JSON.parse(localStorage.getItem("jp2026_done") || "{}");
+let notes = JSON.parse(localStorage.getItem("jp2026_notes") || "{}");
+const allTags = [...new Set(DATA.days.flatMap(d => d[4].map(i => i[3])))].sort();
+const cities = [...new Set(DATA.days.map(d => d[1].split(" - ")[0].split(" / ")[0]))];
+
+function saveState() {
+  localStorage.setItem("jp2026_done", JSON.stringify(done));
+  localStorage.setItem("jp2026_notes", JSON.stringify(notes));
+}
+
+function initFilters() {
+  cityFilter.innerHTML += cities.map(c => `<option value="${c}">${c}</option>`).join("");
+  tagFilter.innerHTML += allTags.map(t => `<option value="${t}">${t}</option>`).join("");
+}
+
+function dayMatches(d, idx) {
+  const q = search.value.trim().toLowerCase();
+  const city = cityFilter.value;
+  const tag = tagFilter.value;
+  const hay = JSON.stringify(d).toLowerCase();
+  if (q && !hay.includes(q)) return false;
+  if (city && !d[1].includes(city)) return false;
+  if (tag && !d[4].some(i => i[3] === tag)) return false;
+  return true;
+}
+
+function renderList() {
+  const list = document.getElementById("dayList");
+  list.innerHTML = "";
+  DATA.days.forEach((d, idx) => {
+    if (!dayMatches(d, idx)) return;
+    const b = document.createElement("button");
+    b.className = "day-pill" + (idx === selected ? " active" : "");
+    b.innerHTML = `<b>יום ${idx+1} · ${d[1]}</b><span>${d[0]} · ${d[2]}</span>`;
+    b.onclick = () => { selected = idx; render(); };
+    list.appendChild(b);
+  });
+  if (!list.children.length) list.innerHTML = `<div class="info">לא נמצאו ימים מתאימים לחיפוש.</div>`;
+}
+
+
+function mapsUrl(name, dayTitle) {
+  const raw = String(name || "") + " " + String(dayTitle || "") + " Japan";
+  const clean = raw
+    .replace(/[✈️🏨⛩️🛍️🗼🏮🚄💴🎴🎢🍜📍📅🗾]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(clean);
+}
+
+function safeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+  }[ch]));
+}
+
+function renderCard() {
+  const d = DATA.days[selected];
+  const card = document.getElementById("dayCard");
+  card.innerHTML = `
+    <div class="day-top">
+      <div>
+        <h2>${d[1]}</h2>
+        <div class="hotel">📅 ${d[0]} · ${d[2]}</div>
+        <div class="hotel">🏨 <a href="${mapsUrl(d[3], d[1])}" target="_blank" rel="noopener noreferrer" title="פתח בגוגל מפות">${safeHtml(d[3])} ↗</a></div>
+      </div>
+      <div class="badge">יום<br>${selected+1}</div>
+    </div>
+    <div class="items">
+      ${d[4].map((i, itemIdx) => {
+        const key = selected + "-" + itemIdx;
+        return `<div class="item ${done[key] ? "done" : ""}">
+          <span class="tag ${i[3]}">${i[3]}</span>
+          <div><h3><a href="${mapsUrl(i[1], d[1])}" target="_blank" rel="noopener noreferrer" title="פתח בגוגל מפות">${safeHtml(i[1])} ↗</a></h3><p>${i[2]}</p><p><b>${i[0]}</b></p></div>
+          <label><input type="checkbox" ${done[key] ? "checked" : ""} onchange="toggleDone('${key}', this.checked)"> בוצע</label>
+        </div>`;
+      }).join("")}
+    </div>
+    <div class="add-box">
+      <b>הערות אישיות ליום הזה</b>
+      <textarea id="dayNote" rows="4" placeholder="הזמנות, כתובות, רעיונות, שעות פתיחה...">${notes[selected] || ""}</textarea>
+      <button class="btn" onclick="saveNote()">שמור הערה</button>
+    </div>
+    <div class="actions">
+      <button class="btn secondary" onclick="prevDay()">← יום קודם</button>
+      <button class="btn" onclick="nextDay()">יום הבא →</button>
+    </div>`;
+}
+
+function toggleDone(key, val) { done[key] = val; saveState(); renderCard(); }
+function saveNote() { notes[selected] = document.getElementById("dayNote").value; saveState(); alert("נשמר"); }
+function nextDay() { selected = Math.min(DATA.days.length-1, selected+1); render(); window.scrollTo(0,0); }
+function prevDay() { selected = Math.max(0, selected-1); render(); window.scrollTo(0,0); }
+function render() { renderList(); renderCard(); }
+
+function renderCities() {
+  const grid = document.getElementById("cityGrid");
+  grid.innerHTML = Object.entries(DATA.cityGuides).map(([city, arr]) => `<div class="info"><b>${city}</b><p class="note">${arr.join(" · ")}</p></div>`).join("");
+}
+
+const checks = ["דרכונים בתוקף", "ביטוח נסיעות", "eSIM או Wi‑Fi", "הזמנות מלונות שמורות", "תאריכי ביטול חינם", "כרטיסים לדיסני/USJ", "הזמנת Pokémon Café", "פתיחת רכבות 30 יום מראש", "המרת ין", "רשימת קניות פוקימון/קלפים"];
+document.getElementById("checks").innerHTML = checks.map((c,i)=>`<label><input type="checkbox" onchange="localStorage.setItem('jpcheck${i}', this.checked)" ${localStorage.getItem('jpcheck'+i)==='true'?'checked':''}> ${c}</label>`).join("");
+
+function exportPlan() {
+  const blob = new Blob([JSON.stringify({days: DATA.days, notes, done}, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "japan_2026_full_plan.json"; a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.querySelectorAll(".tab").forEach(btn => btn.onclick = () => {
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active"); document.getElementById(btn.dataset.page).classList.add("active");
+});
+[search, cityFilter, tagFilter].forEach(el => el.addEventListener("input", () => { selected = DATA.days.findIndex(dayMatches); if(selected<0) selected=0; render(); }));
+initFilters(); renderCities(); render();
+</script>
+</body>
+</html>
