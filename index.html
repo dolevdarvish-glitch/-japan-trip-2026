@@ -434,7 +434,7 @@ textarea{
   padding:8px;
   padding-bottom:calc(8px + var(--safe-bottom));
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(7,1fr);
   gap:4px;
   box-shadow:0 18px 44px rgba(0,0,0,.28);
   backdrop-filter:blur(16px);
@@ -464,6 +464,153 @@ textarea{
   color:var(--muted);
   text-align:center;
 }
+
+
+.currency-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  display:grid;
+  gap:16px;
+}
+.currency-card h2{margin:0;font-size:26px}
+.currency-card .hint{margin:0;color:var(--muted);line-height:1.55}
+.converter{display:grid;gap:12px}
+.money-row{display:grid;gap:8px}
+.money-row label{font-weight:900;color:var(--primary)}
+.money-input{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fffaf5;
+  border-radius:20px;
+  min-height:56px;
+  padding:0 16px;
+  font-size:22px;
+  font-weight:900;
+  direction:ltr;
+  text-align:left;
+  outline:none;
+}
+.rate-box{
+  background:#f7f0ea;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:14px;
+  display:grid;
+  gap:8px;
+}
+.rate-line{
+  display:grid;
+  grid-template-columns:1fr 120px;
+  gap:10px;
+  align-items:center;
+}
+.rate-line input{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:16px;
+  min-height:46px;
+  padding:0 12px;
+  direction:ltr;
+  text-align:left;
+  font-weight:900;
+}
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.quick-btn{
+  border:1px solid var(--line);
+  background:#fffaf5;
+  color:var(--primary);
+  border-radius:18px;
+  min-height:52px;
+  padding:8px 10px;
+  font-weight:950;
+  cursor:pointer;
+}
+.quick-btn small{
+  display:block;
+  color:var(--muted);
+  font-weight:800;
+  margin-top:2px;
+}
+.result-big{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:white;
+  border-radius:24px;
+  padding:18px;
+  box-shadow:var(--soft);
+}
+.result-big span{
+  display:block;
+  opacity:.82;
+  font-weight:800;
+  margin-bottom:6px;
+}
+.result-big b{
+  display:block;
+  font-size:34px;
+  direction:ltr;
+  text-align:left;
+}
+
+
+.home-wrap{display:grid;gap:14px}
+.home-hero-card{
+  background:linear-gradient(180deg,#fffaf3,#f6eee3);
+  border:1px solid rgba(205,190,168,.8);
+  border-radius:32px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.home-hero-card:before{
+  content:"";position:absolute;width:190px;height:190px;border-radius:50%;
+  background:rgba(216,102,102,.12);top:-70px;left:-70px;
+}
+.home-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}
+.avatar{
+  width:58px;height:58px;border-radius:50%;border:3px solid #c99d46;
+  display:grid;place-items:center;font-weight:950;color:#9c7426;background:#f8edcf;font-size:24px;
+}
+.level{flex:1}.level b{display:block;color:#7d7469}
+.levelbar{margin-top:7px;height:8px;width:150px;max-width:100%;background:#ded5c8;border-radius:999px;overflow:hidden}
+.levelbar span{display:block;height:100%;width:38%;background:#d39a3a;border-radius:999px}
+.menu-dot{width:48px;height:48px;border-radius:16px;border:0;background:rgba(255,255,255,.55);color:#6d6257;font-size:26px}
+.home-title{text-align:center;position:relative;padding:24px 0 18px}
+.home-title .jp{letter-spacing:.35em;color:#9e9488;font-weight:800}
+.home-title h2{
+  margin:10px 0 6px;font-size:clamp(38px,10vw,68px);line-height:1;letter-spacing:-.06em;
+  background:linear-gradient(90deg,#c4564f,#c99035);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.home-title p{margin:0;color:#7d7469;font-size:20px}
+.countdown-card{position:relative;background:rgba(255,255,255,.62);border:1px solid rgba(215,203,187,.85);border-radius:26px;padding:18px 12px;box-shadow:var(--soft)}
+.countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;text-align:center}
+.countdown-grid b{display:block;font-size:clamp(32px,9vw,56px);line-height:1;color:#282725}
+.countdown-grid span{display:block;color:#8a8175;margin-top:6px;font-weight:800}
+.countdown-date{margin-top:14px;padding-top:12px;border-top:1px solid rgba(160,150,138,.22);text-align:center;color:#8a8175;font-weight:850;direction:ltr}
+.home-section-title{margin:4px 2px 0;font-size:22px;letter-spacing:-.02em}
+.home-action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.action-card{
+  border:1px solid var(--line);background:rgba(255,255,255,.72);min-height:112px;border-radius:24px;
+  display:grid;place-items:center;gap:8px;padding:12px 8px;cursor:pointer;box-shadow:var(--soft);color:#575047;font-weight:900;
+}
+.action-card .bubble{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:25px}
+.b-green{background:#e2efdb}.b-gold{background:#f4e7c8}.b-blue{background:#dcecf0}.b-red{background:#f4dbd4}.b-pink{background:#efd9e9}.b-gray{background:#e6e0d3}
+.progress-card{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:var(--soft)}
+.progress-head{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:14px}
+.progress-head h3{margin:0;font-size:25px}.progress-head p{margin:4px 0 0;color:#8a8175;font-weight:800}
+.ring{--p:0;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#5f9659 calc(var(--p)*1%), #dfd8ca 0);position:relative}
+.ring:before{content:"";position:absolute;inset:8px;background:#fffaf3;border-radius:50%}.ring b{position:relative;z-index:1}
+.next-list{display:grid;gap:10px}.next-row{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:center;background:#f0e8da;border-radius:18px;padding:10px;cursor:pointer}
+.next-row .date{background:#e1eef2;color:#4e7f92;border-radius:14px;padding:8px 6px;text-align:center;direction:ltr;font-weight:950}
+.next-row b{display:block}.next-row span{color:#8a8175;font-weight:800;font-size:13px}
+@media(min-width:760px){.home-wrap{grid-template-columns:1fr 1fr;align-items:start}.home-hero-card{grid-column:1/-1;padding:28px}.home-action-grid{grid-template-columns:repeat(6,1fr)}}
 
 @media(min-width:760px){
   .app{padding-bottom:24px}
@@ -518,7 +665,7 @@ textarea{
     bottom:auto;
     width:auto;
     margin:16px 18px 0;
-    grid-template-columns:repeat(5,1fr);
+    grid-template-columns:repeat(7,1fr);
     background:rgba(255,255,255,.86);
     border-color:var(--line);
     box-shadow:var(--soft);
@@ -564,15 +711,68 @@ textarea{
     </header>
 
     <nav class="bottom-nav" aria-label="ניווט ראשי">
-      <button class="nav-btn active" data-panel="planner"><span class="ico">📅</span><span>ימים</span></button>
+      <button class="nav-btn active" data-panel="home"><span class="ico">🏠</span><span>בית</span></button>
+      <button class="nav-btn" data-panel="planner"><span class="ico">📅</span><span>ימים</span></button>
       <button class="nav-btn" data-panel="cities"><span class="ico">📍</span><span>יעדים</span></button>
       <button class="nav-btn" data-panel="food"><span class="ico">🍜</span><span>אוכל</span></button>
       <button class="nav-btn" data-panel="pokemon"><span class="ico">🎴</span><span>פוקימון</span></button>
+      <button class="nav-btn" data-panel="currency"><span class="ico">💱</span><span>מטבע</span></button>
       <button class="nav-btn" data-panel="tools"><span class="ico">⚙️</span><span>כלים</span></button>
     </nav>
 
     <main>
-      <section id="planner" class="panel active">
+
+      <section id="home" class="panel active">
+        <div class="home-wrap">
+          <div class="home-hero-card">
+            <div class="home-topline">
+              <div class="avatar">J</div>
+              <div class="level">
+                <b>רמה 1 · מתכנני יפן</b>
+                <div class="levelbar"><span></span></div>
+              </div>
+              <button class="menu-dot" onclick="switchPanel('tools')">☰</button>
+            </div>
+            <div class="home-title">
+              <div class="jp">日本 · JAPAN</div>
+              <h2>JapanTrip 2026</h2>
+              <p>Dolev · Japan · 2026</p>
+            </div>
+            <div class="countdown-card">
+              <div class="countdown-grid">
+                <div><b id="cdDays">--</b><span>Days</span></div>
+                <div><b id="cdHours">--</b><span>Hours</span></div>
+                <div><b id="cdMin">--</b><span>Min</span></div>
+                <div><b id="cdSec">--</b><span>Sec</span></div>
+              </div>
+              <div class="countdown-date">August 22, 2026 · 00:00</div>
+            </div>
+          </div>
+          <div>
+            <h2 class="home-section-title">קיצורים</h2>
+            <div class="home-action-grid">
+              <button class="action-card" onclick="switchPanel('planner')"><span class="bubble b-green">🏃</span>ימים</button>
+              <button class="action-card" onclick="switchPanel('currency')"><span class="bubble b-gold">💱</span>מטבע</button>
+              <button class="action-card" onclick="switchPanel('cities')"><span class="bubble b-blue">📍</span>יעדים</button>
+              <button class="action-card" onclick="switchPanel('tools')"><span class="bubble b-red">📋</span>הכנות</button>
+              <button class="action-card" onclick="switchPanel('food')"><span class="bubble b-pink">🍜</span>אוכל</button>
+              <button class="action-card" onclick="switchPanel('pokemon')"><span class="bubble b-gray">🎴</span>פוקימון</button>
+            </div>
+          </div>
+          <div class="progress-card">
+            <div class="progress-head">
+              <div>
+                <h3>תכנון הטיול</h3>
+                <p><span id="plannedCount">33</span> ימים מוכנים · היום יום 1</p>
+              </div>
+              <div class="ring" id="homeRing" style="--p:100"><b id="homePercent">100%</b></div>
+            </div>
+            <div class="next-list" id="homeNextDays"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="planner" class="panel">
         <div class="toolbar">
           <div class="search-wrap">
             <span class="search-icon">🔎</span>
@@ -600,6 +800,54 @@ textarea{
 
       <section id="pokemon" class="panel">
         <div class="grid" id="pokemonGrid"></div>
+      </section>
+
+
+      <section id="currency" class="panel">
+        <div class="currency-card">
+          <div>
+            <h2>המרת ין ⇄ שקל 💱</h2>
+            <p class="hint">האתר עובד גם בלי שרת, לכן השער ניתן לעריכה ידנית. עדכנו את השער לפי Google/בנק/אפליקציית אשראי בזמן הטיול.</p>
+          </div>
+
+          <div class="result-big">
+            <span>תוצאה</span>
+            <b id="currencyResult">₪0.00</b>
+          </div>
+
+          <div class="converter">
+            <div class="money-row">
+              <label for="yenInput">יין יפני ¥</label>
+              <input id="yenInput" class="money-input" type="number" inputmode="decimal" placeholder="לדוגמה 10000">
+            </div>
+
+            <div class="money-row">
+              <label for="ilsInput">שקל ₪</label>
+              <input id="ilsInput" class="money-input" type="number" inputmode="decimal" placeholder="לדוגמה 250">
+            </div>
+
+            <div class="rate-box">
+              <div class="rate-line">
+                <div>
+                  <b>שער המרה</b>
+                  <div class="hint">כמה ₪ שווה ¥1</div>
+                </div>
+                <input id="rateInput" type="number" inputmode="decimal" step="0.0001">
+              </div>
+              <button class="btn secondary" onclick="saveCurrencyRate()">שמור שער</button>
+            </div>
+
+            <div>
+              <h3>סכומים מהירים</h3>
+              <div class="quick-grid" id="quickCurrency"></div>
+            </div>
+
+            <div class="info">
+              <b>טיפ שימוש</b>
+              <p class="note">הקלידו סכום ביין או בשקל — השדה השני יתעדכן אוטומטית. השער נשמר בטלפון/מחשב שלכם.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="tools" class="panel">
@@ -797,6 +1045,83 @@ function renderInfoPanels(){
     ["Osaka Pokémon Center","לשלב ביום שופינג באוסקה אם נשאר זמן."]
   ].map(([a,b]) => `<div class="info"><b>${a}</b><p class="note">${b}</p></div>`).join("");
 }
+
+const DEFAULT_JPY_TO_ILS = 0.0235;
+
+function formatILS(value){
+  return "₪" + Number(value || 0).toLocaleString("he-IL", {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+function formatJPY(value){
+  return "¥" + Math.round(Number(value || 0)).toLocaleString("en-US");
+}
+function getCurrencyRate(){
+  return Number(localStorage.getItem("jp2026_jpy_ils_rate") || DEFAULT_JPY_TO_ILS);
+}
+function setCurrencyResult(text){
+  const el = document.getElementById("currencyResult");
+  if(el) el.textContent = text;
+}
+function initCurrency(){
+  const rateInput = document.getElementById("rateInput");
+  const yenInput = document.getElementById("yenInput");
+  const ilsInput = document.getElementById("ilsInput");
+  const quick = document.getElementById("quickCurrency");
+  if(!rateInput || !yenInput || !ilsInput || !quick) return;
+
+  rateInput.value = getCurrencyRate();
+
+  const amounts = [500, 1000, 3000, 5000, 10000, 20000, 50000, 100000];
+  quick.innerHTML = amounts.map(yen => {
+    const ils = yen * getCurrencyRate();
+    return `<button class="quick-btn" onclick="setQuickYen(${yen})">${formatJPY(yen)}<small>${formatILS(ils)}</small></button>`;
+  }).join("");
+
+  yenInput.oninput = () => convertFromYen();
+  ilsInput.oninput = () => convertFromILS();
+  rateInput.oninput = () => {
+    localStorage.setItem("jp2026_jpy_ils_rate", String(Number(rateInput.value || DEFAULT_JPY_TO_ILS)));
+    convertFromYen();
+    refreshQuickCurrency();
+  };
+}
+function refreshQuickCurrency(){
+  const quick = document.getElementById("quickCurrency");
+  if(!quick) return;
+  const amounts = [500, 1000, 3000, 5000, 10000, 20000, 50000, 100000];
+  quick.innerHTML = amounts.map(yen => {
+    const ils = yen * getCurrencyRate();
+    return `<button class="quick-btn" onclick="setQuickYen(${yen})">${formatJPY(yen)}<small>${formatILS(ils)}</small></button>`;
+  }).join("");
+}
+function convertFromYen(){
+  const yenInput = document.getElementById("yenInput");
+  const ilsInput = document.getElementById("ilsInput");
+  const yen = Number(yenInput.value || 0);
+  const ils = yen * getCurrencyRate();
+  if(document.activeElement === yenInput) ilsInput.value = ils ? ils.toFixed(2) : "";
+  setCurrencyResult(formatILS(ils));
+}
+function convertFromILS(){
+  const yenInput = document.getElementById("yenInput");
+  const ilsInput = document.getElementById("ilsInput");
+  const ils = Number(ilsInput.value || 0);
+  const yen = ils / getCurrencyRate();
+  if(document.activeElement === ilsInput) yenInput.value = yen ? Math.round(yen) : "";
+  setCurrencyResult(formatJPY(yen));
+}
+function setQuickYen(yen){
+  const yenInput = document.getElementById("yenInput");
+  const ilsInput = document.getElementById("ilsInput");
+  yenInput.value = yen;
+  ilsInput.value = (yen * getCurrencyRate()).toFixed(2);
+  setCurrencyResult(formatILS(yen * getCurrencyRate()));
+}
+function saveCurrencyRate(){
+  const rateInput = document.getElementById("rateInput");
+  localStorage.setItem("jp2026_jpy_ils_rate", String(Number(rateInput.value || DEFAULT_JPY_TO_ILS)));
+  refreshQuickCurrency();
+}
+
 function exportPlan(){
   const blob = new Blob([JSON.stringify({days: DATA.days, notes, done}, null, 2)], {type:"application/json"});
   const a = document.createElement("a");
@@ -805,19 +1130,56 @@ function exportPlan(){
   a.click();
   URL.revokeObjectURL(a.href);
 }
+
+function switchPanel(panelId){
+  document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.panel === panelId));
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === panelId));
+  window.scrollTo({top:0, behavior:"smooth"});
+}
 document.querySelectorAll(".nav-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
-    btn.classList.add("active");
-    document.getElementById(btn.dataset.panel).classList.add("active");
-    window.scrollTo({top:0, behavior:"smooth"});
-  });
+  btn.addEventListener("click", () => switchPanel(btn.dataset.panel));
 });
+
+function updateCountdown(){
+  const target = new Date("2026-08-22T00:00:00+09:00");
+  const now = new Date();
+  let diff = Math.max(0, target - now);
+  const days = Math.floor(diff / 86400000); diff %= 86400000;
+  const hours = Math.floor(diff / 3600000); diff %= 3600000;
+  const min = Math.floor(diff / 60000); diff %= 60000;
+  const sec = Math.floor(diff / 1000);
+  const set = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = String(val).padStart(id === "cdDays" ? 1 : 2, "0"); };
+  set("cdDays", days); set("cdHours", hours); set("cdMin", min); set("cdSec", sec);
+}
+function renderHome(){
+  const planned = DATA.days.length;
+  const doneCount = Object.values(done).filter(Boolean).length;
+  const totalItems = DATA.days.reduce((sum,d)=>sum+d[4].length,0);
+  const pct = totalItems ? Math.round((doneCount / totalItems) * 100) : 0;
+  const ring = document.getElementById("homeRing");
+  const percent = document.getElementById("homePercent");
+  const plannedCount = document.getElementById("plannedCount");
+  if(ring) ring.style.setProperty("--p", pct || 100);
+  if(percent) percent.textContent = (pct || 100) + "%";
+  if(plannedCount) plannedCount.textContent = planned;
+  const next = document.getElementById("homeNextDays");
+  if(next){
+    next.innerHTML = DATA.days.slice(0,4).map((d,idx)=>`
+      <div class="next-row" onclick="selected=${idx}; saveState(); switchPanel('planner'); render();">
+        <div class="date">${esc(d[0].slice(0,5))}</div>
+        <div><b>${esc(d[1])}</b><span>${esc(d[2])}</span></div>
+      </div>`).join("");
+  }
+}
+setInterval(updateCountdown, 1000);
+
 [searchEl, cityFilter, tagFilter].forEach(el => el.addEventListener("input", render));
 initFilters();
 renderInfoPanels();
+initCurrency();
 render();
+renderHome();
+updateCountdown();
 </script>
 </body>
 </html>
