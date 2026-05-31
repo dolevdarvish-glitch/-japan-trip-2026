@@ -610,6 +610,693 @@ textarea{
 .next-list{display:grid;gap:10px}.next-row{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:center;background:#f0e8da;border-radius:18px;padding:10px;cursor:pointer}
 .next-row .date{background:#e1eef2;color:#4e7f92;border-radius:14px;padding:8px 6px;text-align:center;direction:ltr;font-weight:950}
 .next-row b{display:block}.next-row span{color:#8a8175;font-weight:800;font-size:13px}
+
+.dest-hero{
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.18), transparent 22%),
+    linear-gradient(135deg,#16213e 0%,#24496e 54%,#d86666 140%);
+  color:white;
+  border-radius:34px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  display:grid;
+  gap:14px;
+  margin-bottom:16px;
+  overflow:hidden;
+}
+.dest-kicker{
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.14em;
+  opacity:.78;
+}
+.dest-hero h2{
+  margin:6px 0 8px;
+  font-size:clamp(32px,7vw,54px);
+  letter-spacing:-.05em;
+  line-height:1;
+}
+.dest-hero p{
+  margin:0;
+  max-width:760px;
+  line-height:1.65;
+  opacity:.92;
+}
+.dest-grid{
+  display:grid;
+  gap:18px;
+}
+.dest-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:34px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.dest-image{
+  min-height:250px;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  isolation:isolate;
+}
+.dest-image:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.62));
+  z-index:0;
+}
+.dest-chips{
+  position:absolute;
+  inset:14px 14px auto 14px;
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  z-index:1;
+}
+.dest-chip{
+  background:rgba(255,255,255,.90);
+  color:#1d2b45;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:950;
+  font-size:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+.dest-title{
+  position:absolute;
+  right:18px;
+  left:18px;
+  bottom:18px;
+  z-index:1;
+  color:white;
+}
+.dest-title h3{
+  margin:0;
+  font-size:clamp(34px,8vw,54px);
+  line-height:1;
+  letter-spacing:-.055em;
+}
+.dest-title p{
+  margin:8px 0 0;
+  line-height:1.45;
+  opacity:.94;
+  font-weight:750;
+}
+.dest-body{
+  padding:18px;
+  display:grid;
+  gap:14px;
+}
+.dest-hotel{
+  background:linear-gradient(180deg,#fffaf5,#fff);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:14px;
+}
+.dest-hotel b{
+  display:block;
+  color:var(--primary2);
+  margin-bottom:6px;
+}
+.dest-hotel a{
+  text-decoration:none;
+  border-bottom:1px solid rgba(47,93,140,.25);
+}
+.dest-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.dest-tags span{
+  background:#f2ede6;
+  color:#5d574e;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  font-size:13px;
+}
+.dest-info-grid{
+  display:grid;
+  gap:10px;
+}
+.dest-mini{
+  background:#faf7f2;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:13px;
+}
+.dest-mini b{
+  display:block;
+  color:var(--primary);
+  margin-bottom:5px;
+}
+.dest-mini p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+.dest-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.dest-actions a{
+  text-decoration:none;
+  display:grid;
+  place-items:center;
+}
+
+.food-hero{
+  background:
+    radial-gradient(circle at 15% 18%, rgba(255,255,255,.20), transparent 22%),
+    linear-gradient(135deg,#432818 0%,#7f4f24 56%,#d58b3a 125%);
+  color:white;
+  border-radius:34px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  display:grid;
+  gap:14px;
+  margin-bottom:14px;
+}
+.food-kicker{
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.14em;
+  opacity:.8;
+}
+.food-hero h2{
+  margin:6px 0 8px;
+  font-size:clamp(32px,7vw,54px);
+  letter-spacing:-.05em;
+  line-height:1;
+}
+.food-hero p{
+  margin:0;
+  max-width:760px;
+  line-height:1.65;
+  opacity:.93;
+}
+.food-quick{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+.food-quick button{
+  border:1px solid var(--line);
+  background:white;
+  color:#4d3928;
+  border-radius:20px;
+  min-height:54px;
+  font-weight:950;
+  box-shadow:var(--soft);
+  cursor:pointer;
+}
+.food-grid{
+  display:grid;
+  gap:18px;
+}
+.food-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:34px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.food-image{
+  position:relative;
+  min-height:235px;
+  background-size:cover;
+  background-position:center;
+  isolation:isolate;
+}
+.food-image:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.68));
+}
+.food-city{
+  position:absolute;
+  right:18px;
+  left:18px;
+  bottom:18px;
+  z-index:1;
+  color:white;
+}
+.food-city h3{
+  margin:0;
+  font-size:clamp(34px,8vw,52px);
+  line-height:1;
+  letter-spacing:-.055em;
+}
+.food-city p{
+  margin:8px 0 0;
+  line-height:1.45;
+  opacity:.95;
+  font-weight:750;
+}
+.food-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:1;
+  background:rgba(255,255,255,.92);
+  color:#4d3928;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:950;
+  font-size:12px;
+}
+.food-body{
+  padding:18px;
+  display:grid;
+  gap:14px;
+}
+.must-eat{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.dish{
+  background:#fff8ef;
+  border:1px solid #ead8c3;
+  border-radius:20px;
+  padding:12px;
+}
+.dish b{
+  display:block;
+  color:#7f4f24;
+  margin-bottom:5px;
+}
+.dish span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+}
+.food-tips{
+  display:grid;
+  gap:10px;
+}
+.food-tip{
+  background:#faf7f2;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:13px;
+}
+.food-tip b{
+  display:block;
+  color:var(--primary);
+  margin-bottom:5px;
+}
+.food-tip p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+.food-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.food-actions a,
+.food-actions button{
+  text-decoration:none;
+  display:grid;
+  place-items:center;
+}
+.food-score{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.food-score span{
+  background:#f1eadf;
+  color:#5d4a38;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  font-size:13px;
+}
+
+.poke-hero{
+  background:
+    radial-gradient(circle at 14% 20%, rgba(255,255,255,.22), transparent 22%),
+    linear-gradient(135deg,#26315f 0%,#5e3a8c 55%,#e05275 130%);
+  color:white;
+  border-radius:34px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  display:grid;
+  gap:14px;
+  margin-bottom:14px;
+}
+.poke-kicker{
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.14em;
+  opacity:.78;
+}
+.poke-hero h2{
+  margin:6px 0 8px;
+  font-size:clamp(32px,7vw,54px);
+  letter-spacing:-.05em;
+  line-height:1;
+}
+.poke-hero p{
+  margin:0;
+  max-width:780px;
+  line-height:1.65;
+  opacity:.93;
+}
+.poke-quick{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+.poke-quick button{
+  border:1px solid var(--line);
+  background:white;
+  color:#34244d;
+  border-radius:20px;
+  min-height:54px;
+  font-weight:950;
+  box-shadow:var(--soft);
+  cursor:pointer;
+}
+.poke-layout{
+  display:grid;
+  gap:18px;
+}
+.poke-grid{
+  display:grid;
+  gap:18px;
+}
+.poke-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:34px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.poke-image{
+  min-height:235px;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  isolation:isolate;
+}
+.poke-image:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.66));
+}
+.poke-city{
+  position:absolute;
+  right:18px;
+  left:18px;
+  bottom:18px;
+  z-index:1;
+  color:white;
+}
+.poke-city h3{
+  margin:0;
+  font-size:clamp(34px,8vw,52px);
+  line-height:1;
+  letter-spacing:-.055em;
+}
+.poke-city p{
+  margin:8px 0 0;
+  opacity:.95;
+  line-height:1.45;
+  font-weight:750;
+}
+.poke-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:1;
+  background:rgba(255,255,255,.92);
+  color:#34244d;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:950;
+  font-size:12px;
+}
+.poke-body{
+  padding:18px;
+  display:grid;
+  gap:14px;
+}
+.shop-list{
+  display:grid;
+  gap:10px;
+}
+.shop{
+  background:#faf7ff;
+  border:1px solid #e3d8f2;
+  border-radius:20px;
+  padding:13px;
+}
+.shop b{
+  display:block;
+  color:#4a3270;
+  margin-bottom:5px;
+}
+.shop p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+}
+.shop a{
+  display:inline-block;
+  margin-top:8px;
+  text-decoration:none;
+  color:#2f5d8c;
+  border-bottom:1px solid rgba(47,93,140,.25);
+  font-weight:900;
+}
+.poke-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.poke-tags span{
+  background:#f0e9f8;
+  color:#4d3b63;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  font-size:13px;
+}
+.poke-tip{
+  background:#fffaf5;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:13px;
+}
+.poke-tip b{
+  display:block;
+  color:var(--primary);
+  margin-bottom:5px;
+}
+.poke-tip p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+.poke-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.poke-actions a,
+.poke-actions button{
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+}
+.price-tracker{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:34px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  align-self:start;
+}
+.price-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:start;
+  margin-bottom:12px;
+}
+.price-head h3{
+  margin:0;
+  font-size:24px;
+}
+.price-head p{
+  margin:6px 0 0;
+  color:var(--muted);
+  line-height:1.45;
+}
+.box-row{
+  background:#faf7f2;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:13px;
+  display:grid;
+  gap:10px;
+  margin-bottom:10px;
+}
+.box-top{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  align-items:start;
+}
+.box-top b{
+  display:block;
+  color:#26315f;
+}
+.box-top small{
+  color:var(--muted);
+  line-height:1.45;
+}
+.box-target{
+  background:#ece5dc;
+  border-radius:999px;
+  padding:7px 10px;
+  direction:ltr;
+  white-space:nowrap;
+  font-weight:950;
+  color:#5d4a38;
+}
+.box-inputs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.box-inputs input{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:16px;
+  min-height:44px;
+  padding:0 10px;
+  direction:ltr;
+  font-weight:900;
+}
+.box-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.box-actions a,
+.box-actions button{
+  min-height:42px;
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+}
+.poke-note{
+  margin-top:12px;
+  background:#f3eef8;
+  border:1px solid #e3d8f2;
+  border-radius:20px;
+  padding:13px;
+}
+.poke-note b{
+  display:block;
+  color:#4a3270;
+  margin-bottom:5px;
+}
+.poke-note p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+@media(min-width:760px){
+  .poke-hero{
+    grid-template-columns:1fr auto;
+    align-items:end;
+    padding:28px;
+  }
+  .poke-quick{
+    grid-template-columns:repeat(6,1fr);
+  }
+  .poke-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(min-width:1100px){
+  .poke-layout{
+    grid-template-columns:1.4fr .9fr;
+    align-items:start;
+  }
+  .price-tracker{
+    position:sticky;
+    top:18px;
+  }
+}
+
+@media(min-width:760px){
+  .food-hero{
+    grid-template-columns:1fr auto;
+    align-items:end;
+    padding:28px;
+  }
+  .food-quick{
+    grid-template-columns:repeat(6,1fr);
+  }
+  .food-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .food-card.featured{
+    grid-column:span 2;
+  }
+  .food-card.featured .food-image{
+    min-height:330px;
+  }
+}
+@media(min-width:1100px){
+  .food-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .food-card.featured{
+    grid-column:span 2;
+  }
+}
+
+@media(min-width:760px){
+  .dest-hero{
+    grid-template-columns:1fr auto;
+    align-items:end;
+    padding:28px;
+  }
+  .dest-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .dest-card.featured{
+    grid-column:span 2;
+  }
+  .dest-card.featured .dest-image{
+    min-height:340px;
+  }
+}
+@media(min-width:1100px){
+  .dest-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .dest-card.featured{
+    grid-column:span 2;
+  }
+}
+
 @media(min-width:760px){.home-wrap{grid-template-columns:1fr 1fr;align-items:start}.home-hero-card{grid-column:1/-1;padding:28px}.home-action-grid{grid-template-columns:repeat(6,1fr)}}
 
 @media(min-width:760px){
@@ -790,24 +1477,90 @@ textarea{
         </div>
       </section>
 
+      
       <section id="cities" class="panel">
-        <div class="grid" id="cityGrid"></div>
+        <div class="dest-hero">
+          <div>
+            <div class="dest-kicker">DESTINATION MAP · JAPAN 2026</div>
+            <h2>היעדים שלכם ביפן</h2>
+            <p>כל תחנה במסלול ככרטיס יעד: תמונת אווירה, המלון שלכם, היילייטים, ימים רלוונטיים, קפיצה למסלול ופתיחה בגוגל מפות.</p>
+          </div>
+          <button class="btn" onclick="switchPanel('planner')">מעבר למסלול היומי</button>
+        </div>
+        <div class="dest-grid" id="cityGrid"></div>
       </section>
+    
 
+      
       <section id="food" class="panel">
-        <div class="grid" id="foodGrid"></div>
-      </section>
+        <div class="food-hero">
+          <div>
+            <div class="food-kicker">FOOD MAP · JAPAN 2026</div>
+            <h2>מפת האוכל שלכם</h2>
+            <p>לא רק “איפה לאכול” — אלא מה להזמין, איפה לחפש, מתי ללכת, ומה מתאים לכל יעד במסלול שלכם.</p>
+          </div>
+          <button class="btn" onclick="openFoodSearch('restaurants near me')">מסעדות לידי</button>
+        </div>
 
-      <section id="pokemon" class="panel">
-        <div class="grid" id="pokemonGrid"></div>
+        <div class="food-quick">
+          <button onclick="openFoodSearch('ramen near me')">🍜 ראמן לידי</button>
+          <button onclick="openFoodSearch('sushi near me')">🍣 סושי לידי</button>
+          <button onclick="openFoodSearch('yakiniku near me')">🥩 יאקיניקו לידי</button>
+          <button onclick="openFoodSearch('cafe near me')">☕ קפה לידי</button>
+          <button onclick="openFoodSearch('convenience store near me')">🏪 קומביני</button>
+          <button onclick="openFoodSearch('tabelog restaurant near me')">⭐ Tabelog</button>
+        </div>
+
+        <div class="food-grid" id="foodGrid"></div>
       </section>
+    
+
+      
+      <section id="pokemon" class="panel">
+        <div class="poke-hero">
+          <div>
+            <div class="poke-kicker">POKÉMON HUNT · JAPAN 2026</div>
+            <h2>צייד פוקימון וקלפים</h2>
+            <p>חנויות לפי יעד, אסטרטגיית קנייה חכמה, מחירי יעד לבוקסים יפניים, וקיצורי חיפוש מהירים ל־Google Maps.</p>
+          </div>
+          <button class="btn" onclick="openPokeSearch('pokemon card shop near me')">חנות קלפים לידי</button>
+        </div>
+
+        <div class="poke-quick">
+          <button onclick="openPokeSearch('pokemon center near me')">🏬 Pokémon Center</button>
+          <button onclick="openPokeSearch('pokemon card shop near me')">🎴 Card shop</button>
+          <button onclick="openPokeSearch('Mandarake near me pokemon cards')">🛍️ Mandarake</button>
+          <button onclick="openPokeSearch('BOOKOFF pokemon cards near me')">📚 BOOKOFF</button>
+          <button onclick="openPokeSearch('Surugaya pokemon cards near me')">💿 Surugaya</button>
+          <button onclick="openPokeSearch('card rush pokemon Tokyo')">⭐ Card Rush</button>
+        </div>
+
+        <div class="poke-layout">
+          <div class="poke-grid" id="pokemonGrid"></div>
+          <aside class="price-tracker">
+            <div class="price-head">
+              <div>
+                <h3>מחירי יעד לבוקסים</h3>
+                <p>טווחי מחיר לבדיקה יומית. עדכנו ידנית לפי חנויות/Maps/PriceCharting לפני קנייה.</p>
+              </div>
+              <button class="btn secondary" onclick="resetBoxPrices()">איפוס</button>
+            </div>
+            <div id="boxPriceList"></div>
+            <div class="poke-note">
+              <b>כלל זהב</b>
+              <p>אם המחיר בחנות גבוה משמעותית מטווח היעד — לא לקנות בלחץ. בדקו עוד 2–3 חנויות באותו אזור.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    
 
 
       <section id="currency" class="panel">
         <div class="currency-card">
           <div>
             <h2>המרת ין ⇄ שקל 💱</h2>
-            <p class="hint">האתר עובד גם בלי שרת, לכן השער ניתן לעריכה ידנית. עדכנו את השער לפי Google/בנק/אפליקציית אשראי בזמן הטיול.</p>
+            <p class="hint">כשיש אינטרנט האפליקציה מנסה למשוך שער עדכני אוטומטית. אם אין אינטרנט, היא משתמשת בשער האחרון שנשמר. תמיד אפשר לערוך ידנית.</p>
           </div>
 
           <div class="result-big">
@@ -835,6 +1588,8 @@ textarea{
                 <input id="rateInput" type="number" inputmode="decimal" step="0.0001">
               </div>
               <button class="btn secondary" onclick="saveCurrencyRate()">שמור שער</button>
+              <button class="btn" onclick="fetchLiveCurrencyRate()">עדכן שער לייב</button>
+              <div class="hint" id="rateStatus">השער ייטען אוטומטית כשפותחים את האפליקציה.</div>
             </div>
 
             <div>
@@ -1021,32 +1776,471 @@ function render(){
   renderDayLists();
   renderDayCard();
 }
+
 function renderInfoPanels(){
+  const cityMeta = {
+    "טוקיו": {
+      image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "המטרופולין המטורף של יפן — אסקוסה מסורתית, אקיהברה, שיבויה, גינזה, דיסני ופוקימון.",
+      highlights: ["Asakusa", "Akihabara", "Ueno", "Ginza", "Shibuya", "Disney", "Pokémon"],
+      vibe: "עיר ענקית, מושלמת לפתיחה ולסיום",
+      hub: "Asakusa / Akihabara / Tokyo Station"
+    },
+    "טאקיאמה": {
+      image: "https://images.unsplash.com/photo-1557409518-691ebcd96038?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "עיירת הרים מסורתית באלפים היפניים — שווקי בוקר, רחובות עתיקים, סאקה ובקר הידה.",
+      highlights: ["Sanmachi", "Morning Market", "Hida Beef", "Sake", "Onsen"],
+      vibe: "רגועה, מסורתית ואלפינית",
+      hub: "Takayama Station"
+    },
+    "קאנאזאווה": {
+      image: "https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "עיר אלגנטית של גנים, סמוראים, בתי תה ושוק דגים מעולה.",
+      highlights: ["Kenrokuen", "Omicho", "Higashi Chaya", "Samurai District", "Gold Leaf"],
+      vibe: "תרבות, אוכל ואסתטיקה",
+      hub: "Kanazawa Station"
+    },
+    "מאטסומוטו": {
+      image: "https://images.unsplash.com/photo-1578469645742-46cae010e5d4?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "עיר קומפקטית ונעימה סביב הטירה השחורה, עם נוף הרים ואווירת מעבר נוחה.",
+      highlights: ["Matsumoto Castle", "Nawate", "Nakamachi", "Soba", "Alps"],
+      vibe: "טירה, ערב רגוע ונוף אלפיני",
+      hub: "Matsumoto Station"
+    },
+    "עמק קיסו": {
+      image: "https://images.unsplash.com/photo-1490761668535-35497054764d?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "יפן של פעם — דרך נאקאסנדו, עיירות עץ, ריוקן, אונסן ושקט מוחלט.",
+      highlights: ["Magome", "Tsumago", "Nakasendo", "Ryokan", "Onsen"],
+      vibe: "הפסקה כפרית עמוקה מהערים",
+      hub: "Kiso Valley"
+    },
+    "קיוטו": {
+      image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "הלב התרבותי של יפן — מקדשים, גיון, ארשיאמה, פושימי אינארי ושווקים.",
+      highlights: ["Gion", "Fushimi Inari", "Arashiyama", "Nishiki", "Kiyomizu", "Nara"],
+      vibe: "מסורת, מקדשים ואוכל",
+      hub: "Shijo / Kawaramachi"
+    },
+    "אוסקה": {
+      image: "https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "בירת האוכל והאנרגיה — דוטונבורי, שינסאיבאשי, נאמבה ו־Universal Studios Japan.",
+      highlights: ["Dotonbori", "Shinsaibashi", "Namba", "USJ", "Kaiyukan"],
+      vibe: "אוכל, בילויים ושופינג",
+      hub: "Shinsaibashi / Namba"
+    },
+    "הירושימה": {
+      image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "עיר של היסטוריה וזיכרון, עם יום טבע מושלם באי מיאג'ימה.",
+      highlights: ["Peace Park", "Museum", "Miyajima", "Okonomiyaki", "Hondori"],
+      vibe: "עמוק, חשוב ויפהפה",
+      hub: "Hiroshima Station / Hondori"
+    }
+  };
+
   const cityGrid = document.getElementById("cityGrid");
-  cityGrid.innerHTML = Object.entries(DATA.cityGuides || {}).map(([city, arr]) => `
-    <div class="info"><b>${esc(city)}</b><p class="note">${esc(Array.isArray(arr) ? arr.join(" · ") : arr)}</p></div>
+  const groups = {};
+  DATA.days.forEach((d, idx) => {
+    let city = d[1].split(" - ")[0].split(" / ")[0].trim();
+    if(city.includes("ישראל")) city = "טוקיו";
+    if(!groups[city]) groups[city] = [];
+    groups[city].push({day:d, index:idx});
+  });
+
+  const order = ["טוקיו","טאקיאמה","קאנאזאווה","מאטסומוטו","עמק קיסו","קיוטו","אוסקה","הירושימה"];
+  const entries = order.filter(c => groups[c]).map(c => [c, groups[c]]);
+
+  cityGrid.innerHTML = entries.map(([city, rows], cardIdx) => {
+    const meta = cityMeta[city] || {
+      image: "https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=1400&q=80",
+      subtitle: "יעד במסלול שלכם ביפן.",
+      highlights: [],
+      vibe: "תחנה במסלול",
+      hub: city
+    };
+    const first = rows[0];
+    const last = rows[rows.length - 1];
+    const hotel = first.day[3];
+    const hotelUrl = mapsUrl(hotel, city);
+    const cityUrl = mapsUrl(city, city);
+    const examples = rows.slice(0,3).map(({day,index}) => {
+      const item = day[4][0];
+      return `<div class="dest-mini">
+        <b>יום ${index + 1} · ${esc(day[0])}</b>
+        <p>${esc(day[1])} · ${esc(item ? item[1] : day[2])}</p>
+      </div>`;
+    }).join("");
+
+    return `<article class="dest-card ${cardIdx === 0 ? "featured" : ""}">
+      <div class="dest-image" style="background-image:url('${meta.image}')">
+        <div class="dest-chips">
+          <span class="dest-chip">📅 ${rows.length} ימים</span>
+          <span class="dest-chip">יום ${first.index + 1}–${last.index + 1}</span>
+        </div>
+        <div class="dest-title">
+          <h3>${esc(city)}</h3>
+          <p>${esc(meta.subtitle)}</p>
+        </div>
+      </div>
+      <div class="dest-body">
+        <div class="dest-hotel">
+          <b>🏨 המלון שלכם</b>
+          <a href="${hotelUrl}" target="_blank" rel="noopener noreferrer">${esc(hotel)} ↗</a>
+        </div>
+
+        <div class="dest-tags">
+          ${meta.highlights.map(h => `<span>${esc(h)}</span>`).join("")}
+        </div>
+
+        <div class="dest-info-grid">
+          <div class="dest-mini">
+            <b>✨ למה היעד הזה מיוחד</b>
+            <p>${esc(meta.vibe)} · אזור מרכזי: ${esc(meta.hub)}</p>
+          </div>
+          <div class="dest-mini">
+            <b>🗓️ חלון שהייה</b>
+            <p>${esc(first.day[0])} → ${esc(last.day[0])}</p>
+          </div>
+          ${examples}
+        </div>
+
+        <div class="dest-actions">
+          <button class="btn" onclick="selected=${first.index}; saveState(); switchPanel('planner'); render();">קפיצה ליום הראשון</button>
+          <a class="btn secondary" href="${cityUrl}" target="_blank" rel="noopener noreferrer">פתיחה במפות</a>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+
+  
+  const foodMeta = [
+    {
+      city:"טוקיו",
+      image:"https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"העיר הכי חזקה בטיול לאוכל: ראמן, סושי, איזקאיות, שווקים, גינזה, אואנו ואקיהברה.",
+      area:"Asakusa · Ueno · Akihabara · Ginza · Shibuya",
+      dishes:[
+        ["ראמן","Ichiran / Afuri / Rokurinsha / תחנות רכבת"],
+        ["סושי","Tsukiji, Uobei, Standing Sushi, Kaiten"],
+        ["יאקיניקו","ערב טוב לסגירת יום שופינג"],
+        ["איזקאיה","Yurakucho Gado-shita / Shinjuku"]
+      ],
+      tips:[
+        ["טיפ עומק","בטוקיו לא חייבים לרדוף אחרי מסעדה אחת. חפשו סביב התחנה הקרובה עם דירוג טוב ותור הגיוני."],
+        ["מתי ללכת","לשווקים כמו Tsukiji עדיף בבוקר. לאיזקאיות ו-Gado-shita להגיע סביב 17:30–19:00."],
+        ["Plan B","אם גשום או חם: Solamachi, Tokyo Station, Ginza, Sunshine City ו-Yodobashi Akiba מלאים באוכל."]
+      ],
+      searches:["ramen Tokyo near me","sushi Tokyo near me","Yurakucho Gado-shita restaurants"]
+    },
+    {
+      city:"טאקיאמה",
+      image:"https://images.unsplash.com/photo-1516685304081-de7947d419d3?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"בקר הידה, אוכל הרים, שווקי בוקר וסאקה — כאן אוכלים לאט ונהנים מהאווירה.",
+      area:"Sanmachi · Miyagawa Market · Old Town",
+      dishes:[
+        ["Hida Beef","שיפודים, יאקיניקו, סושי בקר, קרוקט"],
+        ["Gohei Mochi","נשנוש הרים מתוק-מלוח"],
+        ["Soba","אוכל קל וטוב לצהריים"],
+        ["Sake","טעימות במבשלות בעיר העתיקה"]
+      ],
+      tips:[
+        ["חובה","לא לעזוב בלי לטעום Hida Beef לפחות פעם אחת רצינית ועוד פעם כנשנוש רחוב."],
+        ["מתי ללכת","שוק Miyagawa בבוקר; העיר העתיקה נסגרת יחסית מוקדם, אז לא לדחות לערב."],
+        ["טיפ חברים","Kawashiri Sake Brewery פחות תיירותית — להגיע לפני 16:00 אם רוצים טעימות."]
+      ],
+      searches:["Hida beef Takayama","Miyagawa Morning Market food","sake brewery Takayama"]
+    },
+    {
+      city:"קאנאזאווה",
+      image:"https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"עיר מעולה לפירות ים, סושי, שוק אומיצ'ו, קינוחי עלי זהב וערב באיזורי Katamachi.",
+      area:"Omicho Market · Katamachi · Kiguramachi",
+      dishes:[
+        ["Kaisendon","קערת אורז עם דגים ופירות ים"],
+        ["Sushi","Mori Mori Sushi / Omicho"],
+        ["Gold Leaf Dessert","גלידה או קינוח עם עלי זהב"],
+        ["Izakaya","Katamachi בערב"]
+      ],
+      tips:[
+        ["חובה","Omicho Market עובד הכי טוב בבוקר-צהריים; בערב חלק מהמקומות נסגרים."],
+        ["למי שאוהב סושי","קאנאזאווה אחת התחנות הכי טובות במסלול לסושי ופירות ים."],
+        ["ערב","Katamachi ו-Kiguramachi מתאימים לארוחת ערב אחרי יום גנים/סמוראים."]
+      ],
+      searches:["Omicho Market seafood","Mori Mori Sushi Kanazawa","Katamachi restaurants Kanazawa"]
+    },
+    {
+      city:"מאטסומוטו",
+      image:"https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"עיר רגועה יותר, טובה לסובה, בתי קפה, אוכל ליד הטירה וארוחת ערב לא כבדה.",
+      area:"Matsumoto Station · Nawate · Nakamachi",
+      dishes:[
+        ["Soba","האזור ידוע באטריות סובה"],
+        ["Oyaki","כיסון/מאפה אזורי מנאגנו"],
+        ["Cafe","בתי קפה ברחובות Nakamachi"],
+        ["Izakaya","ערב קל ליד התחנה"]
+      ],
+      tips:[
+        ["טיפ","זה יעד טוב לאכול רגוע ולא לחפש מסעדת שיא. לשמור כוח לעמק קיסו/המשך."],
+        ["אחרי הטירה","Nawate ו-Nakamachi נוחים לשיטוט וקפה."],
+        ["Plan B","אם גשום: מוזיאון Yayoi Kusama + קפה/סובה ליד המרכז."]
+      ],
+      searches:["soba Matsumoto","Nawate Street cafe","Matsumoto izakaya near station"]
+    },
+    {
+      city:"עמק קיסו",
+      image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"פחות מסעדות ויותר חוויה: ריוקן, Kaiseki, אוכל מסורתי ועצירות קטנות לאורך Nakasendo.",
+      area:"Magome · Tsumago · Narai · Ryokan",
+      dishes:[
+        ["Kaiseki","ארוחת ריוקן מסורתית"],
+        ["Gohei Mochi","נשנוש מקומי לאורך הדרך"],
+        ["Soba","אופציה טובה בכפרים"],
+        ["Tea stop","עצירה בבית תה בדרך"]
+      ],
+      tips:[
+        ["חשוב","בעמק קיסו לא בונים על ספונטניות מאוחרת — מסעדות נסגרות מוקדם ויש פחות אפשרויות."],
+        ["ריוקן","להגיע בזמן לארוחת הערב. בריוקן לא נהוג לבקש שינויים רבים במנות."],
+        ["לדרך","לקחת מים ונשנוש קטן להליכה Magome–Tsumago."]
+      ],
+      searches:["Magome food","Tsumago soba","Kiso Valley restaurant"]
+    },
+    {
+      city:"קיוטו",
+      image:"https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"שווקים, מאצ'ה, Kaiseki, איזקאיות בסמטאות, Pontocho וארוחות סביב גיון וקווארמאצ'י.",
+      area:"Nishiki · Pontocho · Gion · Kawaramachi · Uji",
+      dishes:[
+        ["Nishiki Market","טעימות, טמפורה, Wagyu, קינוחים"],
+        ["Matcha","במיוחד באוג׳י או בתי תה בעיר"],
+        ["Yudofu","טופו קיוטו מסורתי"],
+        ["Kaiseki","ארוחת ערב חגיגית אם מזמינים מראש"]
+      ],
+      tips:[
+        ["חובה","Nishiki בצהריים, Pontocho/Kiyamachi בערב — זה שילוב מעולה ליום קיוטו."],
+        ["התנהגות","באזור גיון לשמור על שקט ולא לצלם גיישות ללא רשות."],
+        ["עומק","קיוטו מצוינת למסעדה אחת מושקעת. אם רוצים — להזמין שבועות מראש."]
+      ],
+      searches:["Nishiki Market food","Pontocho Kyoto restaurants","matcha Uji Kyoto"]
+    },
+    {
+      city:"אוסקה",
+      image:"https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"בירת הרחוב והבילויים: Takoyaki, Okonomiyaki, Kushikatsu, דוטונבורי ונאמבה.",
+      area:"Dotonbori · Shinsaibashi · Namba · Umeda",
+      dishes:[
+        ["Takoyaki","הנשנוש הקלאסי של אוסקה"],
+        ["Okonomiyaki","Mizuno / מקומות בדוטונבורי"],
+        ["Kushikatsu","שיפודים מטוגנים, במיוחד Shinsekai"],
+        ["Street food","דוטונבורי בערב"]
+      ],
+      tips:[
+        ["חובה","לאכול בדוטונבורי בערב לפחות פעם אחת — זה חלק מהחוויה, גם אם תיירותי."],
+        ["USJ","ביום Universal לא לבנות על מסעדה כבדה בערב. לאכול קל ליד CityWalk/פארק."],
+        ["שופינג+אוכל","Shinsaibashi ו-Namba מאפשרים לשלב קניות, אוכל וארקיידים בלי לנסוע הרבה."]
+      ],
+      searches:["Dotonbori takoyaki","Mizuno okonomiyaki Osaka","kushikatsu Osaka"]
+    },
+    {
+      city:"הירושימה",
+      image:"https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"Hiroshima-style Okonomiyaki, צדפות במיאג'ימה, Momiji Manju ואוכל רחוב רגוע.",
+      area:"Hondori · Peace Park · Miyajima",
+      dishes:[
+        ["Okonomiyaki","הגרסה של הירושימה עם שכבות ואטריות"],
+        ["Oysters","במיוחד במיאג'ימה אם אוהבים"],
+        ["Momiji Manju","קינוח מקומי מפורסם"],
+        ["Hondori","אזור נוח לארוחת ערב"]
+      ],
+      tips:[
+        ["חובה","Okonomimura או מסעדת אוקונומיאקי מקומית — זו מנה שחובה לנסות כאן."],
+        ["מיאג'ימה","לשלב צדפות או Momiji Manju ביום האי."],
+        ["רגישות","אחרי מוזיאון השלום עדיף לתכנן ארוחה רגועה ולא יום עמוס מדי."]
+      ],
+      searches:["Okonomimura Hiroshima","Miyajima oysters","Hondori restaurants Hiroshima"]
+    }
+  ];
+
+  const foodGrid = document.getElementById("foodGrid");
+  foodGrid.innerHTML = foodMeta.map((f, idx) => {
+    const mapMain = mapsUrl(f.city + " restaurants", f.city);
+    const quickSearches = f.searches.map(s => `<button class="btn secondary" onclick="openFoodSearch('${esc(s)}')">${esc(s.replace(" near me",""))}</button>`).join("");
+    return `<article class="food-card ${idx === 0 ? "featured" : ""}">
+      <div class="food-image" style="background-image:url('${f.image}')">
+        <div class="food-badge">🍽️ ${esc(f.area)}</div>
+        <div class="food-city">
+          <h3>${esc(f.city)}</h3>
+          <p>${esc(f.subtitle)}</p>
+        </div>
+      </div>
+      <div class="food-body">
+        <div class="food-score">
+          <span>⭐ Tabelog 3+ = טוב</span>
+          <span>🕒 לבדוק שעות</span>
+          <span>📍 לשמור במפות</span>
+        </div>
+
+        <div class="must-eat">
+          ${f.dishes.map(([dish, note]) => `<div class="dish"><b>${esc(dish)}</b><span>${esc(note)}</span></div>`).join("")}
+        </div>
+
+        <div class="food-tips">
+          ${f.tips.map(([title, note]) => `<div class="food-tip"><b>${esc(title)}</b><p>${esc(note)}</p></div>`).join("")}
+        </div>
+
+        <div class="food-actions">
+          <a class="btn" href="${mapMain}" target="_blank" rel="noopener noreferrer">מסעדות במפות</a>
+          <button class="btn secondary" onclick="openFoodSearch('best restaurants ${esc(f.city)}')">חיפוש המלצות</button>
+        </div>
+
+        <div class="food-actions">
+          ${quickSearches}
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+
+  
+  const pokeMeta = [
+    {
+      city:"טוקיו",
+      image:"https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"היעד הכי חזק לקלפים: אקיהברה, נאקנו, איקבוקורו, שיבויה ופוקימון סנטרים גדולים.",
+      tags:["הכי הרבה חנויות","מחירים משתנים","מעולה לסינגלים","לא לקנות בלחץ"],
+      shops:[
+        ["Pokémon Center SKYTREE TOWN","לשלב עם Skytree/Solamachi. טוב למרצ׳נדייז ובוקסים אם יש מלאי.","Pokémon Center SKYTREE TOWN"],
+        ["Pokémon Center Shibuya","בתוך Shibuya PARCO עם Nintendo Tokyo. טוב לחוויה ומוצרים רשמיים.","Pokémon Center Shibuya"],
+        ["Pokémon Center MEGA TOKYO","בסאנשיין סיטי איקבוקורו. אחד הסניפים החזקים והגדולים.","Pokémon Center MEGA TOKYO"],
+        ["Akihabara Card Shops","Hareruya2, Yellow Submarine, Mandarake, Surugaya, BOOKOFF — להשוות מחירים.","pokemon card shop Akihabara"],
+        ["Nakano Broadway","מקום מעולה לסינגלים, רטרו ואספנות. לא תמיד זול, אבל יש מציאות.","pokemon cards Nakano Broadway"]
+      ],
+      tip:"בטוקיו תעשו סקר מחירים לפני קנייה גדולה. אקיהברה נוחה אבל לא תמיד הכי זולה; Nakano טוב להשוואה."
+    },
+    {
+      city:"אוסקה",
+      image:"https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"אזור נאמבה/שינסאיבאשי/דנדן טאון יכול לתת מחירים טובים יותר מטוקיו, במיוחד אם משווים.",
+      tags:["Namba","Den Den Town","שווה להשוות","טוב לבוקסים"],
+      shops:[
+        ["Pokémon Center Osaka","סניף רשמי ונוח לשילוב עם שופינג. מלאי משתנה.","Pokémon Center Osaka"],
+        ["Den Den Town / Nipponbashi","האזור הכי רלוונטי באוסקה לקלפים, אנימה וגיימינג.","pokemon card shop Nipponbashi Osaka"],
+        ["BOOKOFF / Surugaya Osaka","לבדוק סינגלים, מארזים יד שנייה ומציאות.","BOOKOFF pokemon cards Osaka"],
+        ["Namba card shops","קפיצה נוחה אחרי דוטונבורי או שינסאיבאשי.","pokemon card shop Namba Osaka"]
+      ],
+      tip:"אם מצאתם בוקס במחיר טוב באוסקה, אל תניחו שתמצאו אותו שוב בטוקיו באותו מחיר. אבל עדיין לבדוק 2–3 חנויות."
+    },
+    {
+      city:"קיוטו",
+      image:"https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"קיוטו פחות חזקה מטוקיו/אוסקה לקלפים, אבל יש חנויות סביב התחנה והמרכז. טוב לקנייה רגועה.",
+      tags:["פחות עומס","מחירים לפעמים טובים","לא יעד עיקרי לקלפים"],
+      shops:[
+        ["Kyoto Station area","לחפש חנויות קלפים סביב התחנה ביום גשם או ערב פנוי.","pokemon card shop Kyoto Station"],
+        ["Kawaramachi / Teramachi","אזור מרכזי לקניות; שווה חיפוש אם אתם שם בכל מקרה.","pokemon cards Kawaramachi Kyoto"],
+        ["BOOKOFF Kyoto","לפעמים יש מציאות, בעיקר יד שנייה/סינגלים.","BOOKOFF pokemon cards Kyoto"]
+      ],
+      tip:"קיוטו היא לא המקום לרוץ אחרי קלפים. אם אתם ליד חנות — בדקו; אם לא, עדיף לשמור את האנרגיה לטוקיו/אוסקה."
+    },
+    {
+      city:"הירושימה",
+      image:"https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"פחות תחרות מטוקיו, לפעמים אפשר למצוא מלאי רגוע יותר. טוב לבדיקה אם יש זמן ליד Hondori.",
+      tags:["פחות תיירים","שווה בדיקה","Hondori"],
+      shops:[
+        ["Hondori area","אזור קניות מרכזי; לחפש חנויות קלפים/BOOKOFF סביבו.","pokemon card shop Hondori Hiroshima"],
+        ["BOOKOFF Hiroshima","בדיקה טובה לסינגלים ומציאות.","BOOKOFF pokemon cards Hiroshima"],
+        ["Hiroshima Station area","נוח לפני/אחרי רכבת אם צריך קנייה קצרה.","pokemon cards Hiroshima Station"]
+      ],
+      tip:"בהירושימה לא הייתי מתכנן יום סביב קלפים, אבל כן שווה לפתוח Maps ולבדוק חנויות קרובות."
+    },
+    {
+      city:"קאנאזאווה",
+      image:"https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"עיר קטנה יותר, אז אין הרבה חנויות — אבל לפעמים דווקא שם יש מלאי שלא נטחן על ידי תיירים.",
+      tags:["בדיקה קצרה","לא יעד עיקרי","אולי מציאות"],
+      shops:[
+        ["Kanazawa Station / Forus","לבדוק חנויות תחביב/צעצועים סביב התחנה והקניון.","pokemon cards Kanazawa Station"],
+        ["BOOKOFF Kanazawa","שווה חיפוש קצר לסינגלים ומארזים.","BOOKOFF pokemon cards Kanazawa"]
+      ],
+      tip:"הגדרת ניצחון בקאנאזאווה: מצאתם משהו במחיר סביר בלי לסטות מהמסלול. לא לבזבז חצי יום."
+    },
+    {
+      city:"טאקיאמה / מאטסומוטו",
+      image:"https://images.unsplash.com/photo-1557409518-691ebcd96038?auto=format&fit=crop&w=1400&q=80",
+      subtitle:"לא יעדי קלפים חזקים. לחפש רק אם אתם ליד BOOKOFF/חנות תחביבים. העיקר פה הוא הטיול.",
+      tags:["לא מרכזי","בדיקה על הדרך","לא לתכנן סביב זה"],
+      shops:[
+        ["Takayama hobby shops","חיפוש מהיר אם יש זמן בערב.","pokemon cards Takayama"],
+        ["Matsumoto BOOKOFF","בדיקה אפשרית לסינגלים ומציאות.","BOOKOFF pokemon cards Matsumoto"]
+      ],
+      tip:"באלפים היפניים עדיף לא לרדוף אחרי קלפים. לשמור קניות גדולות לטוקיו/אוסקה."
+    }
+  ];
+
+  const pokemonGrid = document.getElementById("pokemonGrid");
+  pokemonGrid.innerHTML = pokeMeta.map((p, idx) => `
+    <article class="poke-card">
+      <div class="poke-image" style="background-image:url('${p.image}')">
+        <div class="poke-badge">🎴 ${esc(p.shops.length)} מקומות לבדיקה</div>
+        <div class="poke-city">
+          <h3>${esc(p.city)}</h3>
+          <p>${esc(p.subtitle)}</p>
+        </div>
+      </div>
+      <div class="poke-body">
+        <div class="poke-tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+        <div class="shop-list">
+          ${p.shops.map(([name,note,query]) => `<div class="shop">
+            <b>${esc(name)}</b>
+            <p>${esc(note)}</p>
+            <a href="${mapsUrl(query, p.city)}" target="_blank" rel="noopener noreferrer">פתח במפות ↗</a>
+          </div>`).join("")}
+        </div>
+        <div class="poke-tip"><b>טיפ קנייה</b><p>${esc(p.tip)}</p></div>
+        <div class="poke-actions">
+          <button class="btn" onclick="openPokeSearch('pokemon card shop ${esc(p.city)}')">חנויות קלפים</button>
+          <button class="btn secondary" onclick="openPokeSearch('pokemon center ${esc(p.city)}')">Pokémon Center</button>
+        </div>
+      </div>
+    </article>
   `).join("");
 
-  document.getElementById("foodGrid").innerHTML = [
-    ["טוקיו","Tsukiji Outer Market, Uobei Sushi, Gyukatsu Motomura, Mutekiya Ramen, Ichiran, Yurakucho Gado-shita."],
-    ["טאקיאמה","Hida beef, Hida Kotte Ushi, שוק הבוקר, מבשלות סאקה."],
-    ["קאנאזאווה","Omicho Market, Mori Mori Sushi, פירות ים, קינוחים עם עלי זהב, Katamachi בערב."],
-    ["קיוטו","Nishiki Market, Yudofu, Matcha באוג׳י, Pontocho, Kiyamachi, Kaiseki."],
-    ["אוסקה","Takoyaki, Okonomiyaki, Kushikatsu, Dotonbori, Kuromon Market."],
-    ["הירושימה","Hiroshima-style okonomiyaki, oysters במיאג׳ימה, Momiji manju."]
-  ].map(([a,b]) => `<div class="info"><b>${a}</b><p class="note">${b}</p></div>`).join("");
-
-  document.getElementById("pokemonGrid").innerHTML = [
-    ["Pokémon Center SKYTREE TOWN","לשלב ביום אסקוסה/Skytree."],
-    ["Pokémon Center Shibuya","בתוך Shibuya PARCO יחד עם Nintendo Tokyo."],
-    ["Pokémon Center MEGA TOKYO","בסאנשיין סיטי איקבוקורו, סניף גדול מאוד."],
-    ["Pokémon Center TOKYO DX + Café","ניהונבאשי. לקפה צריך הזמנה מראש."],
-    ["Akihabara / Nakano card shops","להשוות מחירים, לבדוק מצב קלף ולא לקנות בלחץ."],
-    ["Osaka Pokémon Center","לשלב ביום שופינג באוסקה אם נשאר זמן."]
-  ].map(([a,b]) => `<div class="info"><b>${a}</b><p class="note">${b}</p></div>`).join("");
+  renderBoxPrices();
 }
 
-const DEFAULT_JPY_TO_ILS = 0.0235;
+
+
+const DEFAULT_JPY_TO_ILS = 0.0177;
+
+
+async function fetchLiveCurrencyRate(){
+  const status = document.getElementById("rateStatus");
+  const rateInput = document.getElementById("rateInput");
+  if(status) status.textContent = "בודק שער עדכני...";
+  try{
+    const response = await fetch("https://api.frankfurter.dev/v1/latest?base=JPY&symbols=ILS", {cache:"no-store"});
+    if(!response.ok) throw new Error("rate request failed");
+    const data = await response.json();
+    const rate = Number(data && data.rates && data.rates.ILS);
+    if(!rate) throw new Error("missing ILS rate");
+
+    localStorage.setItem("jp2026_jpy_ils_rate", String(rate));
+    localStorage.setItem("jp2026_jpy_ils_rate_date", data.date || new Date().toISOString().slice(0,10));
+
+    if(rateInput) rateInput.value = rate.toFixed(6);
+    refreshQuickCurrency();
+    convertFromYen();
+
+    if(status){
+      status.textContent = "שער עודכן ל-" + rate.toFixed(6) + " ₪ לכל ¥1 · תאריך נתונים: " + (data.date || "היום");
+    }
+  }catch(err){
+    const saved = localStorage.getItem("jp2026_jpy_ils_rate_date");
+    if(status){
+      status.textContent = saved
+        ? "לא הצלחתי למשוך שער לייב. משתמש בשער האחרון שנשמר מתאריך " + saved + "."
+        : "לא הצלחתי למשוך שער לייב. אפשר להזין שער ידנית.";
+    }
+  }
+}
 
 function formatILS(value){
   return "₪" + Number(value || 0).toLocaleString("he-IL", {minimumFractionDigits:2, maximumFractionDigits:2});
@@ -1068,7 +2262,10 @@ function initCurrency(){
   const quick = document.getElementById("quickCurrency");
   if(!rateInput || !yenInput || !ilsInput || !quick) return;
 
-  rateInput.value = getCurrencyRate();
+  rateInput.value = getCurrencyRate().toFixed(6);
+  const status = document.getElementById("rateStatus");
+  const savedDate = localStorage.getItem("jp2026_jpy_ils_rate_date");
+  if(status && savedDate) status.textContent = "שער אחרון נשמר מתאריך " + savedDate;
 
   const amounts = [500, 1000, 3000, 5000, 10000, 20000, 50000, 100000];
   quick.innerHTML = amounts.map(yen => {
@@ -1119,7 +2316,129 @@ function setQuickYen(yen){
 function saveCurrencyRate(){
   const rateInput = document.getElementById("rateInput");
   localStorage.setItem("jp2026_jpy_ils_rate", String(Number(rateInput.value || DEFAULT_JPY_TO_ILS)));
+  localStorage.setItem("jp2026_jpy_ils_rate_date", "ידני " + new Date().toISOString().slice(0,10));
+  const status = document.getElementById("rateStatus");
+  if(status) status.textContent = "שער ידני נשמר.";
   refreshQuickCurrency();
+}
+
+
+
+function openPokeSearch(query){
+  const url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query + " Japan");
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+const POKE_BOXES = [
+  {
+    id:"jp151",
+    name:"Pokémon Card 151",
+    jp:"ポケモンカード151",
+    target:"¥8,000–¥14,000",
+    note:"מודרני מאוד מבוקש. לקנות רק אם המחיר לא מנופח; לבדוק חותמת/מצב אריזה."
+  },
+  {
+    id:"terastal_festival",
+    name:"Terastal Festival ex",
+    jp:"テラスタルフェスex",
+    target:"¥6,000–¥10,000",
+    note:"High Class פופולרי. טוב לפתיחה וגם לאוסף סגור אם המחיר שפוי."
+  },
+  {
+    id:"shiny_treasure",
+    name:"Shiny Treasure ex",
+    jp:"シャイニートレジャーex",
+    target:"¥5,000–¥8,500",
+    note:"High Class מודרני עם הרבה עניין. להשוות בכמה חנויות."
+  },
+  {
+    id:"vstar_universe",
+    name:"VSTAR Universe",
+    jp:"VSTARユニバース",
+    target:"¥8,000–¥13,000",
+    note:"בוקס אהוב מאוד, אבל מחיר יכול להיות גבוה. לבדוק היטב לפני קנייה."
+  },
+  {
+    id:"battle_partners",
+    name:"Battle Partners",
+    jp:"バトルパートナーズ",
+    target:"¥5,000–¥8,500",
+    note:"מודרני יותר, טוב אם מוצאים במחיר קרוב לריטייל/שוק סביר."
+  },
+  {
+    id:"heat_wave_arena",
+    name:"Heat Wave Arena",
+    jp:"熱風のアリーナ",
+    target:"¥5,000–¥9,000",
+    note:"בוקס מודרני, מתאים לבדיקה בחנויות באוסקה/טוקיו."
+  },
+  {
+    id:"rocket_glory",
+    name:"The Glory of Team Rocket",
+    jp:"ロケット団の栄光",
+    target:"¥6,000–¥11,000",
+    note:"סט נוסטלגי/מבוקש. להיזהר מהייפ וממחיר תיירים."
+  },
+  {
+    id:"black_bolt_white_flare",
+    name:"Black Bolt / White Flare",
+    jp:"ブラックボルト / ホワイトフレア",
+    target:"¥5,000–¥9,500",
+    note:"סטים מודרניים טובים לבדיקה לפי מלאי ומחיר."
+  }
+];
+
+function getBoxPrices(){
+  try{
+    return JSON.parse(localStorage.getItem("jp2026_poke_box_prices") || "{}");
+  }catch(e){ return {}; }
+}
+function saveBoxPrice(id, field, value){
+  const prices = getBoxPrices();
+  if(!prices[id]) prices[id] = {};
+  prices[id][field] = value;
+  prices[id].updated = new Date().toISOString().slice(0,10);
+  localStorage.setItem("jp2026_poke_box_prices", JSON.stringify(prices));
+  renderBoxPrices();
+}
+function resetBoxPrices(){
+  if(confirm("לאפס מחירי בוקסים ששמרת?")){
+    localStorage.removeItem("jp2026_poke_box_prices");
+    renderBoxPrices();
+  }
+}
+function renderBoxPrices(){
+  const wrap = document.getElementById("boxPriceList");
+  if(!wrap) return;
+  const prices = getBoxPrices();
+  wrap.innerHTML = POKE_BOXES.map(box => {
+    const saved = prices[box.id] || {};
+    const searchQuery = encodeURIComponent(box.name + " Japanese booster box price");
+    const mapsQuery = encodeURIComponent(box.name + " pokemon card box Japan");
+    return `<div class="box-row">
+      <div class="box-top">
+        <div>
+          <b>${esc(box.name)}</b>
+          <small>${esc(box.jp)} · ${esc(box.note)}</small>
+        </div>
+        <div class="box-target">${esc(box.target)}</div>
+      </div>
+      <div class="box-inputs">
+        <input placeholder="מחיר שמצאת ¥" value="${esc(saved.price || "")}" onchange="saveBoxPrice('${box.id}','price',this.value)">
+        <input placeholder="איפה ראית?" value="${esc(saved.shop || "")}" onchange="saveBoxPrice('${box.id}','shop',this.value)">
+      </div>
+      <div class="box-actions">
+        <a class="btn secondary" href="https://www.google.com/search?q=${searchQuery}" target="_blank" rel="noopener noreferrer">בדיקת מחיר</a>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=${mapsQuery}" target="_blank" rel="noopener noreferrer">חפש בחנויות</a>
+      </div>
+      <small>${saved.updated ? "עודכן אצלך: " + esc(saved.updated) : "עוד לא נשמר מחיר אישי"}</small>
+    </div>`;
+  }).join("");
+}
+
+function openFoodSearch(query){
+  const url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query + " Japan");
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 
 function exportPlan(){
@@ -1177,6 +2496,7 @@ setInterval(updateCountdown, 1000);
 initFilters();
 renderInfoPanels();
 initCurrency();
+fetchLiveCurrencyRate();
 render();
 renderHome();
 updateCountdown();
