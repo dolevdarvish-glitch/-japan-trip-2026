@@ -1254,6 +1254,216 @@ textarea{
 .day-empty-note{background:#f8f2ec;border:1px dashed #dfc8b4;border-radius:20px;padding:14px;color:var(--muted);line-height:1.5}
 .day-note-inline{margin-top:14px;background:#f2f7f8;border:1px dashed #bdd4dc;border-radius:22px;padding:14px;display:grid;gap:10px}.day-note-inline b{color:#12343b}
 .day-nav-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+
+.shopping-dashboard{
+  display:grid;
+  gap:18px;
+  margin-bottom:18px;
+}
+.shop-hero-grid{
+  display:grid;
+  gap:14px;
+}
+.shop-category-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:34px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.shop-cat-image{
+  position:relative;
+  min-height:220px;
+  background-size:cover;
+  background-position:center;
+  isolation:isolate;
+}
+.shop-cat-image:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.68));
+}
+.shop-cat-title{
+  position:absolute;
+  right:18px;
+  left:18px;
+  bottom:18px;
+  z-index:1;
+  color:white;
+}
+.shop-cat-title h3{
+  margin:0;
+  font-size:clamp(32px,7vw,50px);
+  line-height:1;
+  letter-spacing:-.055em;
+}
+.shop-cat-title p{
+  margin:8px 0 0;
+  line-height:1.45;
+  opacity:.95;
+  font-weight:750;
+}
+.shop-cat-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:1;
+  background:rgba(255,255,255,.92);
+  color:#34244d;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:950;
+  font-size:12px;
+}
+.shop-cat-body{
+  padding:18px;
+  display:grid;
+  gap:14px;
+}
+.shop-items-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.shop-item{
+  background:#fffaf5;
+  border:1px solid #ead8c3;
+  border-radius:20px;
+  padding:12px;
+}
+.shop-item b{
+  display:block;
+  color:#6d3d1f;
+  margin-bottom:5px;
+}
+.shop-item span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+}
+.shop-tip{
+  background:#faf7f2;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:13px;
+}
+.shop-tip b{
+  display:block;
+  color:var(--primary);
+  margin-bottom:5px;
+}
+.shop-tip p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+.shop-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.shop-actions a,
+.shop-actions button{
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+}
+.wishlist-panel{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:34px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.wishlist-head{
+  display:grid;
+  gap:8px;
+  margin-bottom:14px;
+}
+.wishlist-head h3{
+  margin:0;
+  font-size:26px;
+}
+.wishlist-head p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+}
+.wishlist-form{
+  display:grid;
+  grid-template-columns:1fr 120px;
+  gap:8px;
+  margin-bottom:12px;
+}
+.wishlist-form input{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:18px;
+  min-height:48px;
+  padding:0 12px;
+}
+.wishlist-row{
+  background:#faf7f2;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:12px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.wishlist-row.done{
+  opacity:.55;
+}
+.wishlist-row.done b{
+  text-decoration:line-through;
+}
+.wishlist-row b{
+  display:block;
+}
+.wishlist-row small{
+  color:var(--muted);
+}
+.wishlist-actions{
+  display:flex;
+  gap:6px;
+}
+.wishlist-actions button{
+  border:0;
+  border-radius:12px;
+  min-height:34px;
+  padding:0 10px;
+  font-weight:900;
+  cursor:pointer;
+}
+@media(min-width:760px){
+  .shop-hero-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .shop-category-card.featured{
+    grid-column:span 2;
+  }
+  .shop-category-card.featured .shop-cat-image{
+    min-height:320px;
+  }
+}
+@media(min-width:1100px){
+  .shopping-dashboard{
+    grid-template-columns:1fr .65fr;
+    align-items:start;
+  }
+  .shop-hero-grid{
+    grid-column:1;
+  }
+  .wishlist-panel{
+    position:sticky;
+    top:92px;
+  }
+}
+
 @media(min-width:760px){.days-hero{grid-template-columns:1fr auto;align-items:end;padding:28px}.day-focus{padding:22px}.focus-actions{grid-template-columns:repeat(4,1fr)}.day-section{grid-template-columns:repeat(2,minmax(0,1fr))}.day-section h3{grid-column:1/-1}.journey-day{min-width:190px}}
 
 @media(min-width:760px){
@@ -1426,6 +1636,167 @@ textarea{
   }
 }
 
+
+.today-brief-card{
+  background:linear-gradient(135deg,#fffaf3,#edf7f8);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:18px;
+  box-shadow:var(--soft);
+}
+.today-brief-card h3{margin:0 0 8px;font-size:24px;color:#12343b}
+.today-brief-card p{margin:0;color:var(--muted);line-height:1.55}
+.today-brief-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.ultimate-hero{
+  background:
+    radial-gradient(circle at 16% 18%, rgba(255,255,255,.2), transparent 24%),
+    linear-gradient(135deg,#0f172a 0%,#274060 52%,#d97757 135%);
+  color:white;
+  border-radius:34px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  display:grid;
+  gap:14px;
+  margin-bottom:14px;
+}
+.ultimate-kicker{font-size:12px;font-weight:950;letter-spacing:.14em;opacity:.78}
+.ultimate-hero h2{margin:6px 0 8px;font-size:clamp(32px,7vw,54px);line-height:1;letter-spacing:-.05em}
+.ultimate-hero p{margin:0;max-width:820px;line-height:1.65;opacity:.93}
+.ultimate-tabs{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+.ultimate-tabs button{
+  border:1px solid var(--line);
+  background:white;
+  border-radius:20px;
+  min-height:52px;
+  box-shadow:var(--soft);
+  font-weight:950;
+  color:#233147;
+  cursor:pointer;
+}
+.tool-super-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:34px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+.tool-super-head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:14px;
+  align-items:start;
+  margin-bottom:14px;
+}
+.tool-super-head h3{margin:0;font-size:clamp(24px,6vw,36px);letter-spacing:-.04em;color:#0f172a}
+.tool-super-head p{margin:6px 0 0;color:var(--muted);line-height:1.55}
+.mini-ring{
+  --p:0;
+  width:74px;
+  height:74px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:conic-gradient(#2f8f68 calc(var(--p)*1%), #e8ddd2 0);
+  position:relative;
+}
+.mini-ring:before{content:"";position:absolute;inset:8px;background:white;border-radius:50%}
+.mini-ring b{position:relative;z-index:1}
+.prep-list{display:grid;gap:10px}
+.prep-row{
+  background:#faf7f2;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:13px;
+  display:grid;
+  gap:10px;
+}
+.prep-main{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.prep-main b{display:block;color:#233147}
+.prep-main p{margin:4px 0 0;color:var(--muted);line-height:1.5}
+.prep-due{background:#e9f2f3;color:#2d5f73;border-radius:999px;padding:7px 10px;font-weight:950;white-space:nowrap;font-size:12px}
+.prep-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.prep-actions select{min-height:44px;box-shadow:none}
+.prep-actions a{display:grid;place-items:center;text-decoration:none}
+.planb-grid{display:grid;gap:12px}
+.planb-card{
+  background:linear-gradient(180deg,#fffaf5,#fff);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:15px;
+  display:grid;
+  gap:10px;
+}
+.planb-card h4{margin:0;font-size:22px;color:#233147}
+.planb-card p{margin:0;color:var(--muted);line-height:1.55}
+.planb-tags{display:flex;flex-wrap:wrap;gap:8px}
+.planb-tags span{background:#edf3f4;color:#2d5f73;border-radius:999px;padding:8px 12px;font-weight:900;font-size:13px}
+.transport-grid{display:grid;gap:14px}
+.baggage-calc,.luggage-card{
+  background:#faf7f2;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:15px;
+}
+.baggage-calc h4,.luggage-card h4{margin:0 0 8px;font-size:22px;color:#233147}
+.baggage-calc p{margin:0 0 12px;color:var(--muted);line-height:1.5}
+.baggage-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.baggage-inputs input{width:100%;border:1px solid var(--line);border-radius:16px;min-height:46px;padding:0 10px;direction:ltr;text-align:center;font-weight:900}
+.calc-result{margin-top:10px;background:white;border:1px solid var(--line);border-radius:18px;padding:12px;color:var(--muted);line-height:1.5}
+.luggage-step{background:white;border:1px solid var(--line);border-radius:18px;padding:12px;margin-bottom:8px}
+.luggage-step b{display:block;color:#233147}.luggage-step span{display:block;color:var(--muted);line-height:1.45;margin-top:4px}
+.expense-box{display:grid;gap:12px}
+.expense-form{display:grid;gap:8px}
+.expense-form input,.expense-form select{width:100%;box-shadow:none}
+.expense-summary{
+  background:linear-gradient(135deg,#0f172a,#274060);
+  color:white;
+  border-radius:24px;
+  padding:16px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.expense-summary b{display:block;font-size:24px;direction:ltr;text-align:left}
+.expense-summary span{opacity:.85;font-weight:800}
+.expense-row{
+  background:#faf7f2;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:12px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:center;
+  margin-bottom:8px;
+}
+.expense-row b{display:block}.expense-row small{color:var(--muted)}
+.expense-row button{border:0;border-radius:12px;min-height:34px;padding:0 10px;font-weight:900;cursor:pointer}
+.safety-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.safety-card{background:#fff2f2;border:1px solid #f0c6c6;border-radius:22px;padding:15px;text-align:center}
+.safety-card b{display:block;font-size:22px;color:#a33b3b;direction:ltr}.safety-card span{display:block;color:var(--muted);font-weight:850;margin-top:6px}
+.source-grid,.backup-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.source-grid a,.backup-grid a{text-decoration:none;display:grid;place-items:center}
+.offline-list{display:grid;gap:8px;margin-top:12px}
+.offline-list label{background:#faf7f2;border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;gap:8px;align-items:center;color:var(--muted);font-weight:800}
+@media(min-width:760px){
+  .ultimate-hero{grid-template-columns:1fr auto;align-items:end;padding:28px}
+  .ultimate-tabs{grid-template-columns:repeat(6,1fr)}
+  .prep-row{grid-template-columns:1fr 300px;align-items:center}
+  .transport-grid{grid-template-columns:1fr 1fr}
+  .expense-form{grid-template-columns:180px 160px 1fr 120px}
+  .planb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .source-grid,.backup-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(min-width:1100px){
+  .planb-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
 </style>
 </head>
 <body>
@@ -1457,7 +1828,7 @@ textarea{
       <button class="nav-btn" data-panel="planner"><span class="ico">📅</span><span>ימים</span></button>
       <button class="nav-btn" data-panel="cities"><span class="ico">📍</span><span>יעדים</span></button>
       <button class="nav-btn" data-panel="food"><span class="ico">🍜</span><span>אוכל</span></button>
-      <button class="nav-btn" data-panel="pokemon"><span class="ico">🎴</span><span>פוקימון</span></button>
+      <button class="nav-btn" data-panel="shopping"><span class="ico">🛍️</span><span>קניות</span></button>
       <button class="nav-btn" data-panel="currency"><span class="ico">💱</span><span>מטבע</span></button>
       <button class="nav-btn" data-panel="tools"><span class="ico">⚙️</span><span>כלים</span></button>
     </nav>
@@ -1493,14 +1864,16 @@ textarea{
           <div>
             <h2 class="home-section-title">קיצורים</h2>
             <div class="home-action-grid">
-              <button class="action-card" onclick="switchPanel('planner')"><span class="bubble b-green">🏃</span>ימים</button>
+              <button class="action-card" onclick="switchPanel('planner')"><span class="bubble b-green">📅</span>ימים</button>
+              <button class="action-card" onclick="goToToday()"><span class="bubble b-green">🎯</span>היום</button>
               <button class="action-card" onclick="switchPanel('currency')"><span class="bubble b-gold">💱</span>מטבע</button>
               <button class="action-card" onclick="switchPanel('cities')"><span class="bubble b-blue">📍</span>יעדים</button>
               <button class="action-card" onclick="switchPanel('tools')"><span class="bubble b-red">📋</span>הכנות</button>
               <button class="action-card" onclick="switchPanel('food')"><span class="bubble b-pink">🍜</span>אוכל</button>
-              <button class="action-card" onclick="switchPanel('pokemon')"><span class="bubble b-gray">🎴</span>פוקימון</button>
+              <button class="action-card" onclick="switchPanel('shopping')"><span class="bubble b-gray">🛍️</span>קניות</button>
             </div>
           </div>
+          <div class="today-brief-card" id="todayBrief"></div>
           <div class="progress-card">
             <div class="progress-head">
               <div>
@@ -1572,26 +1945,29 @@ textarea{
     
 
       
-      <section id="pokemon" class="panel">
+      <section id="shopping" class="panel">
         <div class="poke-hero">
           <div>
-            <div class="poke-kicker">POKÉMON HUNT · JAPAN 2026</div>
-            <h2>צייד פוקימון וקלפים</h2>
-            <p>חנויות לפי יעד, אסטרטגיית קנייה חכמה, מחירי יעד לבוקסים יפניים, וקיצורי חיפוש מהירים ל־Google Maps.</p>
+            <div class="poke-kicker">SHOPPING MAP · JAPAN 2026</div>
+            <h2>קניות ביפן</h2>
+            <p>כל הקניות במקום אחד: אופנה, קוסמטיקה, מתנות, אלקטרוניקה, כלי מטבח, ממתקים, Don Quijote, וכמובן פוקימון וקלפים.</p>
           </div>
-          <button class="btn" onclick="openPokeSearch('pokemon card shop near me')">חנות קלפים לידי</button>
+          <button class="btn" onclick="openShopSearch('shopping near me')">קניות לידי</button>
         </div>
 
         <div class="poke-quick">
-          <button onclick="openPokeSearch('pokemon center near me')">🏬 Pokémon Center</button>
-          <button onclick="openPokeSearch('pokemon card shop near me')">🎴 Card shop</button>
-          <button onclick="openPokeSearch('Mandarake near me pokemon cards')">🛍️ Mandarake</button>
-          <button onclick="openPokeSearch('BOOKOFF pokemon cards near me')">📚 BOOKOFF</button>
-          <button onclick="openPokeSearch('Surugaya pokemon cards near me')">💿 Surugaya</button>
-          <button onclick="openPokeSearch('card rush pokemon Tokyo')">⭐ Card Rush</button>
+          <button onclick="scrollToShopSection('shop-general')">🛍️ כללי</button>
+          <button onclick="scrollToShopSection('shop-fashion')">👕 אופנה</button>
+          <button onclick="scrollToShopSection('shop-beauty')">💄 קוסמטיקה</button>
+          <button onclick="scrollToShopSection('shop-gifts')">🎁 מתנות</button>
+          <button onclick="scrollToShopSection('shop-tech')">🎧 אלקטרוניקה</button>
+          <button onclick="scrollToShopSection('shop-pokemon')">🎴 פוקימון</button>
         </div>
 
-        <div class="poke-layout">
+        <div class="shopping-dashboard" id="shop-general"></div>
+
+        <h2 class="home-section-title" style="margin:22px 4px 12px">🎴 פוקימון וקלפים</h2>
+        <div class="poke-layout" id="shop-pokemon">
           <div class="poke-grid" id="pokemonGrid"></div>
           <aside class="price-tracker">
             <div class="price-head">
@@ -1661,36 +2037,140 @@ textarea{
         </div>
       </section>
 
-      <section id="tools" class="panel">
-        <div class="grid">
-          <div class="tool-card">
-            <h2>הדפסה / PDF</h2>
-            <p>במחשב זה יוצר גרסת הדפסה נקייה. בטלפון אפשר להשתמש ב־Share → Print → Save as PDF.</p>
-            <button class="btn" onclick="window.print()">הדפסה / שמירה PDF</button>
-          </div>
-          <div class="tool-card">
-            <h2>ייצוא נתונים</h2>
-            <p>מיועד לגיבוי ההערות והסימונים שלכם. שמתי את זה כאן כדי שלא יפריע בטלפון.</p>
-            <button class="btn secondary" onclick="exportPlan()">ייצוא JSON</button>
-          </div>
-          <div class="tool-card">
-            <h2>טיפים חשובים</h2>
-            <p>לשמור על שקט ברכבות, לא לחצות באדום, לא לזרוק אשפה ברחוב, להשתמש ב־Suica/IC, ולהגיע בזמן לאטרקציות עם שעה קבועה.</p>
-          </div>
-          <div class="tool-card">
-            <h2>מזוודות</h2>
-            <p>בימי מעבר עם רכבות/אוטובוסים עדיף לשלוח מזוודות בין מלונות ולהסתובב עם תיק קטן. לא לשלוח יותר מדי ימים מראש.</p>
-          </div>
-          <div class="tool-card">
-            <h2>מסעדות</h2>
-            <p>לחיפוש מסעדות עומק: Tabelog. דירוג 3 ומעלה נחשב טוב. למסעדות מיוחדות בטוקיו/קיוטו להזמין מראש.</p>
-          </div>
-          <div class="tool-card">
-            <h2>ריוקן ואונסן</h2>
-            <p>ב-Tsutaya Tokinoyado Kazari להגיע בזמן לארוחת Kaiseki, לחלוץ נעליים, להתרחץ לפני אונסן ולכבד שקט.</p>
-          </div>
+      
+<section id="tools" class="panel">
+  <div class="ultimate-hero">
+    <div>
+      <div class="ultimate-kicker">CONTROL CENTER · JAPAN 2026</div>
+      <h2>מרכז שליטה לטיול</h2>
+      <p>הכנות, הזמנות, גשם/חום, מזוודות, רכבות, חירום, הוצאות וגיבוי — כל הדברים שמצילים בזמן אמת.</p>
+    </div>
+    <button class="btn" onclick="goToToday()">פתח את היום הרלוונטי</button>
+  </div>
+
+  <div class="ultimate-tabs">
+    <button onclick="scrollToTool('prepHub')">✅ הכנות</button>
+    <button onclick="scrollToTool('weatherHub')">🌧️ Plan B</button>
+    <button onclick="scrollToTool('transportHub')">🚄 רכבות</button>
+    <button onclick="scrollToTool('moneyHub')">💴 הוצאות</button>
+    <button onclick="scrollToTool('safetyHub')">🆘 חירום</button>
+    <button onclick="scrollToTool('backupHub')">📦 גיבוי</button>
+  </div>
+
+  <section class="tool-super-card" id="prepHub">
+    <div class="tool-super-head">
+      <div>
+        <h3>✅ הכנות והזמנות</h3>
+        <p>סטטוס חי לכל מה שצריך לסגור לפני הטיסה. נשמר אצלכם בדפדפן.</p>
+      </div>
+      <div class="mini-ring" id="prepRing"><b id="prepPercent">0%</b></div>
+    </div>
+    <div id="prepList" class="prep-list"></div>
+  </section>
+
+  <section class="tool-super-card" id="weatherHub">
+    <div class="tool-super-head">
+      <div>
+        <h3>🌧️ חום / גשם / עייפות</h3>
+        <p>תוכניות חלופיות לפי יעד. כשאין כוח למסלול המקורי — זה המסך שפותחים.</p>
+      </div>
+    </div>
+    <div id="planBGrid" class="planb-grid"></div>
+  </section>
+
+  <section class="tool-super-card" id="transportHub">
+    <div class="tool-super-head">
+      <div>
+        <h3>🚄 רכבות, מזוודות ומעברים</h3>
+        <p>לוח מעבר, מחשבון מזוודה לשינקנסן, והחלטות “לקחת או לשלוח”.</p>
+      </div>
+    </div>
+
+    <div class="transport-grid">
+      <div class="baggage-calc">
+        <h4>מחשבון מזוודה לשינקנסן</h4>
+        <p>גובה + רוחב + עומק בס״מ. בקווי Tokaido/Sanyo/Kyushu, 160–250 ס״מ דורש מקום ייעודי למטען גדול.</p>
+        <div class="baggage-inputs">
+          <input id="bagH" type="number" placeholder="גובה">
+          <input id="bagW" type="number" placeholder="רוחב">
+          <input id="bagD" type="number" placeholder="עומק">
         </div>
-      </section>
+        <button class="btn" onclick="calcBaggage()">בדוק מזוודה</button>
+        <div id="bagResult" class="calc-result">הכניסו מידות כדי לבדוק.</div>
+      </div>
+
+      <div class="luggage-card">
+        <h4>אסטרטגיית מזוודות מומלצת</h4>
+        <div id="luggagePlan"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tool-super-card" id="moneyHub">
+    <div class="tool-super-head">
+      <div>
+        <h3>💴 מעקב הוצאות קצר</h3>
+        <p>רישום זריז של הוצאות ביין לפי קטגוריה. משתמש בשער ההמרה של טאב המטבע.</p>
+      </div>
+    </div>
+
+    <div class="expense-box">
+      <div class="expense-form">
+        <select id="expenseCat">
+          <option>אוכל</option>
+          <option>תחבורה</option>
+          <option>קניות</option>
+          <option>פוקימון/קלפים</option>
+          <option>אטרקציות</option>
+          <option>שונות</option>
+        </select>
+        <input id="expenseYen" type="number" inputmode="decimal" placeholder="סכום ¥">
+        <input id="expenseNote" placeholder="הערה">
+        <button class="btn" onclick="addExpense()">הוסף</button>
+      </div>
+      <div id="expenseSummary" class="expense-summary"></div>
+      <div id="expenseList" class="expense-list"></div>
+    </div>
+  </section>
+
+  <section class="tool-super-card" id="safetyHub">
+    <div class="tool-super-head">
+      <div>
+        <h3>🆘 חירום ובטיחות</h3>
+        <p>דברים שלא רוצים להשתמש בהם — אבל חייבים שיהיו זמינים.</p>
+      </div>
+    </div>
+    <div class="safety-grid">
+      <div class="safety-card"><b>110</b><span>משטרה</span></div>
+      <div class="safety-card"><b>119</b><span>אמבולנס / כבאות</span></div>
+      <div class="safety-card"><b>050-3816-2787</b><span>JNTO Visitor Hotline</span></div>
+      <div class="safety-card"><b>Safety tips</b><span>אפליקציית התראות רעידות אדמה/צונאמי/מזג אוויר</span></div>
+    </div>
+    <div class="source-grid">
+      <a class="btn secondary" href="https://www.jnto.go.jp/safety-tips/eng/app.html" target="_blank" rel="noopener noreferrer">Safety tips</a>
+      <a class="btn secondary" href="https://www.japan.travel/en/plan/emergencies/" target="_blank" rel="noopener noreferrer">JNTO emergencies</a>
+    </div>
+  </section>
+
+  <section class="tool-super-card" id="backupHub">
+    <div class="tool-super-head">
+      <div>
+        <h3>📦 גיבוי, מסמכים ומקורות</h3>
+        <p>הכינו צילום מסך / PDF / קישורים מראש. בטיול לא תמיד יש אינטרנט מושלם.</p>
+      </div>
+    </div>
+    <div class="backup-grid">
+      <button class="btn" onclick="window.print()">הדפסה / שמירה PDF</button>
+      <button class="btn secondary" onclick="exportPlan()">ייצוא JSON</button>
+      <a class="btn secondary" href="https://services.digital.go.jp/en/visit-japan-web/" target="_blank" rel="noopener noreferrer">Visit Japan Web</a>
+      <a class="btn secondary" href="https://smart-ex.jp/en/index.php" target="_blank" rel="noopener noreferrer">SmartEX</a>
+      <a class="btn secondary" href="https://www.global-yamato.com/en/hands-free-travel/" target="_blank" rel="noopener noreferrer">Yamato luggage</a>
+      <a class="btn secondary" href="https://www.pokemon-cafe.jp/en/cafe/reservation.html" target="_blank" rel="noopener noreferrer">Pokémon Café</a>
+    </div>
+    <div class="offline-list" id="offlineChecklist"></div>
+  </section>
+</section>
+
     </main>
   </div>
 </div>
@@ -1888,6 +2368,7 @@ function render(){
   renderDayLists();
   renderDayCard();
   renderHome();
+  renderUltimateTools();
 }
 
 function renderInfoPanels(){
@@ -2437,6 +2918,194 @@ function saveCurrencyRate(){
 
 
 
+
+function openShopSearch(query){
+  const url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query + " Japan");
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+function scrollToShopSection(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+const SHOP_CATEGORIES = [
+  {
+    id:"shop-fashion",
+    title:"אופנה ובייסיקים",
+    badge:"UNIQLO · GU · Onitsuka",
+    image:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80",
+    subtitle:"הכי משתלם לקנות בייסיקים, מעילים קלים, גרביים, תיקים ונעליים.",
+    items:[
+      ["UNIQLO","חנות הדגל בגינזה, וגם כמעט בכל עיר. מעולה לבייסיקים ומתנות."],
+      ["GU","אחות זולה יותר של יוניקלו, טובה לטרנדים ופריטים קלילים."],
+      ["Onitsuka Tiger","נעליים יפניות — לבדוק מחירים ומידות מוקדם בטיול."],
+      ["ABC-Mart","רשת נעליים טובה להשוואת מחירים."]
+    ],
+    tip:"בגינזה/שיבויה יש חנויות ענק אבל לא תמיד הכי רגוע. לקנייה יעילה לפעמים עדיף סניף ליד המלון או קניון.",
+    searches:["UNIQLO near me","GU near me","Onitsuka Tiger near me","ABC Mart near me"]
+  },
+  {
+    id:"shop-beauty",
+    title:"קוסמטיקה ופארם",
+    badge:"Matsumoto Kiyoshi · Donki",
+    image:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1400&q=80",
+    subtitle:"קרמים, מסכות פנים, SPF, טיפות עיניים, מוצרי שיער וקוסמטיקה יפנית.",
+    items:[
+      ["Matsumoto Kiyoshi","רשת פארם גדולה. להשוות מחירים מול Don Quijote."],
+      ["@cosme Tokyo","מעולה אם אתם בשיבויה/הרג׳וקו ורוצים מותגים טרנדיים."],
+      ["Don Quijote","נוח לקנייה גדולה, אבל לפעמים עמוס ומבלבל."],
+      ["Loft / Hands","קוסמטיקה, טיפוח, מוצרי נייר וגדג׳טים קטנים."]
+    ],
+    tip:"למוצרי טיפוח — לצלם מוצר שרוצים ולחפש אותו בעוד סניף. המחירים והמבצעים משתנים בין אזורים.",
+    searches:["Matsumoto Kiyoshi near me","cosmetics store near me Japan","Don Quijote near me","Loft near me"]
+  },
+  {
+    id:"shop-gifts",
+    title:"מתנות ומזכרות",
+    badge:"ממתקים · כלי בית · קיוטו",
+    image:"https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=1400&q=80",
+    subtitle:"ממתקים, תה, מאצ׳ה, כלי אוכל, צ׳ופסטיקס, מגבות יפניות ומזכרות.",
+    items:[
+      ["ממתקים יפניים","KitKat, Tokyo Banana, Royce, Pocky, אזור תחנות רכבת ושדות."],
+      ["תה ומאצ׳ה","במיוחד קיוטו/אוג׳י. מתנה איכותית וקלה יחסית."],
+      ["כלי אוכל","Kappabashi בטוקיו, קיוטו, חנויות קרמיקה ושווקים."],
+      ["Tenugui / מגבות","מתנה קלה, יפה ולא תופסת מקום."]
+    ],
+    tip:"מתנות אוכל לקנות קרוב יותר לסוף כדי לא לסחוב. דברים שבירים לקנות מוקדם רק אם יש מקום בטוח במזוודה.",
+    searches:["Japanese sweets near me","matcha Kyoto shop","Kappabashi kitchenware","souvenir shop near me Japan"]
+  },
+  {
+    id:"shop-tech",
+    title:"אלקטרוניקה וגאדג׳טים",
+    badge:"Yodobashi · Bic Camera",
+    image:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80",
+    subtitle:"אוזניות, מצלמות, כבלים, צעצועים, גאדג׳טים ומוצרי גיימינג.",
+    items:[
+      ["Yodobashi Akiba","ענק, נוח ומסודר. טוב להשוואות ולקנייה גדולה."],
+      ["Bic Camera","רשת גדולה, לעיתים מבצעים טובים ו-Tax Free."],
+      ["Akihabara","יותר חוויה, פחות בהכרח הכי זול. לבדוק כמה חנויות."],
+      ["Nintendo / Gaming","שווה לבדוק גם PARCO שיבויה וחנויות רטרו."]
+    ],
+    tip:"לוודא תאימות חשמל/שפה/אחריות. לא כל מוצר אלקטרוני ביפן נוח לשימוש מחוץ ליפן.",
+    searches:["Yodobashi Camera near me","Bic Camera near me","electronics store Akihabara","retro game shop Tokyo"]
+  },
+  {
+    id:"shop-donki",
+    title:"Don Quijote וסופר־קניות",
+    badge:"הכול במקום אחד",
+    image:"https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1400&q=80",
+    subtitle:"המקום לקניות משוגעות: ממתקים, קוסמטיקה, מתנות, תחפושות, מוצרי בית ועוד.",
+    items:[
+      ["Donki Akihabara","נוח בסוף הטיול כשאתם באקיהברה."],
+      ["Mega Donki Shibuya","גדול מאוד, אבל עמוס. טוב אם אתם באזור."],
+      ["Tax Free","להכין דרכון, לשמור שקיות סגורות לפי הכללים."],
+      ["השוואה","לא כל דבר בדונקי הכי זול — במיוחד קלפים ופופ."]
+    ],
+    tip:"דונקי מעולה לרשימת קניות מרוכזת, אבל קל להיסחף. להגיע עם רשימה ולא עם ״נראה מה יש״.",
+    searches:["Don Quijote near me","Mega Don Quijote Shibuya","Donki Akihabara"]
+  },
+  {
+    id:"shop-kitchen",
+    title:"כלי מטבח וסכינים",
+    badge:"Kappabashi · Kyoto crafts",
+    image:"https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1400&q=80",
+    subtitle:"סכינים יפניות, קערות, צלחות, צ׳ופסטיקס, כלי תה וציוד מטבח.",
+    items:[
+      ["Kappabashi","רחוב ציוד מטבח בטוקיו — חובה אם זה מעניין אתכם."],
+      ["סכינים","לבדוק אפשרות חריטה, אריזה למזוודה וחוקי נשיאה."],
+      ["קיוטו","קרמיקה, כלי תה, עבודות יד ומזכרות איכותיות."],
+      ["Loft / Hands","אופציה נוחה לכלי בית קטנים ופחות שבירים."]
+    ],
+    tip:"סכינים לא עולים למטוס בתיק יד. לארוז היטב במזוודה שנשלחת לבטן המטוס.",
+    searches:["Kappabashi kitchen town","Japanese knife shop near me","Kyoto ceramics shop","Japanese tableware near me"]
+  }
+];
+
+function getWishlist(){
+  try{return JSON.parse(localStorage.getItem("jp2026_shopping_wishlist") || "[]");}
+  catch(e){return [];}
+}
+function saveWishlist(items){
+  localStorage.setItem("jp2026_shopping_wishlist", JSON.stringify(items));
+}
+function addWishlistItem(){
+  const name = document.getElementById("wishlistName");
+  const cat = document.getElementById("wishlistCat");
+  if(!name || !name.value.trim()) return;
+  const items = getWishlist();
+  items.push({id:Date.now(), name:name.value.trim(), cat:cat.value.trim() || "כללי", done:false});
+  saveWishlist(items);
+  name.value = "";
+  renderWishlist();
+}
+function toggleWishlist(id){
+  const items = getWishlist();
+  const item = items.find(x => x.id === id);
+  if(item) item.done = !item.done;
+  saveWishlist(items);
+  renderWishlist();
+}
+function removeWishlist(id){
+  saveWishlist(getWishlist().filter(x => x.id !== id));
+  renderWishlist();
+}
+function renderWishlist(){
+  const wrap = document.getElementById("wishlistItems");
+  if(!wrap) return;
+  const items = getWishlist();
+  if(!items.length){
+    wrap.innerHTML = '<div class="shop-tip"><b>רשימת הקניות ריקה</b><p>הוסיפו דברים כמו מתנות, יוניקלו, קוסמטיקה, סכינים, ממתקים או קלפים.</p></div>';
+    return;
+  }
+  wrap.innerHTML = items.map(item => `<div class="wishlist-row ${item.done ? "done" : ""}">
+    <div><b>${esc(item.name)}</b><small>${esc(item.cat)}</small></div>
+    <div class="wishlist-actions">
+      <button onclick="toggleWishlist(${item.id})">${item.done ? "בטל" : "נקנה"}</button>
+      <button onclick="removeWishlist(${item.id})">×</button>
+    </div>
+  </div>`).join("");
+}
+function renderShoppingDashboard(){
+  const wrap = document.getElementById("shop-general");
+  if(!wrap) return;
+  wrap.innerHTML = `
+    <div class="shop-hero-grid">
+      ${SHOP_CATEGORIES.map((cat, idx) => `<article class="shop-category-card ${idx === 0 ? "featured" : ""}" id="${cat.id}">
+        <div class="shop-cat-image" style="background-image:url('${cat.image}')">
+          <div class="shop-cat-badge">🛍️ ${esc(cat.badge)}</div>
+          <div class="shop-cat-title">
+            <h3>${esc(cat.title)}</h3>
+            <p>${esc(cat.subtitle)}</p>
+          </div>
+        </div>
+        <div class="shop-cat-body">
+          <div class="shop-items-grid">
+            ${cat.items.map(([title,note]) => `<div class="shop-item"><b>${esc(title)}</b><span>${esc(note)}</span></div>`).join("")}
+          </div>
+          <div class="shop-tip"><b>טיפ קנייה</b><p>${esc(cat.tip)}</p></div>
+          <div class="shop-actions">
+            <button class="btn" onclick="openShopSearch('${esc(cat.searches[0])}')">חיפוש ראשי</button>
+            <button class="btn secondary" onclick="openShopSearch('${esc(cat.searches[1] || cat.searches[0])}')">עוד באזור</button>
+          </div>
+        </div>
+      </article>`).join("")}
+    </div>
+    <aside class="wishlist-panel">
+      <div class="wishlist-head">
+        <h3>רשימת קניות אישית</h3>
+        <p>שמרו דברים לקנות וסמנו “נקנה” בזמן הטיול.</p>
+      </div>
+      <div class="wishlist-form">
+        <input id="wishlistName" placeholder="מה לקנות?">
+        <input id="wishlistCat" placeholder="קטגוריה">
+      </div>
+      <button class="btn" onclick="addWishlistItem()">הוסף לרשימה</button>
+      <div style="height:12px"></div>
+      <div id="wishlistItems"></div>
+    </aside>
+  `;
+  renderWishlist();
+}
+
 function openPokeSearch(query){
   const url = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query + " Japan");
   window.open(url, "_blank", "noopener,noreferrer");
@@ -2554,6 +3223,193 @@ function openFoodSearch(query){
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
+
+const TRIP_START_JST = new Date("2026-08-22T00:00:00+09:00");
+const TRIP_END_JST = new Date("2026-09-23T23:59:59+09:00");
+
+function currentTripIndex(){
+  const now = new Date();
+  if(now < TRIP_START_JST) return 0;
+  if(now > TRIP_END_JST) return DATA.days.length - 1;
+  return Math.min(DATA.days.length - 1, Math.max(0, Math.floor((now - TRIP_START_JST) / 86400000)));
+}
+function goToToday(){
+  selected = currentTripIndex();
+  saveState();
+  switchPanel("planner");
+  render();
+}
+function renderTodayBrief(){
+  const wrap = document.getElementById("todayBrief");
+  if(!wrap) return;
+  const idx = currentTripIndex();
+  const d = DATA.days[idx];
+  const before = new Date() < TRIP_START_JST;
+  const title = before ? "הטיול עוד לא התחיל — היום הראשון מוכן" : "מה עושים היום?";
+  const firstMust = d[4].find(i => String(i[3]).includes("חובה")) || d[4][0];
+  wrap.innerHTML = `
+    <h3>🎯 ${title}</h3>
+    <p><b>יום ${idx + 1}: ${esc(d[1])}</b></p>
+    <p>📅 ${esc(d[0])} · ${esc(d[2])}</p>
+    <p>⭐ ${esc(firstMust ? firstMust[1] : "בדקו את המסלול היומי")}</p>
+    <div class="today-brief-actions">
+      <button class="btn" onclick="goToToday()">פתח יום</button>
+      <a class="btn secondary" href="${mapsUrl(d[3], d[1])}" target="_blank" rel="noopener noreferrer" style="display:grid;place-items:center;text-decoration:none">מלון במפות</a>
+    </div>
+  `;
+}
+
+const PREP_ITEMS = [
+  {id:"visitjapan", title:"Visit Japan Web", due:"שבועיים לפני", note:"מילוי כניסה, מכס וכתובת המלון הראשון.", url:"https://services.digital.go.jp/en/visit-japan-web/"},
+  {id:"insurance", title:"ביטוח נסיעות", due:"לפני הטיסה", note:"לבדוק כיסוי רפואי, כבודה, ביטולים וספורט/אטרקציות אם רלוונטי.", url:"#"},
+  {id:"esim", title:"eSIM / אינטרנט", due:"שבוע לפני", note:"להתקין מראש ולבדוק הוראות הפעלה לפני הנחיתה.", url:"#"},
+  {id:"suica", title:"Suica / IC Card", due:"נחיתה", note:"להכין Apple Wallet או לבדוק אפשרויות IC בשדה/תחנות.", url:"#"},
+  {id:"trains", title:"רכבות ושינקנסן", due:"מ־25.07.2026", note:"להזמין לפי פתיחת חלונות; לבדוק גם מזוודה גדולה.", url:"https://smart-ex.jp/en/index.php"},
+  {id:"luggage", title:"שילוח מזוודות", due:"בימי מעבר", note:"במיוחד לפני עמק קיסו/מעברים עם רכבות ואוטובוסים.", url:"https://www.global-yamato.com/en/hands-free-travel/"},
+  {id:"usj", title:"Universal Studios Japan", due:"מוקדם ככל האפשר", note:"לתכנן Super Nintendo World ו־Timed Entry/Express.", url:"https://www.usj.co.jp/web/en/us/areas/super-nintendo-world"},
+  {id:"disney", title:"Tokyo DisneySea / Disneyland", due:"מוקדם ככל האפשר", note:"להתקין אפליקציה, לבדוק Standby Pass / Premier Access ביום הביקור.", url:"https://www.tokyodisneyresort.jp/en/tdr/guide/app_service/standbypass.html"},
+  {id:"pokemoncafe", title:"Pokémon Café", due:"כשחלון הזמנה נפתח", note:"Tokyo DX / Nihonbashi — להזמין מראש אם רוצים.", url:"https://www.pokemon-cafe.jp/en/cafe/reservation.html"},
+  {id:"offline", title:"Offline Pack", due:"שבוע לפני", note:"צילומי מסך למלונות, QR, כרטיסים, PDF, ביטוח, כתובות.", url:"#"}
+];
+
+function prepStatus(id){
+  return localStorage.getItem("jp2026_prep_" + id) || "todo";
+}
+function setPrepStatus(id, value){
+  localStorage.setItem("jp2026_prep_" + id, value);
+  renderPrep();
+}
+function renderPrep(){
+  const wrap = document.getElementById("prepList");
+  if(!wrap) return;
+  const doneCount = PREP_ITEMS.filter(x => prepStatus(x.id) === "done").length;
+  const pct = Math.round(doneCount / PREP_ITEMS.length * 100);
+  const ring = document.getElementById("prepRing");
+  const label = document.getElementById("prepPercent");
+  if(ring) ring.style.setProperty("--p", pct);
+  if(label) label.textContent = pct + "%";
+  wrap.innerHTML = PREP_ITEMS.map(item => `
+    <div class="prep-row">
+      <div class="prep-main">
+        <div><b>${esc(item.title)}</b><p>${esc(item.note)}</p></div>
+        <span class="prep-due">${esc(item.due)}</span>
+      </div>
+      <div class="prep-actions">
+        <select onchange="setPrepStatus('${item.id}', this.value)">
+          <option value="todo" ${prepStatus(item.id)==="todo"?"selected":""}>לא התחיל</option>
+          <option value="progress" ${prepStatus(item.id)==="progress"?"selected":""}>בתהליך</option>
+          <option value="done" ${prepStatus(item.id)==="done"?"selected":""}>בוצע</option>
+        </select>
+        <a class="btn secondary" href="${item.url}" target="_blank" rel="noopener noreferrer">פתח</a>
+      </div>
+    </div>
+  `).join("");
+}
+
+const PLAN_B = [
+  {city:"טוקיו", tags:["Solamachi","Ginza","Akihabara","Ueno Museums","Sunshine City"], note:"ביום חם/גשום: קניונים, מוזיאונים, ארקיידים ופוקימון בלי הליכות ארוכות."},
+  {city:"קיוטו", tags:["Nishiki","Kyoto Station","Aeon Mall","Manga Museum","Pontocho"], note:"להחליף מקדשים פתוחים בשוק, קניון, מוזיאון וערב אוכל בסמטאות."},
+  {city:"אוסקה", tags:["Kaiyukan","Namba Parks","Shinsaibashi","Umeda","Arcades"], note:"אוסקה מושלמת ליום גשם: אוכל, קניות ואקווריום."},
+  {city:"הירושימה", tags:["Peace Museum","Hondori","Shukkeien","Okonomimura"], note:"להוריד קצב אחרי מוזיאון השלום; אוכל רגוע ואזור מקורה."},
+  {city:"קאנאזאווה", tags:["Forus","Omicho","21st Century Museum","Katamachi"], note:"אם גשום: שוק, מוזיאון וקניון ליד התחנה."},
+  {city:"טאקיאמה / קיסו", tags:["Onsen","Cafe","Ryokan","Short Walk"], note:"לא להילחם במזג אוויר הררי. יום רגוע ואונסן זו הצלחה."}
+];
+function renderPlanB(){
+  const wrap = document.getElementById("planBGrid");
+  if(!wrap) return;
+  wrap.innerHTML = PLAN_B.map(p => `
+    <div class="planb-card">
+      <h4>${esc(p.city)}</h4>
+      <p>${esc(p.note)}</p>
+      <div class="planb-tags">${p.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div>
+      <button class="btn secondary" onclick="openShopSearch('${esc(p.city)} indoor attractions')">חפש אופציות קרובות</button>
+    </div>
+  `).join("");
+}
+
+function calcBaggage(){
+  const h = Number(document.getElementById("bagH").value || 0);
+  const w = Number(document.getElementById("bagW").value || 0);
+  const d = Number(document.getElementById("bagD").value || 0);
+  const total = h + w + d;
+  const out = document.getElementById("bagResult");
+  if(!total){ out.textContent = "הכניסו מידות כדי לבדוק."; return; }
+  if(total <= 160){
+    out.innerHTML = `<b>סה״כ ${total} ס״מ:</b> לרוב לא דורש הזמנת מקום Oversized. עדיין עדיף לא להיסחב ברכבות עירוניות.`;
+  } else if(total <= 250){
+    out.innerHTML = `<b>סה״כ ${total} ס״מ:</b> מזוודה גדולה. בקווי Tokaido/Sanyo/Kyushu Shinkansen צריך להזמין מושב עם מקום למטען גדול.`;
+  } else {
+    out.innerHTML = `<b>סה״כ ${total} ס״מ:</b> גדול מדי לרוב השימושים הרגילים. בדקו שילוח מזוודות/מגבלות חברת רכבת.`;
+  }
+}
+function renderLuggagePlan(){
+  const wrap = document.getElementById("luggagePlan");
+  if(!wrap) return;
+  const steps = [
+    ["טוקיו → טאקיאמה","אפשר לקחת, אבל אם המזוודות גדולות — לבדוק נוחות החלפה בנגויה."],
+    ["טאקיאמה → קאנאזאווה","אוטובוס/שיראקאווה־גו: עדיף להגיע קל אם עוצרים בכפר."],
+    ["מאטסומוטו → עמק קיסו → קיוטו","מומלץ לשקול לשלוח מזוודות קדימה לקיוטו ולהגיע לריוקן עם תיק קטן."],
+    ["הירושימה → טוקיו","שינקנסן ארוך: להזמין מקום מתאים אם יש מזוודה מעל 160 ס״מ."]
+  ];
+  wrap.innerHTML = steps.map(([title,note]) => `<div class="luggage-step"><b>${esc(title)}</b><span>${esc(note)}</span></div>`).join("");
+}
+
+function getExpenses(){
+  try{return JSON.parse(localStorage.getItem("jp2026_expenses") || "[]");}catch(e){return [];}
+}
+function saveExpenses(items){
+  localStorage.setItem("jp2026_expenses", JSON.stringify(items));
+}
+function addExpense(){
+  const cat = document.getElementById("expenseCat").value;
+  const yen = Number(document.getElementById("expenseYen").value || 0);
+  const note = document.getElementById("expenseNote").value.trim();
+  if(!yen) return;
+  const items = getExpenses();
+  items.push({id:Date.now(), day:selected+1, date:DATA.days[selected]?.[0] || "", cat, yen, note});
+  saveExpenses(items);
+  document.getElementById("expenseYen").value = "";
+  document.getElementById("expenseNote").value = "";
+  renderExpenses();
+}
+function removeExpense(id){
+  saveExpenses(getExpenses().filter(x => x.id !== id));
+  renderExpenses();
+}
+function renderExpenses(){
+  const summary = document.getElementById("expenseSummary");
+  const list = document.getElementById("expenseList");
+  if(!summary || !list) return;
+  const items = getExpenses();
+  const totalYen = items.reduce((s,x)=>s+Number(x.yen||0),0);
+  const totalIls = totalYen * getCurrencyRate();
+  summary.innerHTML = `<div><span>סה״כ ביין</span><b>${formatJPY(totalYen)}</b></div><div><span>בערך בשקלים</span><b>${formatILS(totalIls)}</b></div>`;
+  list.innerHTML = items.slice().reverse().map(x => `
+    <div class="expense-row">
+      <div><b>${esc(x.cat)} · ${formatJPY(x.yen)}</b><small>יום ${x.day} · ${esc(x.note || "ללא הערה")}</small></div>
+      <button onclick="removeExpense(${x.id})">×</button>
+    </div>
+  `).join("") || `<div class="shop-tip"><b>אין הוצאות עדיין</b><p>רשמו פה רק דברים שתרצו לעקוב אחריהם, לא כל קפה קטן.</p></div>`;
+}
+function renderOfflineChecklist(){
+  const wrap = document.getElementById("offlineChecklist");
+  if(!wrap) return;
+  const items = ["צילום מסך של כל מלון וכתובת", "QR של Visit Japan Web", "כרטיסי USJ / Disney / teamLab", "ביטוח נסיעות וטלפון חירום", "PDF של המסלול", "רשימת רכבות ומספרי הזמנות", "כתובות מלונות ביפנית"];
+  wrap.innerHTML = items.map((t,i)=>`<label><input type="checkbox" onchange="localStorage.setItem('offline_${i}', this.checked)" ${localStorage.getItem('offline_'+i)==='true'?'checked':''}> ${esc(t)}</label>`).join("");
+}
+function scrollToTool(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+function renderUltimateTools(){
+  renderTodayBrief();
+  renderPrep();
+  renderPlanB();
+  renderLuggagePlan();
+  renderExpenses();
+  renderOfflineChecklist();
+}
+
 function exportPlan(){
   const blob = new Blob([JSON.stringify({days: DATA.days, notes, done}, null, 2)], {type:"application/json"});
   const a = document.createElement("a");
@@ -2608,6 +3464,8 @@ setInterval(updateCountdown, 1000);
 [searchEl, cityFilter, tagFilter].filter(Boolean).forEach(el => el.addEventListener("input", render));
 initFilters();
 renderInfoPanels();
+renderShoppingDashboard();
+renderUltimateTools();
 initCurrency();
 fetchLiveCurrencyRate();
 render();
