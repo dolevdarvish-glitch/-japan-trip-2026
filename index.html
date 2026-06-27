@@ -432,7 +432,7 @@ textarea{
   border-radius:24px;
   padding:7px;
   display:grid;
-  grid-template-columns:repeat(7,1fr);
+  grid-template-columns:repeat(8,1fr);
   gap:4px;
   box-shadow:var(--soft);
   backdrop-filter:blur(16px);
@@ -1595,7 +1595,7 @@ textarea{
     top:12px;
     width:calc(100% - 36px);
     margin:16px auto 0;
-    grid-template-columns:repeat(7,1fr);
+    grid-template-columns:repeat(8,1fr);
   }
 }
 @media(min-width:1060px){
@@ -1797,6 +1797,56 @@ textarea{
   .planb-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
+
+.exp-hero{
+  background:radial-gradient(circle at 14% 18%, rgba(255,255,255,.22), transparent 24%),linear-gradient(135deg,#1a2a4a 0%,#3f6688 54%,#e68b61 135%);
+  color:white;border-radius:34px;padding:22px;box-shadow:var(--shadow);display:grid;gap:14px;margin-bottom:14px;
+}
+.exp-kicker{font-size:12px;font-weight:950;letter-spacing:.14em;opacity:.78}
+.exp-hero h2{margin:6px 0 8px;font-size:clamp(32px,7vw,54px);line-height:1;letter-spacing:-.05em}
+.exp-hero p{margin:0;max-width:820px;line-height:1.65;opacity:.93}
+.exp-control-card{background:white;border:1px solid var(--line);border-radius:28px;padding:16px;box-shadow:var(--soft);margin-bottom:16px;display:grid;gap:12px}
+.exp-control-main{display:grid;gap:10px}
+.exp-control-main label{display:grid;gap:7px;color:#1a2a4a}
+.exp-control-main select{width:100%;box-shadow:none}
+.exp-context{background:#f7f2ec;border:1px solid var(--line);border-radius:20px;padding:13px;color:var(--muted);line-height:1.55}
+.exp-context b{color:#1a2a4a}
+.exp-grid{display:grid;gap:18px}
+.exp-card{background:white;border:1px solid var(--line);border-radius:34px;overflow:hidden;box-shadow:var(--shadow)}
+.exp-image{min-height:220px;background-size:cover;background-position:center;position:relative;isolation:isolate}
+.exp-image:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.68))}
+.exp-image-top{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;gap:8px;z-index:1}
+.exp-chip{background:rgba(255,255,255,.92);color:#1a2a4a;border-radius:999px;padding:8px 12px;font-weight:950;font-size:12px}
+.exp-title{position:absolute;right:18px;left:18px;bottom:18px;color:white;z-index:1}
+.exp-title h3{margin:0;font-size:clamp(30px,7vw,46px);line-height:1;letter-spacing:-.05em}
+.exp-title p{margin:8px 0 0;opacity:.94;line-height:1.45;font-weight:750}
+.exp-body{padding:18px;display:grid;gap:14px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:8px}
+.exp-tags span{background:#edf3f4;color:#2d5f73;border-radius:999px;padding:8px 12px;font-weight:900;font-size:13px}
+.exp-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.exp-fact{background:#fffaf5;border:1px solid #ead8c3;border-radius:20px;padding:12px}
+.exp-fact b{display:block;color:#7a4c2c;margin-bottom:4px}
+.exp-fact span{color:var(--muted);line-height:1.45;font-size:13px}
+.exp-tip{background:#faf7f2;border:1px solid var(--line);border-radius:20px;padding:13px}
+.exp-tip b{display:block;color:#1a2a4a;margin-bottom:5px}
+.exp-tip p{margin:0;color:var(--muted);line-height:1.55}
+.exp-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.exp-actions a,.exp-actions button{display:grid;place-items:center;text-decoration:none}
+.exp-status{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.exp-status select{box-shadow:none}
+.exp-empty{background:white;border:1px solid var(--line);border-radius:28px;padding:22px;color:var(--muted);text-align:center;box-shadow:var(--soft)}
+@media(min-width:760px){
+  .exp-hero{grid-template-columns:1fr auto;align-items:end;padding:28px}
+  .exp-control-main{grid-template-columns:1fr 1fr}
+  .exp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .exp-card.featured{grid-column:span 2}
+  .exp-card.featured .exp-image{min-height:320px}
+}
+@media(min-width:1100px){
+  .exp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .exp-card.featured{grid-column:span 2}
+}
+
 </style>
 </head>
 <body>
@@ -1828,6 +1878,7 @@ textarea{
       <button class="nav-btn" data-panel="planner"><span class="ico">📅</span><span>ימים</span></button>
       <button class="nav-btn" data-panel="cities"><span class="ico">📍</span><span>יעדים</span></button>
       <button class="nav-btn" data-panel="food"><span class="ico">🍜</span><span>אוכל</span></button>
+      <button class="nav-btn" data-panel="experiences"><span class="ico">🎟️</span><span>חוויות</span></button>
       <button class="nav-btn" data-panel="shopping"><span class="ico">🛍️</span><span>קניות</span></button>
       <button class="nav-btn" data-panel="currency"><span class="ico">💱</span><span>מטבע</span></button>
       <button class="nav-btn" data-panel="tools"><span class="ico">⚙️</span><span>כלים</span></button>
@@ -1870,6 +1921,7 @@ textarea{
               <button class="action-card" onclick="switchPanel('cities')"><span class="bubble b-blue">📍</span>יעדים</button>
               <button class="action-card" onclick="switchPanel('tools')"><span class="bubble b-red">📋</span>הכנות</button>
               <button class="action-card" onclick="switchPanel('food')"><span class="bubble b-pink">🍜</span>אוכל</button>
+              <button class="action-card" onclick="switchPanel('experiences')"><span class="bubble b-blue">🎟️</span>חוויות</button>
               <button class="action-card" onclick="switchPanel('shopping')"><span class="bubble b-gray">🛍️</span>קניות</button>
             </div>
           </div>
@@ -1945,6 +1997,42 @@ textarea{
     
 
       
+      
+      <section id="experiences" class="panel">
+        <div class="exp-hero">
+          <div>
+            <div class="exp-kicker">EXPERIENCES · WORKSHOPS · ATTRACTIONS</div>
+            <h2>חוויות וסדנאות</h2>
+            <p>כל הדברים הפעולתיים לפי יעד: סדנאות, פארקים, מוזיאונים, אוכל, תרבות, ימים גשומים, ומה כדאי להזמין מראש.</p>
+          </div>
+          <button class="btn" onclick="showExperiencesForToday()">חוויות ליום שלי</button>
+        </div>
+
+        <div class="exp-control-card">
+          <div class="exp-control-main">
+            <label>
+              <b>בחר יעד</b>
+              <select id="expCityFilter" onchange="renderExperiences()"></select>
+            </label>
+            <label>
+              <b>סוג חוויה</b>
+              <select id="expTypeFilter" onchange="renderExperiences()">
+                <option value="">הכול</option>
+                <option value="חובה">חובה</option>
+                <option value="סדנה">סדנה</option>
+                <option value="אוכל">אוכל</option>
+                <option value="פופ/גיימינג">פופ/גיימינג</option>
+                <option value="גשם/חום">גשם/חום</option>
+                <option value="נישה">נישה</option>
+              </select>
+            </label>
+          </div>
+          <div class="exp-context" id="expContext"></div>
+        </div>
+
+        <div class="exp-grid" id="experiencesGrid"></div>
+      </section>
+
       <section id="shopping" class="panel">
         <div class="poke-hero">
           <div>
@@ -2369,6 +2457,7 @@ function render(){
   renderDayCard();
   renderHome();
   renderUltimateTools();
+  renderExperiences();
 }
 
 function renderInfoPanels(){
@@ -3410,6 +3499,118 @@ function renderUltimateTools(){
   renderOfflineChecklist();
 }
 
+
+const EXPERIENCES = [
+  ["tokyo_food_sample","טוקיו","סדנה","Food Sample Making","הכנת דגמי אוכל יפניים מפלסטיק — חוויה מצחיקה, יפנית ומזכרת מעולה.","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80","¥2,500–¥5,500","60–90 דק׳","מומלץ להזמין מראש","יום אסקוסה / Kappabashi",["סדנה","נישה","גשם/חום"],"הכי מתאים לשלב עם Kappabashi Kitchen Town. זו חוויה יותר מקורית מסתם קניות.","Tokyo food sample making workshop"],
+  ["tokyo_sushi","טוקיו","אוכל","סדנת סושי / ניגירי","ללמוד להכין סושי כמו שצריך — פעילות טובה ליום רגוע או יום חם.","https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1400&q=80","¥8,000–¥15,000","2–3 שעות","להזמין מראש","טוקיו התחלה / סוף הטיול",["סדנה","אוכל","חובה"],"אם עושים סדנת אוכל אחת בטוקיו — זו בחירה בטוחה. לבדוק ביקורות וגודל קבוצה.","Tokyo sushi making class"],
+  ["tokyo_pokemon_cafe","טוקיו","פופ/גיימינג","Pokémon Café Tokyo","בית הקפה הרשמי של פוקימון בניהונבאשי, ליד Pokémon Center TOKYO DX.","https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=1400&q=80","¥2,000–¥5,000 לאדם","60–90 דק׳","חובה הזמנה מראש","יום גינזה / ניהונבאשי",["פופ/גיימינג","חובה","גשם/חום"],"ההזמנות נפתחות בחלונות מוגבלים. לא לבנות על ספונטני.","Pokemon Cafe Tokyo reservation"],
+  ["tokyo_teamlab","טוקיו","גשם/חום","teamLab Borderless","חוויה דיגיטלית גדולה ב־Azabudai Hills, מעולה ליום חם/גשום.","https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1400&q=80","¥3,800–¥4,800","2–3 שעות","מומלץ להזמין מראש","טוקיו סוף הטיול",["גשם/חום","נישה","חובה"],"להזמין לשעה נוחה ולא להעמיס עוד אטרקציה כבדה באותו יום.","teamLab Borderless Tokyo tickets"],
+  ["tokyo_disneysea","טוקיו","חובה","Tokyo DisneySea","אחד הפארקים הכי מיוחדים בעולם, עדיף כיום מלא בלי תוכנית כבדה אחריו.","https://images.unsplash.com/photo-1624601573012-efb68931cc8f?auto=format&fit=crop&w=1400&q=80","¥7,900–¥10,900","יום מלא","להזמין מראש","19.09 לפי המסלול",["חובה","פופ/גיימינג"],"להתקין את אפליקציית Tokyo Disney Resort ולבדוק Premier Access / Standby ביום הביקור.","Tokyo DisneySea tickets"],
+  ["takayama_sake","טאקיאמה","אוכל","טעימות סאקה בעיר העתיקה","מבשלות סאקה, רחובות עץ ואווירה של האלפים היפניים.","https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=1400&q=80","¥500–¥2,000","30–60 דק׳","לרוב לא חובה","אחרי Sanmachi Suji",["אוכל","נישה"],"להגיע לפני שהחנויות נסגרות. טאקיאמה נסגרת מוקדם יחסית.","Takayama sake brewery tasting"],
+  ["takayama_hida_beef","טאקיאמה","אוכל","Hida Beef Tasting","שיפודים, סושי בקר, קרוקט או יאקיניקו — אחת החוויות הקולינריות של האזור.","https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1400&q=80","¥1,000–¥8,000","30 דק׳–ערב","למסעדה רצינית כדאי להזמין","26.08 / 25.08 ערב",["אוכל","חובה"],"לעשות גם טעימות רחוב וגם ארוחה אחת רצינית אם התקציב מאפשר.","Hida beef Takayama restaurant"],
+  ["shirakawago_house","טאקיאמה","נישה","בית מסורתי בשיראקאווה־גו","להיכנס לבית Gassho-zukuri ולא רק לצלם מבחוץ.","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80","¥300–¥500","30–60 דק׳","לא חובה לרוב","27.08",["נישה","חובה"],"Kanda House / Wada House נותנים הקשר היסטורי טוב לכפר.","Kanda House Shirakawa-go"],
+  ["kanazawa_gold","קאנאזאווה","סדנה","Gold Leaf Workshop","קאנאזאווה מפורסמת בעלי זהב — סדנה קלה, יפה ומתאימה למזכרת.","https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1400&q=80","¥1,500–¥4,000","45–90 דק׳","מומלץ להזמין","30.08",["סדנה","נישה","גשם/חום"],"בחירה מעולה ליום שני בקאנאזאווה או אם מזג האוויר לא מתאים לגנים.","Kanazawa gold leaf workshop"],
+  ["kanazawa_museum","קאנאזאווה","גשם/חום","21st Century Museum of Contemporary Art","מוזיאון מודרני מוכר, טוב ליום גשם/חום ולשבירת רצף מקדשים.","https://images.unsplash.com/photo-1577720580479-7d839d829c73?auto=format&fit=crop&w=1400&q=80","חלק חינם / תערוכות ¥450–¥1,400","1–2 שעות","לבדוק תערוכות","29.08 / 30.08",["גשם/חום","נישה"],"לא חובה אם אתם פחות בקטע של אמנות, אבל מציל ביום גשום.","21st Century Museum Kanazawa tickets"],
+  ["matsumoto_wasabi","מאטסומוטו","נישה","Daio Wasabi Farm","חצי יום טבע, וואסאבי, נחלים ונוף רגוע מחוץ לעיר.","https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1400&q=80","כניסה לרוב חינם / אוכל בתשלום","2–4 שעות","לא חובה","01.09 אם יש זמן",["נישה","אוכל"],"לעשות רק אם לא רוצים עוד עיר/מוזיאון. מתאים לקצב רגוע.","Daio Wasabi Farm Matsumoto"],
+  ["kiso_nakasendo","עמק קיסו","חובה","הליכת Magome → Tsumago","אחת החוויות הכי מיוחדות במסלול: דרך נאקאסנדו, יפן כפרית והיסטורית.","https://images.unsplash.com/photo-1490761668535-35497054764d?auto=format&fit=crop&w=1400&q=80","חינם / תחבורה ואוכל","3–5 שעות","לא חובה","03.09",["חובה","נישה"],"לבדוק מזג אוויר, לקחת מים, נעליים נוחות, ולשקול לשלוח מזוודות קדימה לקיוטו.","Magome Tsumago Nakasendo trail"],
+  ["kyoto_tea","קיוטו","סדנה","Tea Ceremony / Matcha Experience","חוויה מסורתית קלאסית, מתאימה מאוד לקיוטו או אוג׳י.","https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=1400&q=80","¥3,000–¥8,000","45–90 דק׳","מומלץ להזמין","04–08.09",["סדנה","אוכל","חובה"],"אם אתם עושים גם אוג׳י — שווה לבדוק חוויית מאצ׳ה שם במקום בעיר.","Kyoto tea ceremony experience"],
+  ["kyoto_pottery","קיוטו","סדנה","Pottery / Kiyomizu-yaki Workshop","סדנת קרמיקה או צביעה — מזכרת איכותית ולא בנאלית.","https://images.unsplash.com/photo-1493106819501-66d381c466f1?auto=format&fit=crop&w=1400&q=80","¥3,000–¥7,000","60–120 דק׳","מומלץ להזמין","יום Kiyomizu / Higashiyama",["סדנה","נישה","גשם/חום"],"לבדוק אם צריך משלוח של המוצר אחרי שריפה בתנור או שאפשר לקחת במקום.","Kyoto pottery workshop Kiyomizu yaki"],
+  ["kyoto_sagano","קיוטו","נישה","Sagano Scenic Railway + Hozugawa Boat","שדרוג ליום ארשיאמה: רכבת נופית ושייט נהר אם יש זמן וכוח.","https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=1400&q=80","רכבת ~¥880 / שייט כמה אלפי ין","3–5 שעות","מומלץ להזמין/לבדוק מראש","05.09",["נישה","חובה"],"לא להוסיף אם יום ארשיאמה כבר עמוס או חם מדי.","Sagano Scenic Railway Hozugawa River Boat"],
+  ["nara_uji","קיוטו","אוכל","Nara + Uji Matcha Day","אפשר לשלב איילים ונארה עם אוג׳י, מאצ׳ה ו־Byodo-in אם יוצאים מוקדם.","https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1400&q=80","תחבורה + ¥1,000–¥5,000 אוכל/תה","יום מלא","לא חובה, סדנת תה כן","07.09 או 08.09",["אוכל","נישה"],"אם עושים נארה+אוג׳י, לא להעמיס עוד ערב כבד בקיוטו.","Uji matcha experience Kyoto"],
+  ["osaka_usj","אוסקה","חובה","Universal Studios Japan","יום פארק מלא, עם דגש על Super Nintendo World.","https://images.unsplash.com/photo-1608889175123-8ee362201f81?auto=format&fit=crop&w=1400&q=80","¥8,600–¥11,900+ / Express בנפרד","יום מלא","חובה להזמין מראש","10.09",["חובה","פופ/גיימינג"],"להתקין אפליקציה, להגיע מוקדם, ולבדוק Express Pass אם Nintendo חשוב.","Universal Studios Japan tickets Super Nintendo World"],
+  ["osaka_cooking","אוסקה","סדנה","Okonomiyaki / Takoyaki Cooking Class","אוסקה היא המקום הכי נכון ללמוד להכין את האוכל המקומי שלה.","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80","¥5,000–¥10,000","2–3 שעות","להזמין מראש","09.09 / 11.09",["סדנה","אוכל","נישה"],"אם עושים סדנת אוכל אחת באוסקה — זה מתאים יותר מראמן/סושי.","Osaka okonomiyaki cooking class"],
+  ["osaka_kaiyukan","אוסקה","גשם/חום","Osaka Aquarium Kaiyukan","אחד האקווריומים הטובים ביפן, מעולה ליום חם או גשום.","https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=1400&q=80","~¥2,700 למבוגר","2–3 שעות","מומלץ לבדוק מראש","11.09",["גשם/חום","חובה"],"לשלב עם Tempozan / Namba בערב ולא להעמיס אחרי USJ.","Osaka Aquarium Kaiyukan tickets"],
+  ["hiroshima_okosta","הירושימה","סדנה","OKOSTA Hiroshima Okonomiyaki Workshop","סדנת אוקונומיאקי בסגנון הירושימה — בול ליעד הזה.","https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1400&q=80","¥2,200–¥4,000","90–120 דק׳","להזמין מראש","12.09 / 14.09",["סדנה","אוכל","חובה"],"מעולה אחרי יום רגוע יותר, לא מיד אחרי מוזיאון השלום אם אתם רגישים לעומס רגשי.","OKOSTA Hiroshima okonomiyaki workshop"],
+  ["miyajima_craft","הירושימה","נישה","Miyajima Craft / Momiji Manju","מלאכות/קינוחים מקומיים באי — שדרוג קטן ליום מיאג׳ימה.","https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1400&q=80","¥1,000–¥4,000","30–90 דק׳","תלוי פעילות","13.09",["נישה","אוכל"],"לא חובה להזמין אם זה על הדרך, אבל אם מוצאים סדנה טובה — זו מזכרת יפה.","Miyajima craft workshop momiji manju"],
+  ["hiroshima_kagura","הירושימה","נישה","Hiroshima Kagura Performance","מופע מסורתי אזורי — פחות מוכר לתיירים ויכול להיות ערב מאוד מיוחד.","https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1400&q=80","משתנה לפי מופע","1–2 שעות","לבדוק תאריכים","14.09",["נישה"],"מתאים רק אם יש תאריך נוח ולא בא על חשבון מיאג׳ימה/אתרי השלום.","Hiroshima Kagura performance schedule"]
+].map(x => ({id:x[0], city:x[1], type:x[2], title:x[3], subtitle:x[4], image:x[5], price:x[6], time:x[7], booking:x[8], best:x[9], tags:x[10], tip:x[11], search:x[12]}));
+
+function normalizeTripCity(raw){
+  const s = String(raw || "");
+  if(s.includes("טוקיו") || s.includes("ישראל")) return "טוקיו";
+  if(s.includes("טאקיאמה") || s.includes("שיראקאווה")) return "טאקיאמה";
+  if(s.includes("קאנאזאווה")) return "קאנאזאווה";
+  if(s.includes("מאטסומוטו")) return "מאטסומוטו";
+  if(s.includes("קיסו")) return "עמק קיסו";
+  if(s.includes("קיוטו") || s.includes("נארה") || s.includes("אוג")) return "קיוטו";
+  if(s.includes("אוסקה")) return "אוסקה";
+  if(s.includes("הירושימה") || s.includes("מיאג")) return "הירושימה";
+  return s.split(" - ")[0].split(" / ")[0].trim();
+}
+function expStatus(id){ return localStorage.getItem("jp2026_exp_status_" + id) || "maybe"; }
+function setExpStatus(id, value){ localStorage.setItem("jp2026_exp_status_" + id, value); renderExperiences(); }
+function expNote(id){ return localStorage.getItem("jp2026_exp_note_" + id) || ""; }
+function setExpNote(id, value){ localStorage.setItem("jp2026_exp_note_" + id, value); }
+function initExperiences(){
+  const citySelect = document.getElementById("expCityFilter");
+  if(!citySelect) return;
+  const cities = ["היום שלי","טוקיו","טאקיאמה","קאנאזאווה","מאטסומוטו","עמק קיסו","קיוטו","אוסקה","הירושימה"];
+  citySelect.innerHTML = cities.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join("");
+  citySelect.value = "היום שלי";
+  renderExperiences();
+}
+function showExperiencesForToday(){
+  const citySelect = document.getElementById("expCityFilter");
+  if(citySelect) citySelect.value = "היום שלי";
+  switchPanel("experiences");
+  renderExperiences();
+}
+function renderExperiences(){
+  const grid = document.getElementById("experiencesGrid");
+  const citySelect = document.getElementById("expCityFilter");
+  const typeSelect = document.getElementById("expTypeFilter");
+  const context = document.getElementById("expContext");
+  if(!grid || !citySelect || !typeSelect) return;
+  const day = DATA.days[selected] || DATA.days[0];
+  const currentCity = normalizeTripCity(day[1]);
+  const selectedCity = citySelect.value || "היום שלי";
+  const type = typeSelect.value || "";
+  const resolvedCity = selectedCity === "היום שלי" ? currentCity : selectedCity;
+  if(context){
+    context.innerHTML = `<b>הקשר נוכחי:</b> יום ${selected + 1} · ${esc(day[1])} · מציג חוויות עבור <b>${esc(resolvedCity)}</b>.`;
+  }
+  let list = EXPERIENCES.filter(x => x.city === resolvedCity);
+  if(type) list = list.filter(x => x.type === type || x.tags.includes(type));
+  if(!list.length){
+    grid.innerHTML = `<div class="exp-empty">אין חוויות מתאימות לסינון הזה. נסו יעד אחר או סוג אחר.</div>`;
+    return;
+  }
+  grid.innerHTML = list.map((x, idx) => {
+    const status = expStatus(x.id);
+    const searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(x.search + " price booking");
+    const maps = mapsUrl(x.search, x.city);
+    return `<article class="exp-card ${idx === 0 ? "featured" : ""}">
+      <div class="exp-image" style="background-image:url('${x.image}')">
+        <div class="exp-image-top"><span class="exp-chip">${esc(x.type)}</span><span class="exp-chip">${esc(x.price)}</span></div>
+        <div class="exp-title"><h3>${esc(x.title)}</h3><p>${esc(x.subtitle)}</p></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-tags">${x.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+        <div class="exp-facts">
+          <div class="exp-fact"><b>מחיר משוער</b><span>${esc(x.price)}</span></div>
+          <div class="exp-fact"><b>משך</b><span>${esc(x.time)}</span></div>
+          <div class="exp-fact"><b>הזמנה</b><span>${esc(x.booking)}</span></div>
+          <div class="exp-fact"><b>הכי מתאים</b><span>${esc(x.best)}</span></div>
+        </div>
+        <div class="exp-tip"><b>טיפ</b><p>${esc(x.tip)}</p></div>
+        <div class="exp-status">
+          <select onchange="setExpStatus('${x.id}', this.value)">
+            <option value="maybe" ${status==="maybe"?"selected":""}>רוצים לבדוק</option>
+            <option value="booked" ${status==="booked"?"selected":""}>הוזמן</option>
+            <option value="skip" ${status==="skip"?"selected":""}>לוותר</option>
+            <option value="done" ${status==="done"?"selected":""}>בוצע</option>
+          </select>
+          <input placeholder="הערה אישית" value="${esc(expNote(x.id))}" onchange="setExpNote('${x.id}', this.value)">
+        </div>
+        <div class="exp-actions">
+          <a class="btn" href="${searchUrl}" target="_blank" rel="noopener noreferrer">בדיקת הזמנה</a>
+          <a class="btn secondary" href="${maps}" target="_blank" rel="noopener noreferrer">מפות</a>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+}
+
 function exportPlan(){
   const blob = new Blob([JSON.stringify({days: DATA.days, notes, done}, null, 2)], {type:"application/json"});
   const a = document.createElement("a");
@@ -3464,6 +3665,7 @@ setInterval(updateCountdown, 1000);
 [searchEl, cityFilter, tagFilter].filter(Boolean).forEach(el => el.addEventListener("input", render));
 initFilters();
 renderInfoPanels();
+initExperiences();
 renderShoppingDashboard();
 renderUltimateTools();
 initCurrency();
