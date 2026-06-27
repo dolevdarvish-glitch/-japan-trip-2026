@@ -1898,6 +1898,65 @@ textarea{
   }
 }
 
+
+.exp-date-window{
+  background:linear-gradient(135deg,#f7fbfc,#fffaf5);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:14px;
+  display:grid;
+  gap:10px;
+}
+.exp-date-window h4{
+  margin:0;
+  color:#1a2a4a;
+  font-size:20px;
+}
+.exp-date-window p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+.exp-date-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.exp-date-pills span{
+  background:white;
+  border:1px solid #ead8c3;
+  border-radius:999px;
+  padding:8px 12px;
+  color:#7a4c2c;
+  font-weight:900;
+  font-size:13px;
+}
+.exp-date-days{
+  display:grid;
+  gap:8px;
+}
+.exp-date-day{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:10px 12px;
+  display:grid;
+  gap:3px;
+}
+.exp-date-day b{
+  color:#233147;
+}
+.exp-date-day span{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
+@media(min-width:760px){
+  .exp-date-days{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3777,6 +3836,56 @@ function showExperiencesForToday(){
   renderExperiences();
 }
 
+
+function destinationDays(city){
+  return DATA.days.map((d,idx)=>({d,idx,city:normalizeTripCity(d[1])})).filter(x => x.city === city);
+}
+function dateRangeForCity(city){
+  const arr = destinationDays(city);
+  if(!arr.length) return null;
+  const first = arr[0];
+  const last = arr[arr.length - 1];
+  const dates = arr.map(x => x.d[0]);
+  const dayNums = arr.map(x => x.idx + 1);
+  return {
+    city,
+    firstDate:first.d[0],
+    lastDate:last.d[0],
+    count:arr.length,
+    firstDay:first.idx + 1,
+    lastDay:last.idx + 1,
+    dayNums,
+    dates,
+    days:arr
+  };
+}
+function renderDestinationDateWindow(city){
+  const info = dateRangeForCity(city);
+  if(!info){
+    return `<div class="exp-date-window"><h4>📅 תאריכים</h4><p>אין תאריכים מוגדרים ליעד הזה במסלול.</p></div>`;
+  }
+  const rangeText = info.firstDate === info.lastDate ? info.firstDate : `${info.firstDate} – ${info.lastDate}`;
+  const daysText = info.firstDay === info.lastDay ? `יום ${info.firstDay}` : `ימים ${info.firstDay}–${info.lastDay}`;
+  const cards = info.days.map(({d,idx}) => `
+    <div class="exp-date-day">
+      <b>יום ${idx + 1} · ${esc(d[0])}</b>
+      <span>${esc(d[1])} · ${esc(d[2])}</span>
+    </div>
+  `).join("");
+  return `
+    <div class="exp-date-window">
+      <h4>📅 חלון אפשרי ב${esc(city)}</h4>
+      <div class="exp-date-pills">
+        <span>${esc(rangeText)}</span>
+        <span>${esc(daysText)}</span>
+        <span>${info.count} ימי טיול</span>
+      </div>
+      <p>אלה התאריכים שבהם אתם נמצאים באזור הזה, וכאן הכי הגיוני לשבץ חוויות/סדנאות/אטרקציות.</p>
+      <div class="exp-date-days">${cards}</div>
+    </div>
+  `;
+}
+
 function renderExperiences(){
   const grid = document.getElementById("experiencesGrid");
   const citySelect = document.getElementById("expCityFilter");
@@ -3810,7 +3919,11 @@ function renderExperiences(){
   }, {});
 
   if(context){
-    context.innerHTML = `<b>מצב תכנון:</b> יום ${selected + 1} · ${esc(day[1])} · מציג חוויות עבור <b>${esc(resolvedCity)}</b>. הכפתור הראשי בכל כרטיס מוביל לאתר רשמי/עמוד הזמנה אמיתי כשמצאתי כזה.`;
+    const dateWindow = renderDestinationDateWindow(resolvedCity);
+    context.innerHTML = `
+      <div><b>מצב תכנון:</b> יום ${selected + 1} · ${esc(day[1])} · מציג חוויות עבור <b>${esc(resolvedCity)}</b>. הכפתור הראשי בכל כרטיס מוביל לאתר רשמי/עמוד הזמנה אמיתי כשמצאתי כזה.</div>
+      ${dateWindow}
+    `;
   }
   if(summary){
     summary.innerHTML = `
