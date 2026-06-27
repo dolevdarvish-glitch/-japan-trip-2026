@@ -1847,6 +1847,57 @@ textarea{
   .exp-card.featured{grid-column:span 2}
 }
 
+
+.exp-booking-summary{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+.exp-booking-summary button{
+  border:1px solid var(--line);
+  background:#fffaf5;
+  border-radius:16px;
+  padding:10px;
+  font-weight:950;
+  color:#233147;
+  cursor:pointer;
+}
+.exp-official-box{
+  background:linear-gradient(135deg,#edf8f5,#fffaf5);
+  border:1px solid #d7e5df;
+  border-radius:20px;
+  padding:13px;
+  display:grid;
+  gap:5px;
+}
+.exp-official-box b{
+  color:#144b3f;
+}
+.exp-official-box span{
+  color:var(--muted);
+  line-height:1.45;
+}
+.exp-action-full{
+  grid-column:1 / -1;
+}
+.exp-card.booked{
+  opacity:.78;
+}
+.exp-card.skip{
+  opacity:.52;
+}
+.exp-card.ready{
+  outline:3px solid rgba(47,143,104,.22);
+}
+@media(min-width:760px){
+  .exp-control-main{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+  .exp-booking-summary{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2026,8 +2077,20 @@ textarea{
                 <option value="נישה">נישה</option>
               </select>
             </label>
+            <label>
+              <b>סטטוס הזמנה</b>
+              <select id="expBookingFilter" onchange="renderExperiences()">
+                <option value="">הכול</option>
+                <option value="maybe">רוצים לבדוק</option>
+                <option value="compare">להשוות מחיר</option>
+                <option value="ready">מוכן להזמנה</option>
+                <option value="booked">הוזמן</option>
+                <option value="skip">לוותר</option>
+              </select>
+            </label>
           </div>
           <div class="exp-context" id="expContext"></div>
+          <div class="exp-booking-summary" id="expBookingSummary"></div>
         </div>
 
         <div class="exp-grid" id="experiencesGrid"></div>
@@ -3500,6 +3563,164 @@ function renderUltimateTools(){
 }
 
 
+
+const EXPERIENCE_OFFICIAL = {
+  tokyo_food_sample:{
+    label:"אתר רשמי / סדנה",
+    url:"https://www.ganso-sample.com/en/shop/kappabashi/experience/",
+    source:"Ganso Shokuhin Sample-ya",
+    priority:"גבוה"
+  },
+  tokyo_sushi:{
+    label:"סדנאות בישול",
+    url:"https://www.cooking-sun.com/tokyo-cooking-class/",
+    source:"Cooking Sun Tokyo",
+    priority:"בינוני"
+  },
+  tokyo_pokemon_cafe:{
+    label:"הזמנות רשמיות",
+    url:"https://www.pokemon-cafe.jp/en/cafe/reservation.html",
+    source:"Pokémon Café",
+    priority:"גבוה מאוד"
+  },
+  tokyo_teamlab:{
+    label:"כרטיסים רשמיים",
+    url:"https://www.teamlab.art/e/tokyo/",
+    source:"teamLab Borderless",
+    priority:"גבוה"
+  },
+  tokyo_disneysea:{
+    label:"כרטיסים רשמיים",
+    url:"https://www.tokyodisneyresort.jp/en/ticket/index.html",
+    source:"Tokyo Disney Resort",
+    priority:"גבוה מאוד"
+  },
+  takayama_sake:{
+    label:"עמוד חוויה רשמי",
+    url:"https://www.hida.jp/english/recreationandleisure/foodandculture/4001660.html",
+    source:"Hida Takayama",
+    priority:"בינוני"
+  },
+  takayama_hida_beef:{
+    label:"מידע רשמי ליעד",
+    url:"https://www.hida.jp/english/",
+    source:"Hida Takayama",
+    priority:"בינוני"
+  },
+  shirakawago_house:{
+    label:"Wada House רשמי",
+    url:"https://shirakawa-go.gr.jp/en/active/13/",
+    source:"Shirakawa-go Tourist Association",
+    priority:"בינוני"
+  },
+  kanazawa_gold:{
+    label:"הזמנה רשמית",
+    url:"https://enkanazawa.hakuichi.co.jp/contact/experience.php",
+    source:"Hakuichi",
+    priority:"גבוה"
+  },
+  kanazawa_museum:{
+    label:"אתר רשמי",
+    url:"https://www.kanazawa21.jp/en/",
+    source:"21st Century Museum",
+    priority:"בינוני"
+  },
+  matsumoto_wasabi:{
+    label:"אתר רשמי",
+    url:"https://www.daiowasabi.co.jp/",
+    source:"Daio Wasabi Farm",
+    priority:"נמוך"
+  },
+  kiso_nakasendo:{
+    label:"מדריך רשמי",
+    url:"https://en.visitkiso.com/nakasendo/magome-tsumago",
+    source:"Visit Kiso",
+    priority:"גבוה"
+  },
+  kyoto_tea:{
+    label:"הזמנה לדוגמה",
+    url:"https://www.en-kyoto.yumeyakata.com/teaexperience/",
+    source:"Yumeyakata Kyoto",
+    priority:"גבוה"
+  },
+  kyoto_pottery:{
+    label:"מידע רשמי",
+    url:"https://www.kyototourism.org/en/activities/1081/",
+    source:"Kyoto Tourism",
+    priority:"בינוני"
+  },
+  kyoto_sagano:{
+    label:"רכבת רשמית",
+    url:"https://www.sagano-kanko.co.jp/en/ticket/",
+    source:"Sagano Romantic Train",
+    priority:"גבוה"
+  },
+  nara_uji:{
+    label:"מידע רשמי אוג׳י",
+    url:"https://www.kyototourism.org/en/",
+    source:"Kyoto Tourism",
+    priority:"בינוני"
+  },
+  osaka_usj:{
+    label:"כרטיסים רשמיים",
+    url:"https://www.usj.co.jp/web/en/us/tickets",
+    source:"Universal Studios Japan",
+    priority:"גבוה מאוד"
+  },
+  osaka_cooking:{
+    label:"סדנאות בישול",
+    url:"https://www.cooking-sun.com/osaka-cooking-class/",
+    source:"Cooking Sun Osaka",
+    priority:"בינוני"
+  },
+  osaka_kaiyukan:{
+    label:"כרטיסים רשמיים",
+    url:"https://www.kaiyukan.com/info/ticket/kaiyukan/",
+    source:"Osaka Aquarium Kaiyukan",
+    priority:"בינוני"
+  },
+  hiroshima_okosta:{
+    label:"הזמנה רשמית",
+    url:"https://www.otafuku.co.jp/visit/en/experience/",
+    source:"Otafuku / OKOSTA",
+    priority:"גבוה"
+  },
+  miyajima_craft:{
+    label:"מרכז מלאכות רשמי",
+    url:"https://miyajimazaiku.com/en/mtcc-en/",
+    source:"Miyajima Crafts Center",
+    priority:"בינוני"
+  },
+  hiroshima_kagura:{
+    label:"לו״ז רשמי",
+    url:"https://www.rccbc.co.jp/event/kagura/en/schedule/index.html",
+    source:"Hiroshima Kagura",
+    priority:"בינוני"
+  }
+};
+
+function expOfficial(id){
+  return EXPERIENCE_OFFICIAL[id] || {
+    label:"בדיקת הזמנה",
+    url:"https://www.google.com/search?q=" + encodeURIComponent(id + " Japan official booking"),
+    source:"חיפוש גיבוי",
+    priority:"בדיקה"
+  };
+}
+function expStatusLabel(value){
+  return {
+    maybe:"רוצים לבדוק",
+    compare:"להשוות מחיר",
+    ready:"מוכן להזמנה",
+    booked:"הוזמן",
+    skip:"לוותר",
+    done:"בוצע"
+  }[value] || "רוצים לבדוק";
+}
+function expPriorityRank(p){
+  return {"גבוה מאוד":0,"גבוה":1,"בינוני":2,"נמוך":3,"בדיקה":4}[p] ?? 5;
+}
+
 const EXPERIENCES = [
   ["tokyo_food_sample","טוקיו","סדנה","Food Sample Making","הכנת דגמי אוכל יפניים מפלסטיק — חוויה מצחיקה, יפנית ומזכרת מעולה.","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80","¥2,500–¥5,500","60–90 דק׳","מומלץ להזמין מראש","יום אסקוסה / Kappabashi",["סדנה","נישה","גשם/חום"],"הכי מתאים לשלב עם Kappabashi Kitchen Town. זו חוויה יותר מקורית מסתם קניות.","Tokyo food sample making workshop"],
   ["tokyo_sushi","טוקיו","אוכל","סדנת סושי / ניגירי","ללמוד להכין סושי כמו שצריך — פעילות טובה ליום רגוע או יום חם.","https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1400&q=80","¥8,000–¥15,000","2–3 שעות","להזמין מראש","טוקיו התחלה / סוף הטיול",["סדנה","אוכל","חובה"],"אם עושים סדנת אוכל אחת בטוקיו — זו בחירה בטוחה. לבדוק ביקורות וגודל קבוצה.","Tokyo sushi making class"],
@@ -3555,56 +3776,105 @@ function showExperiencesForToday(){
   switchPanel("experiences");
   renderExperiences();
 }
+
 function renderExperiences(){
   const grid = document.getElementById("experiencesGrid");
   const citySelect = document.getElementById("expCityFilter");
   const typeSelect = document.getElementById("expTypeFilter");
+  const bookingSelect = document.getElementById("expBookingFilter");
   const context = document.getElementById("expContext");
+  const summary = document.getElementById("expBookingSummary");
   if(!grid || !citySelect || !typeSelect) return;
+
   const day = DATA.days[selected] || DATA.days[0];
   const currentCity = normalizeTripCity(day[1]);
   const selectedCity = citySelect.value || "היום שלי";
   const type = typeSelect.value || "";
+  const bookingFilter = bookingSelect ? bookingSelect.value : "";
   const resolvedCity = selectedCity === "היום שלי" ? currentCity : selectedCity;
-  if(context){
-    context.innerHTML = `<b>הקשר נוכחי:</b> יום ${selected + 1} · ${esc(day[1])} · מציג חוויות עבור <b>${esc(resolvedCity)}</b>.`;
-  }
+
   let list = EXPERIENCES.filter(x => x.city === resolvedCity);
   if(type) list = list.filter(x => x.type === type || x.tags.includes(type));
+  if(bookingFilter) list = list.filter(x => expStatus(x.id) === bookingFilter);
+
+  list = list.slice().sort((a,b) => {
+    const oa = expOfficial(a.id), ob = expOfficial(b.id);
+    return expPriorityRank(oa.priority) - expPriorityRank(ob.priority);
+  });
+
+  const allForCity = EXPERIENCES.filter(x => x.city === resolvedCity);
+  const counts = allForCity.reduce((acc,x) => {
+    const s = expStatus(x.id);
+    acc[s] = (acc[s] || 0) + 1;
+    return acc;
+  }, {});
+
+  if(context){
+    context.innerHTML = `<b>מצב תכנון:</b> יום ${selected + 1} · ${esc(day[1])} · מציג חוויות עבור <b>${esc(resolvedCity)}</b>. הכפתור הראשי בכל כרטיס מוביל לאתר רשמי/עמוד הזמנה אמיתי כשמצאתי כזה.`;
+  }
+  if(summary){
+    summary.innerHTML = `
+      <button onclick="document.getElementById('expBookingFilter').value='maybe';renderExperiences()">🔎 לבדוק: ${counts.maybe || 0}</button>
+      <button onclick="document.getElementById('expBookingFilter').value='compare';renderExperiences()">⚖️ להשוות: ${counts.compare || 0}</button>
+      <button onclick="document.getElementById('expBookingFilter').value='ready';renderExperiences()">✅ מוכן: ${counts.ready || 0}</button>
+      <button onclick="document.getElementById('expBookingFilter').value='booked';renderExperiences()">🎟️ הוזמן: ${counts.booked || 0}</button>
+    `;
+  }
+
   if(!list.length){
-    grid.innerHTML = `<div class="exp-empty">אין חוויות מתאימות לסינון הזה. נסו יעד אחר או סוג אחר.</div>`;
+    grid.innerHTML = `<div class="exp-empty">אין חוויות מתאימות לסינון הזה. נסו יעד אחר, סוג אחר, או אפסו סטטוס הזמנה.</div>`;
     return;
   }
+
   grid.innerHTML = list.map((x, idx) => {
     const status = expStatus(x.id);
-    const searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(x.search + " price booking");
+    const official = expOfficial(x.id);
+    const backupSearch = "https://www.google.com/search?q=" + encodeURIComponent(x.search + " official booking price");
     const maps = mapsUrl(x.search, x.city);
-    return `<article class="exp-card ${idx === 0 ? "featured" : ""}">
+    return `<article class="exp-card ${idx === 0 ? "featured" : ""} ${status}">
       <div class="exp-image" style="background-image:url('${x.image}')">
-        <div class="exp-image-top"><span class="exp-chip">${esc(x.type)}</span><span class="exp-chip">${esc(x.price)}</span></div>
-        <div class="exp-title"><h3>${esc(x.title)}</h3><p>${esc(x.subtitle)}</p></div>
+        <div class="exp-image-top">
+          <span class="exp-chip">${esc(x.type)}</span>
+          <span class="exp-chip">${esc(official.priority)}</span>
+        </div>
+        <div class="exp-title">
+          <h3>${esc(x.title)}</h3>
+          <p>${esc(x.subtitle)}</p>
+        </div>
       </div>
       <div class="exp-body">
         <div class="exp-tags">${x.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+
+        <div class="exp-official-box">
+          <b>אתר רשמי / מקור הזמנה</b>
+          <span>${esc(official.source)} · ${esc(official.label)}</span>
+        </div>
+
         <div class="exp-facts">
           <div class="exp-fact"><b>מחיר משוער</b><span>${esc(x.price)}</span></div>
           <div class="exp-fact"><b>משך</b><span>${esc(x.time)}</span></div>
           <div class="exp-fact"><b>הזמנה</b><span>${esc(x.booking)}</span></div>
           <div class="exp-fact"><b>הכי מתאים</b><span>${esc(x.best)}</span></div>
         </div>
+
         <div class="exp-tip"><b>טיפ</b><p>${esc(x.tip)}</p></div>
+
         <div class="exp-status">
           <select onchange="setExpStatus('${x.id}', this.value)">
             <option value="maybe" ${status==="maybe"?"selected":""}>רוצים לבדוק</option>
+            <option value="compare" ${status==="compare"?"selected":""}>להשוות מחיר</option>
+            <option value="ready" ${status==="ready"?"selected":""}>מוכן להזמנה</option>
             <option value="booked" ${status==="booked"?"selected":""}>הוזמן</option>
             <option value="skip" ${status==="skip"?"selected":""}>לוותר</option>
             <option value="done" ${status==="done"?"selected":""}>בוצע</option>
           </select>
           <input placeholder="הערה אישית" value="${esc(expNote(x.id))}" onchange="setExpNote('${x.id}', this.value)">
         </div>
+
         <div class="exp-actions">
-          <a class="btn" href="${searchUrl}" target="_blank" rel="noopener noreferrer">בדיקת הזמנה</a>
+          <a class="btn exp-action-full" href="${official.url}" target="_blank" rel="noopener noreferrer">${esc(official.label)}</a>
           <a class="btn secondary" href="${maps}" target="_blank" rel="noopener noreferrer">מפות</a>
+          <a class="btn secondary" href="${backupSearch}" target="_blank" rel="noopener noreferrer">חיפוש גיבוי</a>
         </div>
       </div>
     </article>`;
