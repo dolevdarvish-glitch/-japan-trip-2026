@@ -1957,6 +1957,130 @@ textarea{
   }
 }
 
+
+.destination-guide{
+  display:grid;
+  gap:14px;
+  margin-bottom:18px;
+}
+.guide-hero{
+  background:
+    radial-gradient(circle at 12% 14%, rgba(255,255,255,.18), transparent 24%),
+    linear-gradient(135deg,#243b55 0%,#3d6f75 58%,#d99a68 140%);
+  color:white;
+  border-radius:32px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+.guide-hero h3{
+  margin:0;
+  font-size:clamp(28px,7vw,46px);
+  letter-spacing:-.05em;
+}
+.guide-hero p{
+  margin:8px 0 0;
+  line-height:1.6;
+  opacity:.94;
+}
+.guide-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+.guide-pills span{
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+  font-size:13px;
+}
+.guide-grid{
+  display:grid;
+  gap:12px;
+}
+.guide-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:16px;
+  box-shadow:var(--soft);
+}
+.guide-card h4{
+  margin:0 0 10px;
+  font-size:21px;
+  color:#1a2a4a;
+}
+.guide-card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+.guide-route{
+  display:grid;
+  gap:8px;
+  margin-top:10px;
+}
+.guide-route-step{
+  background:#fffaf5;
+  border:1px solid #ead8c3;
+  border-radius:18px;
+  padding:11px 12px;
+}
+.guide-route-step b{
+  color:#7a4c2c;
+  display:block;
+}
+.guide-route-step span{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+  line-height:1.45;
+  font-size:13px;
+}
+.guide-list{
+  display:grid;
+  gap:8px;
+}
+.guide-list div{
+  background:#f7f3ee;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:10px 12px;
+  color:var(--muted);
+  line-height:1.45;
+}
+.guide-list b{color:#233147}
+.guide-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.guide-actions button,
+.guide-actions a{
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+}
+.guide-note{
+  background:#eef7f6;
+  border:1px solid #cfe1dd;
+  border-radius:20px;
+  padding:13px;
+  color:#315f59;
+  line-height:1.55;
+  font-weight:800;
+}
+@media(min-width:760px){
+  .guide-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .guide-card.wide{
+    grid-column:span 2;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2152,6 +2276,7 @@ textarea{
           <div class="exp-booking-summary" id="expBookingSummary"></div>
         </div>
 
+        <div class="destination-guide" id="destinationGuide"></div>
         <div class="exp-grid" id="experiencesGrid"></div>
       </section>
 
@@ -2503,6 +2628,7 @@ function renderDayFocus(){
     <div class="focus-actions">
       <a class="btn" href="${mapsUrl(d[1], d[1])}" target="_blank" rel="noopener noreferrer">מפה ליעד</a>
       <a class="btn secondary" href="${mapsUrl(hotel, d[1])}" target="_blank" rel="noopener noreferrer">מפה למלון</a>
+      <button class="btn secondary" onclick="openDestinationGuide()">המלצות ליעד</button>
       <button class="btn secondary" onclick="prevDay()">← יום קודם</button>
       <button class="btn" onclick="nextDay()">יום הבא →</button>
     </div>
@@ -3886,6 +4012,238 @@ function renderDestinationDateWindow(city){
   `;
 }
 
+
+const DESTINATION_GUIDES = {
+  "טוקיו":{
+    summary:"עיר ענקית שצריך לפרק לשכונות. השילוב הכי טוב עבורכם הוא תרבות, שווקים, אוכל, תצפיות, פוקימון/קלפים וערבים עירוניים.",
+    pace:"4–5 מסלולים שונים",
+    bestTime:"שווקים בבוקר · שיבויה/אקיהברה בערב",
+    budget:"הרבה מהימים כמעט חינם",
+    routes:[
+      ["אסקוסה → אואנו → אקיהברה","Senso-ji, Nakamise, Ameyoko, ואז קלפים/גיימינג בערב. אחד הימים הכי מתאימים לכם."],
+      ["מייג׳י → הרג׳וקו → שיבויה","Meiji Shrine בבוקר, Takeshita ו-Omotesando, מעבר שיבויה והאצ׳יקו לקראת ערב."],
+      ["צוקיג׳י → גינזה → ניהונבאשי","שוק מוקדם, אוכל, קניות, Pokémon Center DX ואפשרות ל-Pokémon Café."],
+      ["teamLab / אודייבה","חצי יום מודרני ליום חם או גשום. לשלב DiverCity ופסל Gundam."]
+    ],
+    musts:["Senso-ji ואסקוסה","Akihabara לקלפים וגיימינג","Meiji Shrine + Harajuku","Shibuya בערב"],
+    cheap:["Tokyo Metropolitan Government Building","Ueno Park","Meiji Shrine","Senso-ji","הגנים המזרחיים של הארמון"],
+    tips:[
+      "לא לנסות לחבר את כל השכונות ביום אחד.",
+      "צוקיג׳י ושווקים מוקדם; שיבויה ואקיהברה טובים יותר בערב.",
+      "באוגוסט/ספטמבר להתחיל מוקדם ולעשות הפסקה ממוזגת בצהריים.",
+      "teamLab עם שעה קבועה צריך להיות העוגן של היום."
+    ],
+    planB:"Ueno Museums, Solamachi, Ginza, Sunshine City, Akihabara ו-teamLab."
+  },
+  "טאקיאמה":{
+    summary:"יעד איטי ומקומי. החוויה היא העיר העתיקה, שוקי הבוקר, Hida Beef, סאקה ושיראקאווה־גו.",
+    pace:"2–3 ימים רגועים",
+    bestTime:"שוק בבוקר · העיר העתיקה לפני 17:00",
+    budget:"רוב השיטוט חינם",
+    routes:[
+      ["בוקר טאקיאמה","Miyagawa Morning Market → Takayama Jinya → העיר העתיקה."],
+      ["אוכל ומסורת","Sannomachi → מבשלות סאקה → Hida Beef → אונסן בערב."],
+      ["שיראקאווה־גו בדרך","Takayama → Shirakawa-go → Kanazawa, במקום לחזור לטאקיאמה."]
+    ],
+    musts:["Sanmachi Suji","Miyagawa Morning Market","Hida Beef","Wada/Kanda House בשיראקאווה־גו"],
+    cheap:["שוקי הבוקר","העיר העתיקה","תצפית שיראקאווה־גו","טעימות רחוב קטנות"],
+    tips:[
+      "הרבה חנויות נסגרות סביב 17:00.",
+      "לשמור אוטובוס לשיראקאווה־גו מראש.",
+      "עדיף לשלוח מזוודות או להמשיך עם תיק קטן לכפר.",
+      "לא להעמיס ערב אחרי יום נסיעות."
+    ],
+    planB:"Hida Folk Village, בתי קפה, מוזיאון מצופי הפסטיבל, אונסן."
+  },
+  "קאנאזאווה":{
+    summary:"עיר אסתטית ורגועה: גנים, שוק, רובע סמוראים, בתי תה ומלאכת עלי זהב.",
+    pace:"2–3 ימים",
+    bestTime:"Kenrokuen מוקדם · Higashi Chaya אחר הצהריים",
+    budget:"זול יחסית",
+    routes:[
+      ["יום קלאסי","Omicho Market → Kanazawa Castle → Kenrokuen → Higashi Chaya."],
+      ["מסורת ומלאכות","Nagamachi Samurai District → Gold Leaf Workshop → Katamachi בערב."]
+    ],
+    musts:["Kenrokuen","Omicho Market","Higashi Chaya","Nagamachi"],
+    cheap:["Castle Park","שיטוט ברובעי הסמוראים ובתי התה","שוק Omicho"],
+    tips:[
+      "להתחיל בגן מוקדם לפני החום.",
+      "סדנת עלי זהב מתאימה מאוד ליום גשם.",
+      "לא חייבים את כל המוזיאונים אם אתם פחות בקטע של אמנות."
+    ],
+    planB:"21st Century Museum, Forus ליד התחנה, Omicho, סדנת עלי זהב."
+  },
+  "מאטסומוטו":{
+    summary:"יעד קומפקטי. טירה, רחובות ישנים, סובה ואמנות. לא צריך להעמיס.",
+    pace:"יום וחצי–יומיים",
+    bestTime:"הטירה מוקדם",
+    budget:"זול",
+    routes:[
+      ["מרכז העיר","Matsumoto Castle → Nawate Street → Nakamachi → ארוחת סובה."],
+      ["חצי יום נוסף","Yayoi Kusama Museum או Daio Wasabi Farm אם רוצים טבע."]
+    ],
+    musts:["Matsumoto Castle","Nawate/Nakamachi","Soba"],
+    cheap:["טירה מבחוץ והפארק","רחובות העיר העתיקה","שיטוט ערב"],
+    tips:[
+      "לעלות לטירה מוקדם אם רוצים להיכנס.",
+      "Daio Wasabi Farm רק אם יש זמן אמיתי.",
+      "להשאיר את היום רגוע לקראת קיסו."
+    ],
+    planB:"Matsumoto City Museum of Art, בתי קפה וחנויות מלאכה."
+  },
+  "עמק קיסו":{
+    summary:"אחד הימים הכי מיוחדים בטיול. הליכה היסטורית, ריוקן, אונסן וקצב איטי.",
+    pace:"יום הליכה + לילה רגוע",
+    bestTime:"בוקר מוקדם",
+    budget:"המסלול עצמו חינם",
+    routes:[
+      ["Magome → Tsumago","הליכה של 3–5 שעות עם עצירות, אוכל מקומי ונוף כפרי."],
+      ["ערב ריוקן","להגיע בזמן לצ׳ק-אין, Kaiseki ואונסן. לא לתכנן עוד אטרקציות."]
+    ],
+    musts:["Nakasendo Trail","ריוקן","אונסן","Gohei Mochi / סובה"],
+    cheap:["המסלול עצמו","שיטוט בעיירות הדואר","צילום בוקר/ערב"],
+    tips:[
+      "לשלוח מזוודות קדימה לקיוטו ולהגיע עם תיק קטן.",
+      "לבדוק גשם וחום לפני היציאה.",
+      "מים, נעליים טובות ושעות אור חשובים יותר מעוד אטרקציה."
+    ],
+    planB:"Narai-juku, יום ריוקן רגוע, קפה ואונסן."
+  },
+  "קיוטו":{
+    summary:"העיר שבה הכי חשוב לקבץ לפי אזורים. מקדשים, שווקים, גיון, טבע וסדנאות מסורתיות.",
+    pace:"4–5 מסלולי אזור",
+    bestTime:"מקדשים מוקדם · גיון בערב",
+    budget:"הרבה אטרקציות חינם או זולות",
+    routes:[
+      ["מרכז וערב","Nishiki Market → Yasaka Shrine → Gion → Hanamikoji → Pontocho."],
+      ["ארשיאמה","Bamboo Grove מוקדם → Tenryu-ji → Togetsukyo → Otagi/Adashino לפי כוח."],
+      ["מזרח קיוטו","Ginkaku-ji → Philosopher’s Path → Nanzen-ji. ביום אחר: Kiyomizu → Sannenzaka → Gion."],
+      ["היסטוריה ופושימי","Nijo Castle → Imperial Park → Fushimi Inari מוקדם או בערב."],
+      ["נארה / אוג׳י","Nara Park + Todai-ji, או יום משולב עם Uji Matcha אם יוצאים מוקדם."]
+    ],
+    musts:["Fushimi Inari","Kiyomizu-dera","Gion/Yasaka","Arashiyama","Nishiki Market"],
+    cheap:["Fushimi Inari","Imperial Park","Yasaka Shrine","Philosopher’s Path","Gion"],
+    tips:[
+      "מעבר בין אזורים יכול לקחת 40–50 דקות.",
+      "Nishiki הוא שוק יום, לא שוק לילה.",
+      "באוגוסט/ספטמבר מקדשים מוקדם מאוד.",
+      "בגיון לכבד פרטיות וכללי צילום.",
+      "לא לדחוס את כל מזרח קיוטו ביום חם אחד."
+    ],
+    planB:"Nishiki, Kyoto Station, Manga Museum, Aeon Mall, סדנת תה/קרמיקה."
+  },
+  "אוסקה":{
+    summary:"העיר הכי טובה לאוכל, רחובות, קניות, גיימינג וערב. לא צריך פארק יקר כדי ליהנות.",
+    pace:"2–3 ימים",
+    bestTime:"שווקים בצהריים · Dotonbori בערב",
+    budget:"אפשר לבנות יום מלא בחינם",
+    routes:[
+      ["נמבה המלאה","Kuromon Market → Doguyasuji → Den Den Town → Hozenji → Dotonbori → Shinsaibashi."],
+      ["אוסקה רטרו","Tennoji → Shinsekai → Tsutenkaku מבחוץ → Kushikatsu → Spa World אופציונלי."],
+      ["אומדה בערב","Umeda, HEP FIVE או Umeda Sky, קניונים ואוכל."]
+    ],
+    musts:["Dotonbori בלילה","Den Den Town","Kuromon Market","Shinsekai"],
+    cheap:["Dotonbori","Shinsaibashi","Den Den Town","Osaka Castle Park","Namba Parks"],
+    tips:[
+      "Kuromon בבוקר/צהריים; Dotonbori בלילה.",
+      "לא ללכת בזמן שאוכלים בתוך השוק.",
+      "Den Den Town רלוונטי לכם במיוחד לקלפים וגיימינג.",
+      "Namba Parks הוא גיבוי טוב לחום/גשם."
+    ],
+    planB:"Kaiyukan, Namba Parks, Shinsaibashi, Umeda, Spa World."
+  },
+  "הירושימה":{
+    summary:"לשלב עומק היסטורי עם יום טבע במיאג׳ימה. לא לדחוס יותר מדי אחרי מוזיאון השלום.",
+    pace:"2–3 ימים",
+    bestTime:"מוזיאון בבוקר · מיאג׳ימה כיום מלא",
+    budget:"רוב האתרים זולים",
+    routes:[
+      ["יום שלום","Peace Memorial Museum → Peace Park → Atomic Bomb Dome → Hondori → אוקונומיאקי."],
+      ["מיאג׳ימה","מעבורת → Itsukushima Shrine → Daisho-in → Momijidani → Mount Misen אם מזג האוויר טוב."]
+    ],
+    musts:["Peace Memorial Museum","Atomic Bomb Dome","Miyajima","Okonomiyaki"],
+    cheap:["Peace Park","Atomic Bomb Dome","Hondori","שיטוט במיאג׳ימה"],
+    tips:[
+      "לבדוק גאות ושפל לפני מיאג׳ימה.",
+      "אסור להאכיל את האיילים במיאג׳ימה.",
+      "להקדיש למיאג׳ימה יום מלא, לא חצי יום אחרי נסיעה.",
+      "אחרי מוזיאון השלום לבחור המשך רגוע."
+    ],
+    planB:"Peace Museum, Hondori, Shukkeien, Okonomimura."
+  }
+};
+
+function renderDestinationGuide(city){
+  const wrap = document.getElementById("destinationGuide");
+  if(!wrap) return;
+  const g = DESTINATION_GUIDES[city];
+  if(!g){
+    wrap.innerHTML = "";
+    return;
+  }
+  const routeHtml = g.routes.map(([title,note]) => `
+    <div class="guide-route-step">
+      <b>${esc(title)}</b>
+      <span>${esc(note)}</span>
+    </div>
+  `).join("");
+  const mustHtml = g.musts.map(x => `<div><b>⭐</b> ${esc(x)}</div>`).join("");
+  const cheapHtml = g.cheap.map(x => `<div><b>¥</b> ${esc(x)}</div>`).join("");
+  const tipsHtml = g.tips.map(x => `<div><b>💡</b> ${esc(x)}</div>`).join("");
+  wrap.innerHTML = `
+    <div class="guide-hero">
+      <h3>המדריך שלנו ל${esc(city)}</h3>
+      <p>${esc(g.summary)}</p>
+      <div class="guide-pills">
+        <span>${esc(g.pace)}</span>
+        <span>${esc(g.bestTime)}</span>
+        <span>${esc(g.budget)}</span>
+      </div>
+    </div>
+
+    <div class="guide-grid">
+      <article class="guide-card wide">
+        <h4>🗺️ מסלולים מומלצים</h4>
+        <div class="guide-route">${routeHtml}</div>
+      </article>
+
+      <article class="guide-card">
+        <h4>⭐ מה באמת שווה</h4>
+        <div class="guide-list">${mustHtml}</div>
+      </article>
+
+      <article class="guide-card">
+        <h4>💴 דברים זולים או חינמיים</h4>
+        <div class="guide-list">${cheapHtml}</div>
+      </article>
+
+      <article class="guide-card wide">
+        <h4>💡 טיפים שחוסכים טעויות</h4>
+        <div class="guide-list">${tipsHtml}</div>
+      </article>
+
+      <article class="guide-card wide">
+        <h4>🌧️ Plan B</h4>
+        <p>${esc(g.planB)}</p>
+      </article>
+    </div>
+
+    <div class="guide-note">המסלולים הם בסיס גמיש. לא צריך לבצע את כולם — בחרו 1–2 עוגנים ביום והשאירו מקום לאוכל, קניות ומנוחה.</div>
+
+    <div class="guide-actions">
+      <button class="btn" onclick="openShopSearch('${esc(city)} attractions')">פתח במפות</button>
+      <button class="btn secondary" onclick="switchPanel('planner')">חזרה לימים</button>
+    </div>
+  `;
+}
+function openDestinationGuide(){
+  const citySelect = document.getElementById("expCityFilter");
+  if(citySelect) citySelect.value = "היום שלי";
+  switchPanel("experiences");
+  renderExperiences();
+  setTimeout(() => document.getElementById("destinationGuide")?.scrollIntoView({behavior:"smooth",block:"start"}), 80);
+}
+
 function renderExperiences(){
   const grid = document.getElementById("experiencesGrid");
   const citySelect = document.getElementById("expCityFilter");
@@ -3901,6 +4259,7 @@ function renderExperiences(){
   const type = typeSelect.value || "";
   const bookingFilter = bookingSelect ? bookingSelect.value : "";
   const resolvedCity = selectedCity === "היום שלי" ? currentCity : selectedCity;
+  renderDestinationGuide(resolvedCity);
 
   let list = EXPERIENCES.filter(x => x.city === resolvedCity);
   if(type) list = list.filter(x => x.type === type || x.tags.includes(type));
